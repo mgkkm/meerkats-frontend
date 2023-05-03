@@ -19,15 +19,13 @@ export default function KakaoLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const KAKAO_CODE = location.search.split('=')[1];
-  // const setCurrentId = useSetRecoilState(currentUserIdState);
-  // const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
   const [currentId, setCurrentId] = useRecoilState(currentUserIdState);
   const [currentNickname, setCurrentNickname] = useRecoilState(
     currentUserNicknameState
   );
 
-  console.log(currentNickname);
-  console.log(currentId);
+  // console.log(currentNickname);
+  // console.log(currentId);
 
   const [loading, error, data, fetchData] = useAxios();
 
