@@ -1,23 +1,33 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { currentUserState } from '../../../recoil/JwtDecode';
-import { useRecoilState } from 'recoil';
+import {
+  currentUserIdState,
+  currentUserNicknameState,
+} from '../../../recoil/JwtDecode';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import jwt_decode from 'jwt-decode';
 import { REST_API_KEY, REDIRECT_URI, KAKAO_TOKEN_URL } from './KakaoConfig';
-
 import useAxios from '../../../hooks/useAxios';
 
 interface DecodedToken {
   id: number;
+  userNickname: string;
 }
 
 export default function KakaoLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const KAKAO_CODE = location.search.split('=')[1];
-  const [currentId, setCurrentId] = useRecoilState(currentUserState);
-  // currentId: 10
+  // const setCurrentId = useSetRecoilState(currentUserIdState);
+  // const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
+  const [currentId, setCurrentId] = useRecoilState(currentUserIdState);
+  const [currentNickname, setCurrentNickname] = useRecoilState(
+    currentUserNicknameState
+  );
+
+  console.log(currentNickname);
+  console.log(currentId);
 
   const [loading, error, data, fetchData] = useAxios();
 
@@ -50,6 +60,7 @@ export default function KakaoLogin() {
           } else {
             const decodedToken: DecodedToken = jwt_decode(token);
             setCurrentId(decodedToken.id);
+            setCurrentNickname(res.userNickname);
           }
           localStorage.setItem('token', res.accessToken);
           navigate('/');
