@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function UserForm() {
-  const navigate: NavigateFunction = useNavigate();
+  const navigate = useNavigate();
 
   type UserInfos = { id: string; pw: string };
   const [inputValues, setInputValues] = useState<UserInfos>({
