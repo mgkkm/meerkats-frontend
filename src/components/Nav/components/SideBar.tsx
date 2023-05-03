@@ -2,10 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const sideData = [
   { id: 1, title: 'New' },
-  { id: 2, title: 'Korean Movies' },
-  { id: 3, title: 'International Movies' },
-  { id: 4, title: 'Korean  Series' },
-  { id: 5, title: 'International Series' },
+  { id: 2, title: 'International Movies' },
+  { id: 3, title: 'Korean Movies' },
 ];
 
 export default function SideBar() {

@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 // import TopBtn from '../TopBtn/TopBtn';
 
 type ScrollPorps = {
-  scrollHandler: (e: any) => void;
+  scrollHandler: (e: React.WheelEvent<HTMLDivElement>) => void;
 };
 
 export default function ContentContainer({

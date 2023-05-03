@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from './components/SideBar';
 
@@ -20,7 +20,7 @@ export default function Nav({ hide }: HidePropsType) {
       </div>
       <div className="navbar-center">
         <Link to="/">
-          <img alt="logo" src="images/logo_b.png" className="w-44" />
+          <img alt="logo" src="/images/logo_b.png" className="w-44" />
         </Link>
       </div>
       <div className="navbar-end">

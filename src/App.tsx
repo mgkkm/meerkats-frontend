@@ -7,8 +7,8 @@ import ContentContainer from './components/ContentContainer/ContentContainer';
 export default function App() {
   const [hide, setHide] = useState(false);
 
-  const scrollHandler = (e: any) => {
-    if (e.nativeEvent.wheelDelta < 0) {
+  const scrollHandler = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (e.deltaY < 0) {
       setHide(true);
     } else {
       setHide(false);
