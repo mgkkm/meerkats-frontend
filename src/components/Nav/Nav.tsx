@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import SideBar from './components/SideBar';
 
 interface HidePropsType {
-  hide: boolean;
+  show: boolean;
 }
 
-export default function Nav({ hide }: HidePropsType) {
+export default function Nav({ show }: HidePropsType) {
   return (
     <div
       className={`navbar bg-base-100 py-6 px-7 fixed top-0 z-10 visible transition duration-500 ease-in-out shadow  ${
-        hide && 'opacity-0'
+        show ? '' : 'opacity-0'
       }`}
     >
       <div className="navbar-start">
