@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieInfoData = [
+const MOVIEINFODATA = [
   {
     id: 1,
     release: '2023-04-12',
@@ -18,10 +18,10 @@ export default function MovieInfo() {
         <video
           src="https://www.youtube.com/watch?v=_RnF_9XHz9w"
           className="w-full h-full"
-        ></video>
+        />
       </div>
       <ul className="px-10 pt-14 text-lg text-mkLightGray">
-        {MovieInfoData.map(info => {
+        {MOVIEINFODATA.map(info => {
           const { release, director, mainActor, runningTime, des } = info;
 
           return (
