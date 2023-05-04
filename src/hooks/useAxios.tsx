@@ -10,6 +10,11 @@ export default function useAxios() {
     try {
       setLoading(true);
       const response = await axios.request(url);
+      // setTimeout(() => {
+      //   if (response === null) {
+      //     throw console.log('Timeout Error');
+      //   }
+      // }, 5000);
       const data = response?.data;
       setData(data);
       return data;
