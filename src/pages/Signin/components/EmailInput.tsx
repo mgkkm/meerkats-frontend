@@ -4,14 +4,16 @@ import useAxios from '../../../hooks/useAxios';
 
 type propsType = {
   email: string;
-  certifiNum: string;
+  certifiNumber: string;
   userInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  nickname: string;
 };
 
 export default function EmailInput({
   email,
-  certifiNum,
+  certifiNumber,
   userInputHandler,
+  nickname,
 }: propsType) {
   const [loading, error, data, fetchData] = useAxios();
   const [certifiNumInput, setCertifiNumInput] = useState(false);
@@ -203,14 +205,14 @@ export default function EmailInput({
           : '* 이미 존재하는 이메일입니다. 새로운 이메일을 입력해주세요.'}
       </p>
       <input
-        type="text"
-        name="certifiNum"
+        type="number"
+        name="certifiNumber"
         placeholder="인증번호 입력"
         className={`${
           certifiNumInput ? 'block' : 'hidden'
         } input input-bordered w-full h-14 mt-2`}
         maxLength={6}
-        value={certifiNum}
+        value={certifiNumber}
         onChange={emailConfirmNum}
       />
       {/* 인증번호 입력창 : 6글자(인증번호.length) 및 유효한숫자 조건이 참이면, 자동 disabled 처리되게끔 */}

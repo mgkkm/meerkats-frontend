@@ -9,7 +9,7 @@ export default function Signin() {
     email: '',
     nickname: '',
     password: '',
-    certifiNum: '',
+    certifiNumber: '',
   });
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,6 +20,24 @@ export default function Signin() {
   const pwvalue: string = userInput.password;
   const pwchk: RegExp =
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[a-zA-Z\d!@#$%^&*()_+]{8,20}$/;
+
+  const signInBtn = async () => {
+    await axios({
+      method: 'post',
+      url: 'https://www.meerkats.monster/users/signup',
+      data: {
+        email: userInput.email,
+        password: userInput.password,
+        nickname: userInput.nickname,
+      },
+    }).then((res: any) => {
+      console.log(res);
+      const msg = res.data.message;
+      alert(msg);
+    });
+
+    navigate('/login');
+  };
 
   return (
     <div className="h-full pt-28 pb-16 bg-mkBg text-mkBlack">
@@ -34,7 +52,8 @@ export default function Signin() {
           <EmailInput
             email={userInput.email}
             userInputHandler={userInputHandler}
-            certifiNum={userInput.certifiNum}
+            certifiNumber={userInput.certifiNumber}
+            nickname={userInput.nickname}
           />
           <div className="block mt-3">
             <input
@@ -76,8 +95,14 @@ export default function Signin() {
         <div className="block text-center">
           <button
             className="btn w-full h-14 mt-6 border-none bg-mkOrange hover:bg-mkDarkOrange text-mkWhite text-base"
-            onClick={() => navigate('/login')}
-            disabled={pwchk.test(pwvalue) && pwvalue.length >= 8 ? false : true}
+            onClick={signInBtn}
+            disabled={
+              pwchk.test(pwvalue) &&
+              pwvalue.length >= 8 &&
+              userInput.nickname.length
+                ? false
+                : true
+            }
           >
             meerkats 회원가입
           </button>
