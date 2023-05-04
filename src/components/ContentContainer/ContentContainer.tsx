@@ -12,7 +12,7 @@ export default function ContentContainer({
   children: ReactNode;
 } & ScrollPorps) {
   return (
-    <div className=" h-auto relative pb-28" onWheel={scrollHandler}>
+    <div className=" h-screen relative pb-28" onWheel={scrollHandler}>
       {children}
       <TopBtn />
     </div>
