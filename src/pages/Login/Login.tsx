@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import UserForm from './components/UserForm';
 import KakaoLoginBtn from './components/KakaoLoginBtn';
+import NaverLoginBtn from './components/NaverLoginBtn';
 
 export default function Login() {
   return (
@@ -24,6 +25,9 @@ export default function Login() {
       <div className="socialLoginBtn mt-5 text-center">
         <div className="inline-block m-auto mt-6 mx-3">
           <KakaoLoginBtn />
+        </div>
+        <div className="inline-block m-auto mt-6 mx-3">
+          <NaverLoginBtn />
         </div>
       </div>
     </div>
