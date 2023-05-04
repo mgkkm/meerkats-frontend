@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation, Autoplay } from 'swiper';
 import 'swiper/swiper.css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -9,14 +9,13 @@ export default function MainCarousel() {
   return (
     <Swiper
       slidesPerView={1}
-      spaceBetween={30}
       loop={true}
+      autoplay={{ delay: 5000 }}
+      navigation
       pagination={{
         clickable: true,
       }}
-      autoplay={true}
-      navigation={true}
-      modules={[Pagination, Navigation]}
+      modules={[Pagination, Navigation, Autoplay]}
       className="h-[700px] mb-36 "
     >
       <SwiperSlide className="mkOrange ">

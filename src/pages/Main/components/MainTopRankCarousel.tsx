@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -20,8 +20,10 @@ export default function MainTopRankCarousel() {
       <Swiper
         slidesPerView={4.5}
         spaceBetween={30}
-        navigation={true}
-        modules={[Navigation]}
+        loop={true}
+        navigation
+        autoplay={{ delay: 2000 }}
+        modules={[Navigation, Autoplay]}
         className="h-[500px]  p-4"
       >
         {bestMovie.map((url, idx) => {
