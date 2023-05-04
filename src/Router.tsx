@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
+import BlogPosting from './pages/Blog/BlogPosting';
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ export const router = createBrowserRouter([
       { index: true, element: <Main /> },
       { path: '/login', element: <Login /> },
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
+      { path: '/post', element: <BlogPosting /> },
     ],
   },
 ]);
