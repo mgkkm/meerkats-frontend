@@ -25,9 +25,10 @@ export const router = createBrowserRouter([
       { path: '/event', element: <EventList /> },
       { path: '/event/:id', element: <EventDetail /> },
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
-      { path: '/post', element: <BlogPosting /> },
       { path: '/membership', element: <Membership /> },
       { path: '/blogDetail/:id', element: <BlogDetail /> },
+      { path: '/post', element: <BlogPosting /> },
+      { path: '/edit', element: <BlogPosting /> },
     ],
   },
 ]);
