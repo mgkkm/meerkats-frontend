@@ -13,6 +13,7 @@ export default function UserForm() {
     pw: '',
   });
 
+  const { id, pw } = inputValues;
   const [active, setActive] = useState<boolean>(false);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,19 +28,16 @@ export default function UserForm() {
       : setActive(false);
   };
 
-  const gotoPage = (page: string) => {
-    navigate(`/${page}`);
-  };
-
   const loginAxios = () => {
     fetchData({
-      url: 'https://www.meerkats.monster/users/kakao-login',
+      url: 'https://www.meerkats.monster/users/signin',
       method: 'POST',
       headers: {},
-      data: {},
+      data: { email: id, password: pw },
     })
       .then((res: any) => console.log(res))
       .catch((err: any) => console.log(err));
+    navigate('/');
   };
 
   return (
@@ -50,7 +48,7 @@ export default function UserForm() {
           type="email"
           placeholder="meerkats@hello.com"
           name="id"
-          value={inputValues.id}
+          value={id}
           handleInput={handleInput}
           margin={false}
         />
@@ -59,7 +57,7 @@ export default function UserForm() {
           type="password"
           placeholder="password"
           name="pw"
-          value={inputValues.pw}
+          value={pw}
           handleInput={handleInput}
           margin={true}
         />
@@ -70,7 +68,7 @@ export default function UserForm() {
           className={`${
             active && 'bg-mkOrange hover:bg-mkDarkOrange'
           } btn w-1/3 h-14 mt-5 border-none text-white text-base`}
-          onClick={() => gotoPage('/')}
+          onClick={loginAxios}
           disabled={!active}
         >
           Login
