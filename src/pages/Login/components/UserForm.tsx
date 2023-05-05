@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserInput } from './UserInput';
 import useAxios from '../../../hooks/useAxios';
-import { infoAlert } from '../../../components/Alert/Modal';
+import { infoAlert, warningAlert } from '../../../components/Alert/Modal';
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -41,8 +41,11 @@ export default function UserForm() {
         localStorage.setItem('token', res.accessToken);
         navigate('/');
         infoAlert('로그인 성공', '환영합니다 :)');
-      } else if (res === undefined) {
-        alert('아이디나 비밀번호가 다릅니다. 다시 로그인 해주세요 :)');
+      } else if (res.message === '이메일과 비밀번호를 확인해주세요') {
+        warningAlert(
+          '로그인 실패',
+          '이메일이나 비밀번호가 다릅니다. 다시 로그인 해주세요 :)'
+        );
       }
     });
   };
