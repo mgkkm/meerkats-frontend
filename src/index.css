@@ -64,3 +64,10 @@ input[type='number']::-webkit-outer-spin-button {
   background-color: #f96400;
   border-color: #f96400;
 } */
+
+.socialLoginBtn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+}

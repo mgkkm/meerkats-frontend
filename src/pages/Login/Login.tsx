@@ -26,19 +26,21 @@ export default function Login() {
         <span>다른 서비스 계정으로 로그인</span>
         <hr className="inline-block border-mkGray w-1/4 ml-10" />
       </div>
-      <div className="socialLoginBtn-box mt-5 text-center">
+      <div className="socialLoginBtn-box mt-5 text-center m-auto">
         {/* google */}
         <GoogleOAuthProvider clientId={googleOauthClientId}>
-          <div className="inline-block m-auto mt-6 mx-3">
+          <div className="socialLoginBtn">
             <GoogleLoginBtn />
           </div>
         </GoogleOAuthProvider>
 
         {/* kakao */}
-        <div className="inline-block m-auto mt-6 mx-3">
+        <div className="socialLoginBtn">
           <KakaoLoginBtn />
         </div>
-        <div className="inline-block m-auto mt-6 mx-3">
+
+        {/* naver */}
+        <div className="socialLoginBtn">
           <NaverLoginBtn />
         </div>
       </div>
