@@ -8,6 +8,16 @@ interface HidePropsType {
 
 export default function Nav({ show }: HidePropsType) {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+
+  const logInNOut = () => {
+    if (token) {
+      localStorage.removeItem('token');
+      navigate('/');
+    } else if (token === null) {
+      navigate('/login');
+    }
+  };
 
   return (
     <div
@@ -35,12 +45,12 @@ export default function Nav({ show }: HidePropsType) {
         </div>
         <div
           className="navIsUser w-12 h-12 mr-5 mb-1 hover:bg-[#e6e7e9] rounded-full text-center text-base leading-[1.1rem] font-semibold cursor-pointer"
-          onClick={() => navigate('/login')}
+          onClick={logInNOut}
         >
-          <span className="inline-block pt-[0.6rem] opacity-90">
+          <span className="inline-block pt-[0.5rem] opacity-90">
             LOG
             <br />
-            IN
+            {token !== null ? `OUT` : `IN`}
           </span>
         </div>
       </div>
