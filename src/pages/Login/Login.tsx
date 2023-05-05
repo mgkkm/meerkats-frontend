@@ -3,6 +3,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import UserForm from './components/UserForm';
 import KakaoLoginBtn from './components/KakaoLoginBtn';
 import GoogleLoginBtn from './components/GoogleLoginBtn';
+import NaverLoginBtn from './components/NaverLoginBtn';
 
 export default function Login() {
   const googleOauthClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
@@ -36,6 +37,9 @@ export default function Login() {
         {/* kakao */}
         <div className="inline-block m-auto mt-6 mx-3">
           <KakaoLoginBtn />
+        </div>
+        <div className="inline-block m-auto mt-6 mx-3">
+          <NaverLoginBtn />
         </div>
       </div>
     </div>
