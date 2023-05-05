@@ -1,55 +1,46 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { mainDataState } from '../../../recoil/MainDataState';
+import TabItems from './TabItems';
 
 export default function MainTab() {
   const [activeTab, setActiveTab] = useState(0);
-  const [mainData] = useRecoilState(mainDataState);
+  const mainData = useRecoilValue(mainDataState);
 
-  const TabData = [
+  const TABDATA = [
     {
       id: 1,
-      title: 'New',
-      content: mainData[0].latestMovie.map((row: { poster_img: string }) => {
-        return row.poster_img;
-      }),
+      title: 'NEW',
+      content: mainData[0].latestMovie,
     },
     {
       id: 2,
-      title: 'International movies',
-      content: mainData[0].foreignMovieWithLikes.map(
-        (row: { poster_img: string }) => {
-          return row.poster_img;
-        }
-      ),
+      title: 'INTERNATIONAL',
+      content: mainData[0].foreignMovieWithLikes,
     },
     {
       id: 3,
-      title: 'Korean movies',
-      content: mainData[0].koreanMovieWithLikes.map(
-        (row: { poster_img: string }) => {
-          return row.poster_img;
-        }
-      ),
+      title: 'KOREAN',
+      content: mainData[0].koreanMovieWithLikes,
     },
   ];
 
-  const tabClickHandler = (idx: number) => {
-    setActiveTab(idx);
-  };
+  const tabClickHandler = (idx: number) => setActiveTab(idx);
 
   return (
-    <div className="mb-36 ">
-      <h1 className=" text-4xl text-center mb-8">Meet Your Next Movie</h1>
-      <div className="tabs justify-center ">
-        {TabData.map((list, idx) => {
+    <div className="container xl">
+      <h1 className=" text-4xl text-center mb-20 font-[ChosunGs]">
+        Meet Your Next Movie
+      </h1>
+      <div className="tabs justify-center">
+        {TABDATA.map((list, idx) => {
           return (
             <div
               key={idx}
-              className={`tab font-semibold mr-2.5 text-lg	${
+              className={`tab font-semibold text-lg w-52 h-10 mr-5 mb-8	${
                 activeTab === idx
-                  ? ' bg-white border-2 border-solid border-mkOrange rounded-lg text-black'
-                  : ''
+                  ? ' bg-white border-4 border-solid border-mkOrange text-black rounded'
+                  : 'hover:border-4 border-solid border-mkGray rounded'
               }`}
               onClick={() => tabClickHandler(idx)}
             >
@@ -58,13 +49,9 @@ export default function MainTab() {
           );
         })}
       </div>
-      <div className=" tabContent h-auto grid grid-rows-2 grid-flow-col gap-x-16 gap-y-10  p-10 ">
-        {TabData[activeTab].content.map((item: any) => {
-          return (
-            <div key={item.id} className=" px-2 mb-5 ">
-              <img src={item} alt="poster" className="w-fit h-full" />
-            </div>
-          );
+      <div className=" tabContent h-[830px] flex flex-wrap justify-around overflow-hidden">
+        {TABDATA[activeTab].content.map((item: never[], idx) => {
+          return <TabItems key={idx} item={item} />;
         })}
       </div>
     </div>

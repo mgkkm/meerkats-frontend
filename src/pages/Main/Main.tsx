@@ -27,11 +27,13 @@ export default function Main() {
   }, []);
 
   return (
-    <div className="container xl mt-24">
+    <>
       <MainCarousel />
+      <hr id="dash" />
       <MainTab />
+      <hr id="dash" />
       <MainTopRankCarousel />
       {/* <Membership /> */}
-    </div>
+    </>
   );
 }
