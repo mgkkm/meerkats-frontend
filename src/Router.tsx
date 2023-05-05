@@ -4,6 +4,8 @@ import App from './App';
 import NotFound from './pages/NotFound/NotFound';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
+import KakaoLogin from './pages/Login/components/KakaoLogin';
+import BlogPosting from './pages/Blog/BlogPosting';
 import Membership from './pages/Membership/Membership';
 
 export const router = createBrowserRouter([
@@ -14,6 +16,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Main /> },
       { path: '/login', element: <Login /> },
+      { path: '/kakaoRedirect', element: <KakaoLogin /> },
+      { path: '/post', element: <BlogPosting /> },
       { path: '/membership', element: <Membership /> },
     ],
   },
