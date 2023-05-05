@@ -1,45 +1,48 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SideBar from './components/SideBar';
+import Search from './components/Search';
 
 interface HidePropsType {
   show: boolean;
 }
 
 export default function Nav({ show }: HidePropsType) {
+  const navigate = useNavigate();
+
   return (
     <div
-      className={`navbar bg-base-100 py-6 px-7 fixed top-0 z-10 visible transition duration-500 ease-in-out shadow  ${
+      className={`navbar bg-base-100 fixed top-0 flex items-center py-6 px-7 shadow visible transition duration-500 ease-in-out z-10 ${
         show ? '' : 'opacity-0'
       }`}
     >
-      <div className="navbar-start">
-        <div className="dropdown">
+      <div className="navbar-start ml-5">
+        <div className="dropdown opacity-90">
           <SideBar />
         </div>
       </div>
       <div className="navbar-center">
         <Link to="/">
-          <img alt="logo" src="/images/logo_b.png" className="w-44" />
+          <img alt="logo" src="/images/logo_b.png" className="w-52" />
         </Link>
       </div>
-      <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </button>
+      <div className="navbar-end flex items-center mr-5">
+        <Search />
+        <div
+          className="navBlogBtn w-12 h-12 mr-12 hover:bg-[#e6e7e9] rounded-full text-[2rem] text-center cursor-pointer"
+          onClick={() => navigate('/blogMain')}
+        >
+          <i className="fa-regular fa-b inline-block pt-[0.47rem] pl-[0.2rem] opacity-90" />
+        </div>
+        <div
+          className="navIsUser w-12 h-12 mr-5 mb-1 hover:bg-[#e6e7e9] rounded-full text-center text-base leading-[1.1rem] font-semibold cursor-pointer"
+          onClick={() => navigate('/login')}
+        >
+          <span className="inline-block pt-[0.6rem] opacity-90">
+            LOG
+            <br />
+            IN
+          </span>
+        </div>
       </div>
     </div>
   );
