@@ -71,10 +71,10 @@ export default function LikeScrapBtn({
   };
 
   const BtnClick = () => {
-    if (currentUserId === 0) {
-      failedAlert('loginRequired');
-      return;
-    }
+    // if (currentUserId === 0) {
+    //   failedAlert('LoginRequired');
+    //   return;
+    // }
     postBtnState();
   };
 
@@ -82,10 +82,20 @@ export default function LikeScrapBtn({
   if (postType === 'blog') {
     fetchUrl = `https://www.meerkats.monster/blog/post${btnType}/${postId}`;
   } else if (postType === 'movie') {
-    fetchUrl = `127.0.0.1:3000/movie/${postId}/likes`;
+    fetchUrl = `https://www.meerkats.monster/movie/${postId}/likes`;
   }
 
-  const token = localStorage.getItem('token');
+  // 승기님 엔드 포인트 Like 로 수정 요청해야 함
+  // fetchUrl = `127.0.0.1:3000/movie/${postId}/${btnType}` 이렇게 수정하고 싶음
+
+  // const token =
+  //   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImlhdCI6MTY4MzAyOTk1OX0.UXy6D9MtPSWIlIdeC-XehVhqkC2TcXqm6oE0Oi-3EZs';
+
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MzIwMTc3MH0.CcSqdtSLNHjdaTbcoP_JfKJmjMerUDKx7NZR-z37O0A';
+
+  // 통신 테스트를 위한 임시 토큰
+  // const token = localStorage.getItem('token');
 
   const [loading, error, data, fetchData] = useAxios();
 
@@ -98,11 +108,13 @@ export default function LikeScrapBtn({
         'Content-Type': `application/json`,
       },
     }).then((result: LikeScrapResultType) => {
-      const messageData = (result?.message).split(' ');
-      const response = messageData[messageData.length - 1];
-      if (response === 'SUCCESS') {
-        setCounterN(1);
-        setIsClicked(true);
+      if (result) {
+        const messageData = result?.message?.split(' ');
+        const response = messageData[messageData?.length - 1];
+        if (response === 'SUCCESS') {
+          setCounterN(1);
+          setIsClicked(true);
+        }
       } else {
         failedAlert('failed');
       }
@@ -113,10 +125,12 @@ export default function LikeScrapBtn({
     Like: {
       true: FaHeart,
       false: FaRegHeart,
+      undefined: FaRegHeart,
     },
     Scrap: {
       true: FaBookmark,
       false: FaRegBookmark,
+      undefined: FaRegHeart,
     },
   };
 
