@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import EmailInput from './components/EmailInput';
+import { infoAlert } from '../../components/Alert/Modal';
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -25,18 +26,22 @@ export default function Signin() {
     await axios({
       method: 'post',
       url: 'https://www.meerkats.monster/users/signup',
+      headers: { 'Content-Type': `application/json` },
       data: {
         email: userInput.email,
         password: userInput.password,
         nickname: userInput.nickname,
       },
-    }).then((res: any) => {
-      console.log(res);
-      const msg = res.data.message;
-      alert(msg);
-    });
-
-    navigate('/login');
+    })
+      .then((res: any) => {
+        console.log(res);
+        infoAlert(
+          'meerkats 회원이 되신 것을 축하드립니다!',
+          '로그인 해 주세요 :)'
+        );
+        navigate('/login');
+      })
+      .catch((err: any) => console.log(err));
   };
 
   return (
@@ -53,7 +58,6 @@ export default function Signin() {
             email={userInput.email}
             userInputHandler={userInputHandler}
             certifiNumber={userInput.certifiNumber}
-            nickname={userInput.nickname}
           />
           <div className="block mt-3">
             <input
