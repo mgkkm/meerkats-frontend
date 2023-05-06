@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { ArticleDataState } from '../../../recoil/ArticleDataState';
+import { ArticleDataState } from '../../../../recoil/ArticleDataState';
 
 export default function BlogDropDown() {
   const [selectGenre, setSelectGenre] = useState('모든 장르');

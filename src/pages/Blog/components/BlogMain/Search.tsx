@@ -1,20 +1,11 @@
 import { useRecoilState } from 'recoil';
-import { toggleSelector } from '../../../recoil/ToggleState';
+import { toggleSelector } from '../../../../recoil/ToggleState';
 import SearchModal from './SearchModal';
-import { useEffect } from 'react';
-import axios from 'axios';
 
 export default function Search() {
   const [searchInput, setSearchInput] = useRecoilState(
     toggleSelector('search')
   );
-
-  useEffect(() => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/todos')
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-  }, []);
 
   return (
     <div>

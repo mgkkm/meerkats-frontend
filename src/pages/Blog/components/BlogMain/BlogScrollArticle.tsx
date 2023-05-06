@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { toggleSelector } from '../../../recoil/ToggleState';
-import useAxios from '../../../hooks/useAxios';
+import { toggleSelector } from '../../../../recoil/ToggleState';
+import useAxios from '../../../../hooks/useAxios';
 import BlogArticle from './BlogArticle';
 
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션

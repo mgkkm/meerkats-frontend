@@ -1,4 +1,4 @@
-import { toggleSelector } from '../../../recoil/ToggleState';
+import { toggleSelector } from '../../../../recoil/ToggleState';
 import { useRecoilState } from 'recoil';
 
 export default function BlogSpoToggle() {

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
-import axios from 'axios';
 
 export default function BlogMainTop() {
   const navigate = useNavigate();
@@ -9,16 +8,6 @@ export default function BlogMainTop() {
 
   const tabClickHandler = (id: number, title: string) => {
     setActiveTab(id);
-    const token = localStorage.getItem('token');
-    title === 'My blog' &&
-      axios.get(
-        'https://www.meerkats.monster/blog/main/mypost?take=6&skip=0&userId=2',
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
   };
 
   return (
@@ -28,9 +17,9 @@ export default function BlogMainTop() {
           return (
             <div
               key={id}
-              className={`tab w-48 text-xl font-semibold mr-8 ${
+              className={`tab w-48 h-14 mr-8 text-xl font-semibold rounded-lg hover:border-4 hover:border-solid hover:border-mkGray ${
                 activeTab === id
-                  ? 'bg-white border-4 border-solid border-mkOrange rounded-lg text-black h-14'
+                  ? 'bg-white border-4 border-solid border-mkOrange hover:border-mkOrange rounded-lg text-black h-14'
                   : ''
               }`}
               onClick={() => {

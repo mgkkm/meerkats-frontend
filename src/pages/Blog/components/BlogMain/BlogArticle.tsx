@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface BlogArticleProps {
   id: number;
   title: string;

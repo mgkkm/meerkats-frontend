@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { toggleSelector } from '../../../recoil/ToggleState';
-import { ArticleDataState } from '../../../recoil/ArticleDataState';
-import useAxios from '../../../hooks/useAxios';
+import { toggleSelector } from '../../../../recoil/ToggleState';
+import { ArticleDataState } from '../../../../recoil/ArticleDataState';
+import useAxios from '../../../../hooks/useAxios';
 import BlogArticle from './BlogArticle';
 
 export default function BlogRenderArticle() {
@@ -18,7 +18,6 @@ export default function BlogRenderArticle() {
       headers: { Authorization: token },
     }).then((res: any) => {
       setArticleData(res);
-      console.log(res);
     });
   }, [toggle]);
 
