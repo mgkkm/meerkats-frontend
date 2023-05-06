@@ -48,7 +48,7 @@ export default function BlogDetail() {
   const setScrapN = useSetRecoilState(numberSelector(`blogScrap${postId}`));
   const setCommentN = useSetRecoilState(numberState(`blogComment${postId}`));
 
-  const setBlogDetailComment = useSetRecoilState(commentState);
+  const setBlogDetailComment = useSetRecoilState(commentState('blog'));
 
   const [loading, error, data, fetchData] = useAxios();
 
