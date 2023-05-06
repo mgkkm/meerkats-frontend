@@ -5,6 +5,7 @@ import EmailInput from './components/EmailInput';
 import { infoAlert } from '../../components/Alert/Modal';
 
 export default function Signin() {
+  const BASE_URL = process.env.BASE_URL;
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({
     email: '',

@@ -14,6 +14,7 @@ type dataType = {
 };
 
 export default function EmailInput(props: propsType) {
+  const BASE_URL = process.env.BASE_URL;
   const { email, certifiNumber, userInputHandler } = props;
   const [loading, error, data, fetchData] = useAxios();
   const [certifiNumInput, setCertifiNumInput] = useState(false);
