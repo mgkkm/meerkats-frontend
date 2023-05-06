@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atomFamily } from 'recoil';
 
-export const commentState = atom<CommentArrayType>({
+export const commentState = atomFamily<CommentData[], string>({
   key: 'commentState',
   default: [
     {
@@ -15,7 +15,7 @@ export const commentState = atom<CommentArrayType>({
   ],
 });
 
-interface CommentData {
+export interface CommentData {
   commentId: number;
   content: string;
   created_at: string;
@@ -24,5 +24,3 @@ interface CommentData {
     nickname: string;
   };
 }
-
-export type CommentArrayType = CommentData[];
