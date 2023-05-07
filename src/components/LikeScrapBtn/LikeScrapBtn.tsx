@@ -13,6 +13,7 @@ interface LikeScrapType {
   postType: string;
   btnType: string;
   postId: string;
+  btnSize: string;
 }
 
 interface LikeScrapResultType {
@@ -31,6 +32,7 @@ export default function LikeScrapBtn({
   postType,
   btnType,
   postId,
+  btnSize,
 }: LikeScrapType) {
   const navigate = useNavigate();
 
@@ -100,9 +102,7 @@ export default function LikeScrapBtn({
       },
     }).then((result: LikeScrapResultType) => {
       if (result) {
-        const messageData = result.message.split(' ');
-        const response = messageData[messageData?.length - 1];
-        if (response === 'SUCCESS') {
+        if (result.message.includes('SUCCESS')) {
           setCounterN(1);
           setIsClicked(true);
         }
@@ -114,7 +114,7 @@ export default function LikeScrapBtn({
 
   return (
     <Icon
-      className={`text-2xl ${
+      className={`${btnSize} ${
         Icon === FaRegHeart || Icon === FaRegBookmark
           ? 'text-black hover:text-mkOrange hover:cursor-pointer'
           : 'text-mkOrange hover:opacity-80 hover:cursor-pointer'
