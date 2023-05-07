@@ -5,7 +5,7 @@ import EmailInput from './components/EmailInput';
 import { infoAlert } from '../../components/Alert/Modal';
 
 export default function Signin() {
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState({
     email: '',
@@ -26,7 +26,7 @@ export default function Signin() {
   const signInBtn = async () => {
     await axios({
       method: 'post',
-      url: 'https://www.meerkats.monster/users/signup',
+      url: `${BASE_URL}/users/signup`,
       headers: { 'Content-Type': `application/json` },
       data: {
         email: userInput.email,

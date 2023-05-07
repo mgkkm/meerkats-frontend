@@ -14,7 +14,7 @@ type dataType = {
 };
 
 export default function EmailInput(props: propsType) {
-  const BASE_URL = process.env.BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const { email, certifiNumber, userInputHandler } = props;
   const [loading, error, data, fetchData] = useAxios();
   const [certifiNumInput, setCertifiNumInput] = useState(false);
@@ -35,7 +35,7 @@ export default function EmailInput(props: propsType) {
     try {
       await axios({
         method: 'post',
-        url: 'https://www.meerkats.monster/users/email-check',
+        url: `${BASE_URL}/users/email-check`,
         data: {
           email: email,
         },
@@ -66,7 +66,7 @@ export default function EmailInput(props: propsType) {
   const emailConfirmBtn = async (email: string) => {
     setCertifiNumInput(true);
     fetchData({
-      url: 'https://www.meerkats.monster/users/email-send',
+      url: `${BASE_URL}/users/email-send`,
       method: 'POST',
       headers: { 'Content-Type': `application/json` },
       data: { email: email },
@@ -87,7 +87,7 @@ export default function EmailInput(props: propsType) {
     try {
       await axios({
         method: 'post',
-        url: 'https://www.meerkats.monster/users/email-confirm',
+        url: `${BASE_URL}/users/email-confirm`,
         data: {
           userEmailCode: certifiNum,
         },
