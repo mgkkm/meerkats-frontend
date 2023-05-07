@@ -6,14 +6,18 @@ import useAxios from '../../../../hooks/useAxios';
 import BlogArticle from './BlogArticle';
 
 export default function BlogRenderArticle() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
   const token = localStorage.getItem('token');
+  const closeBtn = useRecoilValue(toggleSelector('close'));
+
+  console.log(articleData);
 
   useEffect(() => {
     fetchData({
-      url: 'https://www.meerkats.monster/blog/main?take=6&skip=0&userId=2',
+      url: `${BASE_URL}/blog/main?take=6&skip=0`,
       method: 'POST',
       headers: { Authorization: token },
     }).then((res: any) => {

@@ -9,6 +9,7 @@ import useAxios from '../../../../hooks/useAxios';
 // };
 
 export default function SearchModal() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setSearchInput = useSetRecoilState(toggleSelector('search'));
   const setSearchArticleData = useSetRecoilState(SearchDataState);
@@ -31,15 +32,11 @@ export default function SearchModal() {
   // 받은 데이터가 뿌려져야 하는데...
   const searchAxios = () => {
     fetchData({
-      url: 'https://www.meerkats.monster/search/blog',
-      method: 'POST',
-      headers: { 'Content-Type': `application/json` },
-      data: {
-        postTitle: searchValue,
-      },
+      url: `${BASE_URL}/search/blog?postTitle=${searchValue}`,
     }).then((res: any) => {
       console.log(res);
       setSearchArticleData(res);
+      setCloseBtn(false);
     });
 
     // setSearchList(true);

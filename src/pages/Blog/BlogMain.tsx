@@ -30,7 +30,7 @@ export default function BlogMain() {
       </section>
       {/* 나중에 중복되는 가공코드 한큐에 사용할 수 있게 리팩토링 필요 */}
       <div className="m-auto">
-        <BlogSearchArticle />
+        {!closeBtn && <BlogSearchArticle />}
         {(searchArticleData.length === 0 || closeBtn === true) && (
           <BlogRenderArticle />
         )}
