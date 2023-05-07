@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { numberSelector, numberState } from '../../../recoil/NumberState';
 import useAxios from '../../../hooks/useAxios';
@@ -9,7 +9,7 @@ import BlogContent from './components/BlogContent';
 import BlogFooter from './components/BlogFooter';
 import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
-import { commentState, CommentArrayType } from '../../../recoil/CommentState';
+import { commentState, CommentData } from '../../../recoil/CommentState';
 
 export interface BlogDetailData {
   id: number;
@@ -31,13 +31,15 @@ export interface BlogDetailData {
 interface ResultData {
   data: {
     postDetails: BlogDetailData;
-    comments: CommentArrayType;
+    comments: CommentData[];
   };
 }
 
 export default function BlogDetail() {
   const params = useParams();
   const postId = params.id;
+
+  const token = useRecoilValue(tokenState);
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
 
@@ -50,9 +52,20 @@ export default function BlogDetail() {
 
   const setBlogDetailComment = useSetRecoilState(commentState('blog'));
 
-  const [loading, error, data, fetchData] = useAxios();
+  const resetBlogDetailState = useResetRecoilState(blogDetailState);
+  const resetIsLiked = useResetRecoilState(toggleSelector(`blogLike${postId}`));
+  const resetIsScraped = useResetRecoilState(
+    toggleSelector(`blogScrap${postId}`)
+  );
+  const resetLikeN = useResetRecoilState(numberSelector(`blogLike${postId}`));
+  const resetScrapN = useResetRecoilState(numberSelector(`blogScrap${postId}`));
+  const resetCommentN = useResetRecoilState(
+    numberState(`blogComment${postId}`)
+  );
 
-  const token = localStorage.getItem('token');
+  const resetCommentState = useResetRecoilState(commentState('blog'));
+
+  const [loading, error, data, fetchData] = useAxios();
 
   useEffect(() => {
     fetchData({
@@ -73,6 +86,16 @@ export default function BlogDetail() {
         setBlogDetailComment(result.data.comments);
       }
     });
+
+    return () => {
+      resetBlogDetailState();
+      resetIsLiked();
+      resetIsScraped();
+      resetLikeN();
+      resetScrapN();
+      resetCommentN();
+      resetCommentState();
+    };
   }, []);
 
   return (

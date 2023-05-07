@@ -16,8 +16,8 @@ export default function BlogHeader() {
   const postId = id;
 
   return (
-    <div className="blogDetailHeader pt-10 pb-16 border border-b-mkLightGray border-x-transparent border-t-transparent">
-      <div className="blogDetailCategory">
+    <div className="pt-10 pb-12 border border-b-mkLightGray border-x-transparent border-t-transparent">
+      <div>
         <span className="text-sm text-white bg-mkOrange rounded font-semibold px-1 py-[0.5px]">
           {SPOILER_ID_DATA[spoiler_info_id - 1]?.name}
         </span>
@@ -27,9 +27,7 @@ export default function BlogHeader() {
         </span>
       </div>
       <div className="flex justify-between items-center">
-        <p className="blogDetailTitle text-3xl font-semibold mt-10 mb-3">
-          {title}
-        </p>
+        <p className="text-3xl font-semibold mt-10 mb-3">{title}</p>
         <div className="dropdown dropdown-end">
           <label tabIndex={0}>
             <HiOutlineDotsHorizontal
@@ -64,8 +62,18 @@ export default function BlogHeader() {
           </span>
         </div>
         <div className="flex gap-3">
-          <LikeScrapBtn postType="blog" btnType="Like" postId={`${postId}`} />
-          <LikeScrapBtn postType="blog" btnType="Scrap" postId={`${postId}`} />
+          <LikeScrapBtn
+            postType="blog"
+            btnType="Like"
+            postId={`${postId}`}
+            btnSize="text-2xl"
+          />
+          <LikeScrapBtn
+            postType="blog"
+            btnType="Scrap"
+            postId={`${postId}`}
+            btnSize="text-2xl"
+          />
         </div>
       </div>
     </div>
