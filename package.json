@@ -18,6 +18,7 @@
     "D": "^1.0.0",
     "daisyui": "^2.51.5",
     "eslint-plugin-import": "^2.27.5",
+    "html-react-parser": "^3.0.16",
     "jwt-decode": "^3.1.2",
     "postcss": "^8.4.21",
     "react": "^18.2.0",
