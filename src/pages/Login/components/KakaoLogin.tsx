@@ -6,7 +6,7 @@ import {
   currentUserIdState,
   currentUserNicknameState,
 } from '../../../recoil/JwtDecode';
-import { TokenState } from '../../../recoil/TokenState';
+import { tokenState } from '../../../recoil/TokenState';
 import useAxios from '../../../hooks/useAxios';
 import { REST_API_KEY, REDIRECT_URI, KAKAO_TOKEN_URL } from './KakaoConfig';
 
@@ -30,7 +30,7 @@ export default function KakaoLogin() {
   const [currentNickname, setCurrentNickname] = useRecoilState(
     currentUserNicknameState
   );
-  const setTokenState = useSetRecoilState(TokenState);
+  const setTokenState = useSetRecoilState(tokenState);
 
   // console.log(currentId); // 기본값만 나옴. setter 함수에 안담기는 것 같음
   // console.log(currentNickname); // 기본값만 나옴. setter 함수에 안담기는 것 같음
