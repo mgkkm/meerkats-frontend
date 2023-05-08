@@ -10,6 +10,7 @@ import BlogFooter from './components/BlogFooter';
 import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
 import { commentState, CommentData } from '../../../recoil/CommentState';
+import { tokenState } from '../../../recoil/TokenState';
 
 export interface BlogDetailData {
   id: number;
@@ -39,6 +40,7 @@ export default function BlogDetail() {
   const params = useParams();
   const postId = params.id;
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const token = useRecoilValue(tokenState);
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
@@ -69,7 +71,7 @@ export default function BlogDetail() {
 
   useEffect(() => {
     fetchData({
-      url: `https://www.meerkats.monster/blog/${postId}`,
+      url: `${BASE_URL}/blog/${postId}`,
       method: 'POST',
       headers: {
         Authorization: token,
