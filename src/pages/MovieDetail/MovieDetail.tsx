@@ -102,19 +102,20 @@ export default function MovieDetail() {
   useEffect(() => {
     fetchData({
       url: `${BASE_URL}/movie/${postId}?skip=0&take=10`,
-      method: 'GET',
       headers: {
         Authorization: token,
         'Content-Type': `application/json`,
       },
     }).then((result: MovieDetailData) => {
       if (result) {
-        setMovieHeaderData(result.data.movieInfo);
-        setMovieCommentData(result.data.andMore.movieTrailerComments);
-        setMovieBlogData(result.data.andMore.blogLikesAndPopularitySorting);
-        setMainVideoId(result.data.mainYoutube.videoId);
-        setPlaylistYoutubeData(result.data.playlistYoutube);
-        setIsMovieLiked(result.data.movieInfo.isLikedByThisUser);
+        const { movieInfo, andMore, mainYoutube, playlistYoutube } =
+          result.data;
+        setMovieHeaderData(movieInfo);
+        setMovieCommentData(andMore.movieTrailerComments);
+        setMovieBlogData(andMore.blogLikesAndPopularitySorting);
+        setMainVideoId(mainYoutube.videoId);
+        setPlaylistYoutubeData(playlistYoutube);
+        setIsMovieLiked(movieInfo.isLikedByThisUser);
       }
     });
 
