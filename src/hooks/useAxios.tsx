@@ -15,6 +15,7 @@ export default function useAxios() {
       return data;
     } catch (error: any) {
       setError(error);
+      return error;
     } finally {
       setLoading(false);
     }

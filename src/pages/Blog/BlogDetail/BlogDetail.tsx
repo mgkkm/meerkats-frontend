@@ -11,6 +11,7 @@ import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
 import { commentState, CommentData } from '../../../recoil/CommentState';
 import { tokenState } from '../../../recoil/TokenState';
+import { renderingState } from '../../../recoil/BlogPostState';
 
 export interface BlogDetailData {
   id: number;
@@ -42,6 +43,7 @@ export default function BlogDetail() {
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const token = useRecoilValue(tokenState);
+  const rendering = useRecoilValue(renderingState);
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
 
@@ -98,7 +100,7 @@ export default function BlogDetail() {
       resetCommentN();
       resetCommentState();
     };
-  }, []);
+  }, [rendering]);
 
   return (
     <div className="container xl flex justify-center pt-48">

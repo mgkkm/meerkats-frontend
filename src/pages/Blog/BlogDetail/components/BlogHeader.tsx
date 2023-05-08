@@ -5,15 +5,21 @@ import { currentUserIdState } from '../../../../recoil/JwtDecode';
 import { useRecoilValue } from 'recoil';
 import { blogDetailState } from '../../../../recoil/BlogDetailState';
 import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { useNavigate } from 'react-router-dom';
 
 export default function BlogHeader() {
   const currentUserId = useRecoilValue(currentUserIdState);
   const blogDetailData = useRecoilValue(blogDetailState);
+  const navigate = useNavigate();
 
   const { id, title, created_at, category, spoiler_info_id, user } =
     blogDetailData;
 
   const postId = id;
+
+  const updateHandler = () => {
+    navigate(`/edit/${id}`);
+  };
 
   return (
     <div className="pt-10 pb-12 border border-b-mkLightGray border-x-transparent border-t-transparent">
@@ -40,7 +46,7 @@ export default function BlogHeader() {
             tabIndex={0}
             className="dropdown-content menu shadow bg-base-100 rounded-box w-16"
           >
-            <li>
+            <li onClick={updateHandler}>
               <p className="text-sm flex justify-center active:bg-mkOrange">
                 수정
               </p>
