@@ -10,13 +10,6 @@ export default function Search() {
     toggleSelector('search')
   );
 
-  // 검색 데이터 어떻게 할지 백이랑 이야기해보기
-  useEffect(() => {
-    fetchData({
-      url: 'https://jsonplaceholder.typicode.com/todos',
-    }).then((res: any) => console.log(res));
-  }, []);
-
   return (
     <div>
       <button
@@ -40,7 +33,7 @@ export default function Search() {
           />
         </svg>
       </button>
-      {searchInput ? <SearchModal /> : ''}
+      {searchInput && <SearchModal />}
     </div>
   );
 }

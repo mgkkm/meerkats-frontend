@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
-import axios from 'axios';
-
-type itemType = {
-  title: string;
-};
+import useAxios from '../../../hooks/useAxios';
 
 export default function SearchModal() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [loading, error, data, fetchData] = useAxios();
   const [searchInput, setSearchInput] = useRecoilState(
     toggleSelector('search')
   );
   const [searchValue, setSearchValue] = useState<string>('');
-  const [searchData, setSearchData] = useState([] as any);
-  const [searchList, setSearchList] = useState(false);
+  const setSearchList = useSetRecoilState(toggleSelector('searchListData'));
 
   const closeBtnHandler = () => {
     setSearchInput(false);
@@ -23,23 +20,17 @@ export default function SearchModal() {
     setSearchValue(e.target.value);
   };
 
-  // nav 검색 데이터는 영화 제목으로
-  // 블로그 메인 페이지 검색 데이터는 블로그 제목으로
   const searchAxios = () => {
-    axios
-      .get('https://jsonplaceholder.typicode.com/todos')
-      .then(res => {
-        const result = res.data;
-        setSearchData(result);
-      })
-      .catch(err => console.log(err));
+    fetchData({
+      url: `${BASE_URL}/search/movie?movieTitle=${searchValue}`,
+    }).then((res: any) => {
+      console.log(res);
+      // const result = res.data;
+      // setSearchData(result);
+    });
 
     setSearchList(true);
   };
-
-  const filterData = searchData?.filter((data: itemType) => {
-    return data.title.toLowerCase().includes(searchValue.toLowerCase());
-  });
 
   return (
     <div className="relative z-50">
@@ -70,20 +61,6 @@ export default function SearchModal() {
           </svg>
         </button>
       </div>
-      <ul
-        className={`${
-          searchList ? 'block' : 'hidden'
-        } absolute left-0 top-14 h-64 px-5 py-4 border-mkGray border-1 bg-white shadow-md rounded overflow-y-scroll`}
-      >
-        {filterData?.map((data: { title: string }, i: number) => {
-          return (
-            <li key={i} className="px-3 py-2 rounded hover:bg-mkLightGray">
-              {/* {data.title ? data.title : '검색결과가 없습니다.'} */}
-              {data.title}
-            </li>
-          );
-        })}
-      </ul>
     </div>
   );
 }
