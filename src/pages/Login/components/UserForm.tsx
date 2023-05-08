@@ -4,20 +4,21 @@ import { UserInput } from './UserInput';
 import useAxios from '../../../hooks/useAxios';
 import { infoAlert, warningAlert } from '../../../components/Alert/Modal';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { TokenState } from '../../../recoil/TokenState';
-import { InputValueState } from '../../../recoil/InputValueState';
+import { tokenState } from '../../../recoil/TokenState';
+import { inputValueState } from '../../../recoil/InputValueState';
 import { toggleSelector } from '../../../recoil/ToggleState';
 
 export default function UserForm() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [loading, error, data, fetchData] = useAxios();
 
-  const [inputValues, setInputValues] = useRecoilState(InputValueState);
+  const [inputValues, setInputValues] = useRecoilState(inputValueState);
   const { id, pw } = inputValues;
 
   // const [active, setActive] = useState<boolean>(false);
   const [active, setActive] = useRecoilState(toggleSelector('active'));
-  const setTokenState = useSetRecoilState(TokenState);
+  const setTokenState = useSetRecoilState(tokenState);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,7 +34,7 @@ export default function UserForm() {
 
   const loginAxios = () => {
     fetchData({
-      url: 'https://www.meerkats.monster/users/signin',
+      url: `${BASE_URL}/users/signin`,
       method: 'POST',
       headers: { 'Content-Type': `application/json` },
       data: { email: id, password: pw },
@@ -77,7 +78,6 @@ export default function UserForm() {
       </div>
       <div className="block text-center">
         <button
-          type="button"
           className={`${
             active && 'bg-mkOrange hover:bg-mkDarkOrange'
           } btn w-1/3 h-14 mt-5 border-none text-white text-base`}
