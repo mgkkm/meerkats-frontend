@@ -4,9 +4,14 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 interface MoviePlayerProps {
   videoId?: string;
   height: string;
+  autoplay: number;
 }
 
-export default function MoviePlayer({ videoId, height }: MoviePlayerProps) {
+export default function MoviePlayer({
+  videoId,
+  height,
+  autoplay,
+}: MoviePlayerProps) {
   const onPlayerReady: YouTubeProps['onReady'] = event => {
     event.target.pauseVideo();
   };
@@ -15,7 +20,7 @@ export default function MoviePlayer({ videoId, height }: MoviePlayerProps) {
     width: '100%',
     height: height,
     playerVars: {
-      autoplay: 1,
+      autoplay: autoplay,
       modestbranding: 1,
     },
   };

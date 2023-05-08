@@ -5,7 +5,7 @@ import MovieDetailTab from './components/MovieDetailTab';
 import TrailerPlaylist from './components/TrailerPlaylist';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
-import { useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
 import {
   movieHeaderState,
@@ -13,6 +13,7 @@ import {
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
 import { CommentData, commentState } from '../../recoil/CommentState';
+import { tokenState } from '../../recoil/tokenState';
 
 export interface MovieHeaderData {
   category: {
@@ -76,6 +77,9 @@ export default function MovieDetail() {
   const params = useParams();
   const postId = params.id;
 
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const token = useRecoilValue(tokenState);
+
   const [loading, error, data, fetchData] = useAxios();
 
   const setMovieHeaderData = useSetRecoilState(movieHeaderState);
@@ -95,21 +99,9 @@ export default function MovieDetail() {
     toggleSelector(`movieLike${postId}`)
   );
 
-  // useEffect(() => {
-  //   fetch('/data/movieDetailMock.json')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       setMovieDetail(data);
-  //       setIsMovieLiked(data.data.movieInfo.isLikedByThisUser);
-  //     });
-  // }, []);
-
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MzIwMTc3MH0.CcSqdtSLNHjdaTbcoP_JfKJmjMerUDKx7NZR-z37O0A';
-
   useEffect(() => {
     fetchData({
-      url: `https://www.meerkats.monster/movie/${postId}?skip=0&take=10`,
+      url: `${BASE_URL}/movie/${postId}?skip=0&take=10`,
       method: 'GET',
       headers: {
         Authorization: token,
@@ -123,8 +115,6 @@ export default function MovieDetail() {
         setMainVideoId(result.data.mainYoutube.videoId);
         setPlaylistYoutubeData(result.data.playlistYoutube);
         setIsMovieLiked(result.data.movieInfo.isLikedByThisUser);
-        console.log('result', result);
-        console.log('Liked?', result.data.movieInfo.isLikedByThisUser);
       }
     });
 
@@ -141,7 +131,7 @@ export default function MovieDetail() {
   return (
     <div className="container xl pt-24">
       <div className="h-[630px] w-full">
-        <MoviePlayer videoId={mainVideoId} height="630" />
+        <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
       </div>
       <div className="lg:flex justify-around gap-5 mt-5">
         <div className="movieDetailLeft w-full lg:w-2/3">
