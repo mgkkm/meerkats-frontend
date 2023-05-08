@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { warningAlert } from '../../../components/Alert/Modal';
 import { UserInputState } from '../../../recoil/UserInputState';
@@ -14,7 +14,7 @@ type dataType = {
   message: string;
 };
 
-export default function EmailInput(props: propsType) {
+export const EmailInput = memo((props: propsType) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const { userInputHandler } = props;
@@ -182,4 +182,4 @@ export default function EmailInput(props: propsType) {
       {/* 인증번호 입력창 : 6글자(인증번호.length) 및 유효한숫자 조건이 참이면, 자동 disabled 처리되게끔 */}
     </div>
   );
-}
+});

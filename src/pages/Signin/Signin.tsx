@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserInputState } from '../../recoil/UserInputState';
 import { infoAlert } from '../../components/Alert/Modal';
-import EmailInput from './components/EmailInput';
+import { EmailInput } from './components/EmailInput';
 
 export default function Signin() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
