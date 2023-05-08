@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { blogPostState } from '../../../recoil/BlogPostState';
+import { blogPostState } from '../../../../recoil/BlogPostState';
 
 export default function Title() {
   const [blogPost, setBlogPost] = useRecoilState(blogPostState);
