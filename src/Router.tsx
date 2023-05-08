@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
+import BlogMain from './pages/Blog/BlogMain';
 import EventList from './pages/Event/EventList';
 import EventDetail from './pages/Event/EventDetail';
 import Membership from './pages/Membership/Membership';
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
       { path: '/login', element: <Login /> },
       { path: '/signin', element: <Signin /> },
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
+      { path: '/blogMain', element: <BlogMain /> },
       { path: '/event', element: <EventList /> },
       { path: '/event/:id', element: <EventDetail /> },
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
