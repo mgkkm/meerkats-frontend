@@ -13,7 +13,7 @@ import {
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
 import { CommentData, commentState } from '../../recoil/CommentState';
-import { tokenState } from '../../recoil/tokenState';
+import { tokenState } from '../../recoil/TokenState';
 
 export interface MovieHeaderData {
   category: {
@@ -78,7 +78,10 @@ export default function MovieDetail() {
   const postId = params.id;
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const token = useRecoilValue(tokenState);
+  // const token = useRecoilValue(tokenState);
+
+  const token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MzIwMTc3MH0.CcSqdtSLNHjdaTbcoP_JfKJmjMerUDKx7NZR-z37O0A';
 
   const [loading, error, data, fetchData] = useAxios();
 
