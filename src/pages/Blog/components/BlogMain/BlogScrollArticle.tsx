@@ -58,7 +58,7 @@ export default function BlogScrollArticle() {
           const nonSpoData = el.data.nonSpoPostData;
           const spoData = el?.data?.spoPostData;
           const spoToggleData = toggle ? spoData : nonSpoData;
-          return spoToggleData.map((el: any) => {
+          return spoToggleData?.map((el: any) => {
             const nickname = el.user.nickname;
             // ** created_at UTC 날짜 가공하여, 며칠 전인지 구하는 로직
             // 1. created_at 날짜를 new Date 객체로 변환 (한국표준시로 자동변경됨)
