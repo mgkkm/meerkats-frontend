@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import ContentContainer from './components/ContentContainer/ContentContainer';
 import { useRecoilState } from 'recoil';
 import { topBtnState } from './recoil/TopBtnState';
 

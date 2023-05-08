@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { commentState } from '../../../recoil/CommentState';
-// import DropDownBtn from './DropDownBtn';
+import DropDownBtn from './DropDownBtn';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { displayCreatedAt } from '../../CreatedAt/CreatedAt';
 
@@ -40,11 +40,11 @@ export default function CommentList() {
               </div>
               {user.id === currentUserId && (
                 <div className="absolute top-5 right-5">
-                  {/* <DropDownBtn
+                  <DropDownBtn
                     content={content}
                     commentId={commentId}
                     user={user}
-                  /> */}
+                  />
                 </div>
               )}
               <p className="text-sm">{content}</p>
