@@ -50,11 +50,6 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
               postId={`${id}`}
               btnSize="text-xl"
             />
-            {/* <img
-              src="/images/blog/blogMain/heart.png"
-              alt="heart"
-              className="blogLikeImg"
-            /> */}
             <span className="text-base ml-2">{weeklyLikeCount}</span>
           </div>
         </div>
