@@ -4,13 +4,15 @@ import CustomEditor from './components/CustomEditor';
 import PostBtn from './components/PostBtn';
 import Title from './components/Title';
 import useAxios from '../../../hooks/useAxios';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { blogPostState, isEditState } from '../../../recoil/BlogPostState';
 import { useLocation, useParams } from 'react-router-dom';
+import { tokenState } from '../../../recoil/TokenState';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function BlogPosting() {
+  const token = useRecoilValue(tokenState);
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
   const setBlogPost = useSetRecoilState(blogPostState);
   const [loading, error, data, fetchData] = useAxios();
@@ -23,10 +25,10 @@ export default function BlogPosting() {
   useEffect(() => {
     isEdit &&
       fetchData({
-        //⭐️TODO : 35번대신 글 번호로 입력하기
         url: `${BASE_URL}/blog/${param.id}`,
         method: 'POST',
         headers: {
+          Authorization: token,
           'Content-Type': `application/json`,
         },
         data: { userId: 3 },

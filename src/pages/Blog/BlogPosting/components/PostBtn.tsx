@@ -24,7 +24,7 @@ export default function PostBtn() {
 
   const clickHandler = () => {
     fetchData({
-      url: `${BASE_URL}/blog/${isEdit && param.id}`,
+      url: `${BASE_URL}/blog${isEdit ? `/${param.id}` : ''}`,
       method: isEdit ? 'PATCH' : 'POST',
       headers: {
         Authorization: token,
