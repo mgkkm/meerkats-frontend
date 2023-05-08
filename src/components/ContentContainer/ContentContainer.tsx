@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-// import TopBtn from '../TopBtn/TopBtn';
+import TopBtn from '../TopButton/TopBtn';
 
 type ScrollPorps = {
   scrollHandler: (e: React.WheelEvent<HTMLDivElement>) => void;
@@ -14,7 +14,7 @@ export default function ContentContainer({
   return (
     <div className=" h-auto relative pb-28" onWheel={scrollHandler}>
       {children}
-      {/* <TopBtn /> */}
+      <TopBtn />
     </div>
   );
 }

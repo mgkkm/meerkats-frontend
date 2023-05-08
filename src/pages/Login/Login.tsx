@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import UserForm from './components/UserForm';
 import KakaoLoginBtn from './components/KakaoLoginBtn';
+import NaverLoginBtn from './components/NaverLoginBtn';
 
 export default function Login() {
   return (
