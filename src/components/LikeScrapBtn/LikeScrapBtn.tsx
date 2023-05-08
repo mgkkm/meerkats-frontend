@@ -74,10 +74,10 @@ export default function LikeScrapBtn({
   };
 
   const LikeScrapHandler = () => {
-    if (currentUserId === 0) {
-      failedAlert('loginRequired');
-      return;
-    }
+    // if (currentUserId === 0) {
+    //   failedAlert('loginRequired');
+    //   return;
+    // }
     postBtnState();
   };
 

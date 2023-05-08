@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { ArticleDataState } from '../../../../recoil/ArticleDataState';
 
-export default function BlogDropDown() {
+export const BlogDropDown = memo(() => {
   const [selectGenre, setSelectGenre] = useState('모든 장르');
   const [show, setShow] = useState(false);
   const articleData = useRecoilValue(ArticleDataState);
@@ -47,4 +47,4 @@ export default function BlogDropDown() {
       </ul>
     </div>
   );
-}
+});

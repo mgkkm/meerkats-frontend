@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import BlogArticle from './BlogArticle';
+import { BlogArticle } from './BlogArticle';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
 
 export default function BlogSearchArticle() {
@@ -8,7 +8,7 @@ export default function BlogSearchArticle() {
   console.log('검색데이터 =>', searchArticleData);
 
   return (
-    <section className="float-left mt-14 xl:mt-10 z-10">
+    <section className="mt-14 xl:mt-10 z-10">
       {searchArticleData?.data?.map((el: any) => {
         const nickname = el.user.nickname;
         // ** created_at UTC 날짜 가공하여, 며칠 전인지 구하는 로직

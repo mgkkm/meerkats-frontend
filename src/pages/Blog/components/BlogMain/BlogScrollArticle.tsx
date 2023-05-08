@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import useAxios from '../../../../hooks/useAxios';
-import BlogArticle from './BlogArticle';
+import { BlogArticle } from './BlogArticle';
 
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션
 export default function BlogScrollArticle() {
@@ -52,7 +52,7 @@ export default function BlogScrollArticle() {
 
   return (
     <>
-      <section className="float-left">
+      <section>
         {articles?.map((el: any) => {
           console.log(articles);
           const nonSpoData = el.data.nonSpoPostData;

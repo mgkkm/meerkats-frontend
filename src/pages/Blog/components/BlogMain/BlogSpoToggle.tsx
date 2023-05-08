@@ -1,7 +1,8 @@
+import { memo } from 'react';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { useRecoilState } from 'recoil';
 
-export default function BlogSpoToggle() {
+export const BlogSpoToggle = memo(() => {
   const [toggle, setToggle] = useRecoilState(toggleSelector('spo'));
 
   return (
@@ -24,4 +25,4 @@ export default function BlogSpoToggle() {
       </label>
     </div>
   );
-}
+});

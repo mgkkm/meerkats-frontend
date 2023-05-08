@@ -1,3 +1,6 @@
+import { memo } from 'react';
+import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
+
 interface BlogArticleProps {
   id: number;
   title: string;
@@ -9,7 +12,7 @@ interface BlogArticleProps {
   spoiler_info_id: number;
 }
 
-export default function BlogArticle(props: BlogArticleProps) {
+export const BlogArticle = memo((props: BlogArticleProps) => {
   const {
     id,
     thumbnail,
@@ -30,7 +33,7 @@ export default function BlogArticle(props: BlogArticleProps) {
         <img src={thumbnail} alt="썸네일" className="w-full" />
       </div>
       <div className="blogText">
-        <h1 className="blogTextTitle xl:mt-8">{title}</h1>
+        <h1 className="blogTextTitle">{title}</h1>
         <p className="blogTextInfo text-mkGray">
           {blogDate}일 전 • {commentCount}개의 댓글
         </p>
@@ -41,12 +44,18 @@ export default function BlogArticle(props: BlogArticleProps) {
           </span>
           <div className="blogLike">
             {/* 조아요 버튼 서윤님껄로 바꾸기 */}
-            <img
+            <LikeScrapBtn
+              postType="blog"
+              btnType="Like"
+              postId={`${id}`}
+              btnSize="text-xl"
+            />
+            {/* <img
               src="/images/blog/blogMain/heart.png"
               alt="heart"
               className="blogLikeImg"
-            />
-            <span className="text-base">{weeklyLikeCount}</span>
+            /> */}
+            <span className="text-base ml-2">{weeklyLikeCount}</span>
           </div>
         </div>
       </div>
@@ -59,4 +68,4 @@ export default function BlogArticle(props: BlogArticleProps) {
       </div>
     </article>
   );
-}
+});

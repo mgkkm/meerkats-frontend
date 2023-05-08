@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { ArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
-import BlogArticle from './BlogArticle';
+import { BlogArticle } from './BlogArticle';
+import { tokenState } from '../../../../recoil/TokenState';
 
 export default function BlogRenderArticle() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
-  const token = localStorage.getItem('token');
-  const closeBtn = useRecoilValue(toggleSelector('close'));
 
-  console.log(articleData);
+  // token 관리 및 저장
+  const setTokenValue = useSetRecoilState(tokenState);
+  const token = localStorage.getItem('token');
+  token && setTokenValue(token);
 
   useEffect(() => {
     fetchData({
@@ -30,7 +32,7 @@ export default function BlogRenderArticle() {
     : articleData?.data?.nonSpoPostData;
 
   return (
-    <section className="float-left mt-14 xl:mt-10 z-10">
+    <section className="mt-14 xl:mt-10 z-10">
       {spoToggle?.map((el: any) => {
         const nickname = el.user.nickname;
         // ** created_at UTC 날짜 가공하여, 며칠 전인지 구하는 로직

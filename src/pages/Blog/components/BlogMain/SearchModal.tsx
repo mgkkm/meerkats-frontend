@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
@@ -8,7 +8,7 @@ import useAxios from '../../../../hooks/useAxios';
 //   title: string;
 // };
 
-export default function SearchModal() {
+export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setSearchInput = useSetRecoilState(toggleSelector('search'));
@@ -97,8 +97,9 @@ export default function SearchModal() {
       </div>
     </div>
   );
-}
+});
 
+// * 자동 필터 검색 기능
 // {/* <ul
 //         className={`${
 //           searchList ? 'block' : 'hidden'

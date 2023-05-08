@@ -159,3 +159,86 @@ input[type='number']::-webkit-outer-spin-button {
   font-weight: 600;
   color: #fff;
 }
+
+/* ========== responsive style ========== */
+
+/* ~1600px */
+@media (max-width: 1600px) {
+  .blogPost {
+    width: 29%;
+  }
+
+  .blogThumbnail {
+    height: 20rem;
+  }
+
+  .blogTextTitle {
+    margin-top: 3.8rem;
+  }
+
+  .blogTextInfo {
+    margin-top: 0.7rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ~1400px */
+@media (max-width: 1400px) {
+  .blogPost {
+    width: 27%;
+  }
+
+  .blogThumbnail {
+    height: 19rem;
+  }
+
+  .blogTextTitle {
+    margin-top: 3.6rem;
+  }
+
+  .blogTextInfo {
+    margin-top: 0.5rem;
+    margin-bottom: 1.3rem;
+  }
+}
+
+/* ~1280px */
+@media (max-width: 1280px) {
+  .blogPost {
+    width: 27%;
+  }
+
+  .blogThumbnail {
+    height: 18rem;
+  }
+
+  .blogTextTitle {
+    margin-top: 3rem;
+  }
+
+  .blogTextInfo {
+    margin-top: 0.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
+
+/* ~1024px */
+@media (max-width: 1024px) {
+  .blogPost {
+    width: 40%;
+    margin-left: 2.5rem;
+  }
+
+  .blogThumbnail {
+    height: 16rem;
+  }
+
+  .blogTextTitle {
+    margin-top: 3rem;
+  }
+
+  .blogTextInfo {
+    margin-top: 0.4rem;
+    margin-bottom: 1.2rem;
+  }
+}
