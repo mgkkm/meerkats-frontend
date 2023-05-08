@@ -1,25 +1,23 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import EmailInput from './components/EmailInput';
+import { useRecoilState } from 'recoil';
+import { UserInputState } from '../../recoil/UserInputState';
 import { infoAlert } from '../../components/Alert/Modal';
+import EmailInput from './components/EmailInput';
 
 export default function Signin() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-  const [userInput, setUserInput] = useState({
-    email: '',
-    nickname: '',
-    password: '',
-    certifiNumber: '',
-  });
+  const [userInput, setUserInput] = useRecoilState(UserInputState);
+  const { email, nickname, password } = userInput;
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setUserInput({ ...userInput, [name]: value });
   };
 
-  const pwvalue: string = userInput.password;
+  const pwvalue: string = password;
   const pwchk: RegExp =
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[a-zA-Z\d!@#$%^&*()_+]{8,20}$/;
 
@@ -29,13 +27,12 @@ export default function Signin() {
       url: `${BASE_URL}/users/signup`,
       headers: { 'Content-Type': `application/json` },
       data: {
-        email: userInput.email,
-        password: userInput.password,
-        nickname: userInput.nickname,
+        email: email,
+        password: password,
+        nickname: nickname,
       },
     })
       .then((res: any) => {
-        console.log(res);
         infoAlert(
           'meerkats 회원이 되신 것을 축하드립니다!',
           '로그인 해 주세요 :)'
@@ -55,17 +52,13 @@ export default function Signin() {
           <span className="font-semibold">meerkats</span>을 즐길 수 있어요!
         </header>
         <section className="block text-center">
-          <EmailInput
-            email={userInput.email}
-            userInputHandler={userInputHandler}
-            certifiNumber={userInput.certifiNumber}
-          />
+          <EmailInput userInputHandler={userInputHandler} />
           <div className="block mt-3">
             <input
               required
               type="password"
               name="password"
-              value={userInput.password}
+              value={password}
               placeholder="password"
               className={`input input-bordered w-full h-14 mt-2 ${
                 (pwchk.test(pwvalue) && pwvalue.length >= 8) ||
@@ -90,7 +83,7 @@ export default function Signin() {
               required
               type="text"
               name="nickname"
-              value={userInput.nickname}
+              value={nickname}
               placeholder="nickname"
               className="input input-bordered w-full h-14 mt-5"
               onChange={userInputHandler}
@@ -102,9 +95,7 @@ export default function Signin() {
             className="btn w-full h-14 mt-6 border-none bg-mkOrange hover:bg-mkDarkOrange text-mkWhite text-base"
             onClick={signInBtn}
             disabled={
-              pwchk.test(pwvalue) &&
-              pwvalue.length >= 8 &&
-              userInput.nickname.length
+              pwchk.test(pwvalue) && pwvalue.length >= 8 && nickname.length
                 ? false
                 : true
             }

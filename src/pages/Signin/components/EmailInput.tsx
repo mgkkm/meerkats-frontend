@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { warningAlert } from '../../../components/Alert/Modal';
+import { UserInputState } from '../../../recoil/UserInputState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { toggleSelector } from '../../../recoil/ToggleState';
 
 type propsType = {
-  email: string;
-  certifiNumber: string;
   userInputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
@@ -15,15 +16,27 @@ type dataType = {
 
 export default function EmailInput(props: propsType) {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const { email, certifiNumber, userInputHandler } = props;
   const [loading, error, data, fetchData] = useAxios();
-  const [certifiNumInput, setCertifiNumInput] = useState(false);
-  const [emailChk, setEmailChk] = useState(false);
-  const [duplicationEmailBtn, setDuplicationEmailBtn] = useState(false);
+  const { userInputHandler } = props;
+  const userInput = useRecoilValue(UserInputState);
+  const { email, certifiNumber } = userInput;
+  const [certifiNumInput, setCertifiNumInput] = useRecoilState(
+    toggleSelector('certificationNumber')
+  );
+  const [emailChk, setEmailChk] = useRecoilState(toggleSelector('emailCheck'));
+  const [duplicationEmailBtn, setDuplicationEmailBtn] = useRecoilState(
+    toggleSelector('duplicationEmailButton')
+  );
+  const [certifiBtn, setCertifiBtn] = useRecoilState(
+    toggleSelector('certificationButton')
+  );
+  const [isValid, setIsValid] = useRecoilState(
+    toggleSelector('userValidation')
+  );
+  const [isAvailableEmail, setIsAvailableEmail] = useRecoilState(
+    toggleSelector('availableEmail')
+  );
   const [duplicationEmailErr, setDuplicationEmailErr] = useState(true);
-  const [certifiBtn, setCertifiBtn] = useState(false);
-  const [isValid, setIsValid] = useState(false);
-  const [isAvailableEmail, setIsAvailableEmail] = useState(false);
 
   const getUserCertification = (arg: string) => {
     setEmailChk(true);
