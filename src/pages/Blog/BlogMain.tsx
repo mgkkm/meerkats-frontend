@@ -19,7 +19,7 @@ export default function BlogMain() {
   // 검색 기능 (완료.)
 
   return (
-    <div className="mt-24 px-32 py-28 bg-mkBg">
+    <div className="px-32 pt-48 pb-28 bg-mkBg">
       <section className="container xl">
         <BlogMainTop />
         <div className="flex items-center my-5 mx-2">

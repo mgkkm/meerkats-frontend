@@ -30,7 +30,7 @@ export default function Search() {
           />
         </svg>
       </button>
-      {searchInput ? <SearchModal /> : ''}
+      {searchInput && <SearchModal />}
     </div>
   );
 }
