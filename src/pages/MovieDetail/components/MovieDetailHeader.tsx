@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { useParams } from 'react-router-dom';
 import LikeScrapBtn from '../../../components/LikeScrapBtn/LikeScrapBtn';
-import ShareBtn from '../../../components/ShareBtn/ShareBtn';
+// import ShareBtn from '../../../components/ShareBtn/ShareBtn';
 import { movieHeaderState } from '../../../recoil/MovieDetailState';
 import parse from 'html-react-parser';
 
@@ -76,7 +76,7 @@ export default function MovieDetailHeader() {
             postId={`${postId}`}
             btnSize="text-2xl"
           />
-          <ShareBtn />
+          {/* <ShareBtn /> */}
         </div>
       </div>
       <div>
@@ -86,10 +86,10 @@ export default function MovieDetailHeader() {
           }`}
           onClick={handleMore}
         >
-          <IoIosArrowDown className="hover: cursor-pointer text-3xl" />
+          <IoIosArrowDown className="hover:cursor-pointer text-3xl" />
         </div>
         <div
-          className={`hover: cursor-pointer text-sm ${
+          className={`hover:cursor-pointer text-sm ${
             moreArrowToggle ? '' : 'hidden'
           }`}
           onClick={handleMore}
@@ -100,7 +100,7 @@ export default function MovieDetailHeader() {
           </div>
           <div className="flex text-sm text-mkDarkGray mb-1">
             <p className="mr-3 w-7 font-semibold">출연</p>
-            {actorArray.map(name => {
+            {actorArray.map((name: string) => {
               return (
                 <>
                   <span className="px-1.5">{name}</span>
