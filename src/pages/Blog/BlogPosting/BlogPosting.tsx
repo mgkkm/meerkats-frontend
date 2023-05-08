@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Category from './components/Category';
 import CustomEditor from './components/CustomEditor';
 import PostBtn from './components/PostBtn';
 import Title from './components/Title';
 import useAxios from '../../../hooks/useAxios';
-import { useRecoilState } from 'recoil';
-import { blogPostState } from '../../../recoil/BlogPostState';
-import { useLocation } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { blogPostState, isEditState } from '../../../recoil/BlogPostState';
+import { useLocation, useParams } from 'react-router-dom';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function BlogPosting() {
-  const [isUpdate, setIsUpdate] = useState(false);
-  const [blogPost, setBlogPost] = useRecoilState(blogPostState);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const setBlogPost = useSetRecoilState(blogPostState);
   const [loading, error, data, fetchData] = useAxios();
+
   const location = useLocation();
+  const param = useParams();
+
+  if (location.pathname.includes('/edit')) setIsEdit(true);
 
   useEffect(() => {
-    location.pathname === '/edit' &&
+    isEdit &&
       fetchData({
         //⭐️TODO : 35번대신 글 번호로 입력하기
-        url: `${BASE_URL}/blog/19`,
+        url: `${BASE_URL}/blog/${param.id}`,
         method: 'POST',
         headers: {
           'Content-Type': `application/json`,
@@ -35,9 +39,8 @@ export default function BlogPosting() {
           spoilerInfoId: res.data.postDetails.spoiler_info_id,
           thumbnail: '썸네일',
         });
-        res.data.postDetails.title.length > 1 && setIsUpdate(true);
       });
-  }, []);
+  }, [isEdit]);
 
   return (
     <div className=" container md mt-24 h-full ">
@@ -45,7 +48,7 @@ export default function BlogPosting() {
         <Title />
         <Category />
         <CustomEditor />
-        <PostBtn isUpdate={isUpdate} />
+        <PostBtn />
       </div>
     </div>
   );
