@@ -11,6 +11,7 @@ import EventDetail from './pages/Event/EventDetail';
 import Membership from './pages/Membership/Membership';
 import Signin from './pages/Signin/Signin';
 import BlogDetail from './pages/Blog/BlogDetail/BlogDetail';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 import BlogPosting from './pages/Blog/BlogPosting/BlogPosting';
 import Subscribe from './pages/Subscribe/Subscribe';
 
@@ -34,6 +35,7 @@ export const router = createBrowserRouter([
       { path: '/edit/:id', element: <BlogPosting /> },
       { path: '/membership', element: <Membership /> },
       { path: '/membership/subscribe/:id', element: <Subscribe /> },
+      { path: '/movieDetail/:id', element: <MovieDetail /> },
     ],
   },
 ]);
