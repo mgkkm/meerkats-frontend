@@ -6,11 +6,11 @@ import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import EventList from './pages/Event/EventList';
 import EventDetail from './pages/Event/EventDetail';
-import BlogPosting from './pages/Blog/BlogPosting';
 import Membership from './pages/Membership/Membership';
 import Signin from './pages/Signin/Signin';
 import BlogDetail from './pages/Blog/BlogDetail/BlogDetail';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
+import BlogPosting from './pages/Blog/BlogPosting/BlogPosting';
 
 export const router = createBrowserRouter([
   {
