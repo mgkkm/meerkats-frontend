@@ -18,7 +18,7 @@ export default function MainCarousel() {
         clickable: true,
       }}
       modules={[Pagination, Navigation, Autoplay]}
-      className="h-[650px] mt-24"
+      className="h-[600px] mt-24"
     >
       <SwiperSlide>
         <div className="h-full shadow-xl">

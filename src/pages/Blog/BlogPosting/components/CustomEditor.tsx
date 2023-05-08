@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { blogPostState } from '../../../recoil/BlogPostState';
+import { blogPostState } from '../../../../recoil/BlogPostState';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
