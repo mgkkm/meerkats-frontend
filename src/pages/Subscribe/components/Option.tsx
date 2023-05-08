@@ -29,7 +29,7 @@ export default function Option({ currentType, changeType }: subscribeProps) {
                 <div>
                   <p className="font-semibold">{type}</p>
                   <p className="text-sm">{`Get ${ticket} FREE tickets ${
-                    id === 3 ? 'and MORE!' : ''
+                    id === 3 && 'and MORE!'
                   }`}</p>
                 </div>
               </div>
