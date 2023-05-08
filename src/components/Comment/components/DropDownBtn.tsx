@@ -1,7 +1,6 @@
 import React from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { currentUserState } from '../../../recoil/Jwt';
 import useAxios from '../../../hooks/useAxios';
 import {
   refState,
@@ -10,6 +9,7 @@ import {
   commentIdState,
   renderingState,
 } from '../../../recoil/BlogPostState';
+import { currentUserIdState } from '../../../recoil/JwtDecode';
 const Swal = require('sweetalert2');
 
 type commentProps = {
@@ -30,7 +30,7 @@ export default function DropDownBtn({
 }: commentProps) {
   const [inputContent] = useRecoilState(refState);
   const setIsEdit = useSetRecoilState(isEditState);
-  const [currentUserId] = useRecoilState(currentUserState);
+  const [currentUserId] = useRecoilState(currentUserIdState);
   const setCurrentCommentId = useSetRecoilState(commentIdState);
   const [rendering, setRendering] = useRecoilState(renderingState);
   const setInputContent = useSetRecoilState(blogInputState);

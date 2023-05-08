@@ -56,7 +56,7 @@ export default function CommentInput() {
   };
 
   return (
-    <div className="commentInput border boder-mkGray my-10 pt-5">
+    <div className="commentInput border border-mkLightGray my-10 pt-5 bg-white">
       <p className="text-sm font-semibold px-4">username</p>
       <div className="flex justify-center">
         <textarea
