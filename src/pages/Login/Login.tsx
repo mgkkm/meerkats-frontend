@@ -26,6 +26,9 @@ export default function Login() {
         <div className="inline-block m-auto mt-6 mx-3">
           <KakaoLoginBtn />
         </div>
+        <div className="inline-block m-auto mt-6 mx-3">
+          <NaverLoginBtn />
+        </div>
       </div>
     </div>
   );
