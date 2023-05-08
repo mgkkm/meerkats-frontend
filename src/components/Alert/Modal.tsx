@@ -25,17 +25,17 @@ export const failedNavigateAlert = (
   });
 };
 
-//(navigate)버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
+//(axios)버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
 export const failedAxiosAlert = (
   title: string,
   text: string,
-  axiosFunction: any
+  axiosFunction: () => void
 ) => {
   Swal.fire({
     title: title,
     text: text,
     icon: 'warning',
-    confirmButtonText: 'Login',
+    confirmButtonText: 'Delete',
     confirmButtonColor: '#e35c02',
     focusDeny: true,
     showDenyButton: true,

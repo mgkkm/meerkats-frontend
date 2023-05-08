@@ -8,8 +8,13 @@ import {
   refState,
   renderingState,
 } from '../../../recoil/BlogPostState';
+import { useParams } from 'react-router-dom';
+import { tokenState } from '../../../recoil/TokenState';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function CommentInput() {
+  const token = useRecoilValue(tokenState);
   const setInputState = useSetRecoilState(refState);
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
   const commentId = useRecoilValue(commentIdState);
@@ -18,45 +23,32 @@ export default function CommentInput() {
   const [loading, error, data, fetchData] = useAxios();
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
+  const param = useParams();
+
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
 
   setInputState(inputRef.current);
-  console.log(isEdit);
 
   const clickHandler = () => {
     fetchData({
-      //⭐️ TODO : 35 대신  post Id 로 수정하기
-      url: 'https://www.meerkats.monster/blog/postComment/35',
-      method: 'POST',
+      url: `${BASE_URL}/blog/postComment/${isEdit ? commentId : param.id}`,
+      method: isEdit ? 'PATCH' : 'POST',
       headers: {
+        Authorization: token,
         'Content-Type': `application/json`,
       },
       data: { content: content },
     }).then((el: any) => {
       setRendering(!rendering);
       el.message.includes('SUCCESS') && setContent('');
-    });
-  };
-
-  const editHandler = () => {
-    fetchData({
-      url: `https://www.meerkats.monster/blog/postComment/${commentId}`,
-      method: 'PATCH',
-      headers: {
-        'Content-Type': `application/json`,
-      },
-      data: { content: content },
-    }).then((el: any) => {
-      setRendering(!rendering);
-      el.message.includes('SUCCESS') && setContent('');
-      setIsEdit(false);
+      isEdit && setIsEdit(false);
     });
   };
 
   return (
-    <div className="commentInput border boder-mkGray my-10 pt-5">
+    <div className="commentInput border border-mkLightGray my-10 pt-5 bg-white">
       <p className="text-sm font-semibold px-4">username</p>
       <div className="flex justify-center">
         <textarea
@@ -67,10 +59,7 @@ export default function CommentInput() {
           placeholder="meerkats"
         />
       </div>
-      <div
-        onClick={() => (isEdit ? editHandler() : clickHandler())}
-        className="flex justify-end"
-      >
+      <div onClick={clickHandler} className="flex justify-end">
         <button className="btn btn-sm rounded-none">
           {isEdit ? 'Edit' : 'Post'}
         </button>

@@ -20,7 +20,7 @@ export default function MainTab() {
 
   return (
     <div className="container xl">
-      <h1 className=" text-4xl text-center mb-20 font-[ChosunGs]">
+      <h1 className=" text-3xl text-center mb-20 font-[ChosunGs]">
         Meet Your Next Movie
       </h1>
       <div className="tabs justify-center">
@@ -28,7 +28,7 @@ export default function MainTab() {
           return (
             <div
               key={idx}
-              className={`tab font-semibold text-lg w-52 h-10 mr-5 mb-8	${
+              className={`tab font-semibold text-base w-48 h-10 mr-5 mb-8	${
                 activeTab === idx
                   ? ' bg-white border-4 border-solid border-mkOrange text-black rounded'
                   : 'hover:border-4 border-solid border-mkGray rounded'
@@ -40,7 +40,7 @@ export default function MainTab() {
           );
         })}
       </div>
-      <div className=" tabContent h-[830px] flex flex-wrap justify-around overflow-hidden">
+      <div className=" tabContent m-auto w-[1400px] h-[830px] flex flex-wrap justify-around overflow-hidden">
         {content !== undefined &&
           content.map((item, idx) => {
             return <TabItems key={idx} item={item} />;
