@@ -5,7 +5,7 @@ import MainTopRankCarousel from './components/MainTopRankCarousel';
 import useAxios from '../../hooks/useAxios';
 import { useSetRecoilState } from 'recoil';
 import { mainDataState } from '../../recoil/MainDataState';
-import Membership from '../Membership/Membership';
+import MembershipMain from '../Membership/MembershipMain';
 
 export default function Main() {
   const [loading, error, data, fetchData] = useAxios();
@@ -34,7 +34,8 @@ export default function Main() {
       <MainTab />
       <hr id="dash" />
       <MainTopRankCarousel />
-      <Membership />
+      <hr id="dash" />
+      <MembershipMain />
     </>
   );
 }

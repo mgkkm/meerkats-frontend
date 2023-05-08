@@ -1,7 +1,7 @@
 import React from 'react';
 import MembershipCard from './components/MembershipCard';
 
-export interface MembershipInfoType {
+export interface MembershipCardData {
   id: number;
   type: string;
   price: string;
@@ -12,7 +12,7 @@ export interface MembershipInfoType {
 
 export default function Membership() {
   return (
-    <div className="container xl mt-24 pt-24 flex justify-center">
+    <div className="container xl pt-48 flex justify-center">
       <div className="max-lg:block lg:w-full flex justify-center gap-16 lg:gap-10 xl:gap-16">
         {MEMBERSHIP_CARD_DATA.map((membership, id) => {
           return <MembershipCard key={id} membership={membership} />;
