@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserInput } from './UserInput';
 import useAxios from '../../../hooks/useAxios';
 import { infoAlert, warningAlert } from '../../../components/Alert/Modal';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { TokenState } from '../../../recoil/TokenState';
+import { InputValueState } from '../../../recoil/InputValueState';
+import { toggleSelector } from '../../../recoil/ToggleState';
 
 export default function UserForm() {
   const navigate = useNavigate();
   const [loading, error, data, fetchData] = useAxios();
 
-  type UserInfos = { id: string; pw: string };
-  const [inputValues, setInputValues] = useState<UserInfos>({
-    id: '',
-    pw: '',
-  });
-
+  const [inputValues, setInputValues] = useRecoilState(InputValueState);
   const { id, pw } = inputValues;
-  const [active, setActive] = useState<boolean>(false);
+
+  // const [active, setActive] = useState<boolean>(false);
+  const [active, setActive] = useRecoilState(toggleSelector('active'));
+  const setTokenState = useSetRecoilState(TokenState);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,7 +26,7 @@ export default function UserForm() {
   };
 
   const activeLogin = () => {
-    return inputValues.id.includes('@' && '.') && inputValues.pw.length >= 8
+    return id.includes('@' && '.') && pw.length >= 8
       ? setActive(true)
       : setActive(false);
   };
@@ -36,11 +38,12 @@ export default function UserForm() {
       headers: { 'Content-Type': `application/json` },
       data: { email: id, password: pw },
     }).then((res: any) => {
-      console.log(res);
       if (res.accessToken) {
         localStorage.setItem('token', res.accessToken);
-        navigate('/');
+        const token = localStorage.getItem('token');
+        token && setTokenState(token);
         infoAlert('로그인 성공', '환영합니다 :)');
+        navigate('/');
       } else if (res.message === '이메일과 비밀번호를 확인해주세요') {
         warningAlert(
           '로그인 실패',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 interface UserInputProps {
   id: string;
@@ -10,7 +10,7 @@ interface UserInputProps {
   margin: boolean;
 }
 
-export const UserInput = (props: UserInputProps) => {
+export const UserInput = memo((props: UserInputProps) => {
   const {
     id,
     type,
@@ -34,4 +34,4 @@ export const UserInput = (props: UserInputProps) => {
       />
     </div>
   );
-};
+});
