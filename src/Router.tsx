@@ -9,6 +9,7 @@ import EventDetail from './pages/Event/EventDetail';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
 import BlogPosting from './pages/Blog/BlogPosting';
 import Membership from './pages/Membership/Membership';
+import MovieDetail from './pages/MovieDetail/MovieDetail';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
       { path: '/post', element: <BlogPosting /> },
       { path: '/membership', element: <Membership /> },
+      { path: '/movieDetail/:id', element: <MovieDetail /> },
     ],
   },
 ]);
