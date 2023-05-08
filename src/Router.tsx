@@ -12,6 +12,7 @@ import Membership from './pages/Membership/Membership';
 import Signin from './pages/Signin/Signin';
 import BlogDetail from './pages/Blog/BlogDetail/BlogDetail';
 import BlogPosting from './pages/Blog/BlogPosting/BlogPosting';
+import Subscribe from './pages/Subscribe/Subscribe';
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
       { path: '/post', element: <BlogPosting /> },
       { path: '/edit/:id', element: <BlogPosting /> },
       { path: '/membership', element: <Membership /> },
-      { path: '/blogDetail/:id', element: <BlogDetail /> },
+      { path: '/membership/subscribe/:id', element: <Subscribe /> },
     ],
   },
 ]);
