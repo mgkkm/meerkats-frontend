@@ -10,8 +10,8 @@ export default function Category() {
   const [selectGenre, setSelectGenre] = useState('모든 장르');
   const [selectSpo, setSelectSpo] = useState('스포 여부');
   const [genreCategory, setGenreCategory] = useState([]);
-  const [loading, error, data, fetchData] = useAxios();
   const [blogPost, setBlogPost] = useRecoilState(blogPostState);
+  const [loading, error, data, fetchData] = useAxios();
 
   useEffect(() => {
     fetchData({
