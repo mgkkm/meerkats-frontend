@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { MembershipInfoType } from '../Membership';
+import { MembershipCardData } from '../Membership';
 
-interface MembershipProps {
-  membership: MembershipInfoType;
+interface MembershipCardProps {
+  membership: MembershipCardData;
 }
 
-export default function MembershipCard({ membership }: MembershipProps) {
+export default function MembershipCard({ membership }: MembershipCardProps) {
   const location = useLocation();
   const pathname = location.pathname;
   const isSubscribe = pathname.split('/')[2] === 'subscribe' ? true : false;

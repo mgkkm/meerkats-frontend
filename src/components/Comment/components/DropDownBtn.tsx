@@ -1,7 +1,6 @@
 import React from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { currentUserState } from '../../../recoil/Jwt';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useAxios from '../../../hooks/useAxios';
 import {
   refState,
@@ -10,6 +9,9 @@ import {
   commentIdState,
   renderingState,
 } from '../../../recoil/BlogPostState';
+import { currentUserIdState } from '../../../recoil/JwtDecode';
+import { failedAxiosAlert } from '../../Alert/Modal';
+import { tokenState } from '../../../recoil/TokenState';
 const Swal = require('sweetalert2');
 
 type commentProps = {
@@ -28,40 +30,38 @@ export default function DropDownBtn({
   content,
   commentId,
 }: commentProps) {
-  const [inputContent] = useRecoilState(refState);
+  const token = useRecoilValue(tokenState);
+  const inputRef = useRecoilValue(refState);
   const setIsEdit = useSetRecoilState(isEditState);
-  const [currentUserId] = useRecoilState(currentUserState);
+  const currentUserId = useRecoilValue(currentUserIdState);
   const setCurrentCommentId = useSetRecoilState(commentIdState);
   const [rendering, setRendering] = useRecoilState(renderingState);
   const setInputContent = useSetRecoilState(blogInputState);
   const [loading, error, data, fetchData] = useAxios();
 
   const deleteHandler = () => {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#e35c02',
-      cancelButtonColor: '#707070',
-      confirmButtonText: 'Delete',
-    }).then((btnResult: any) => {
-      btnResult.isConfirmed &&
+    failedAxiosAlert(
+      'Are you sure?',
+      "You won't be able to revert this!",
+      () => {
         fetchData({
-          url: `${BASE_URL}blog/postComment/${commentId}`,
+          url: `${BASE_URL}/blog/postComment/${commentId}`,
           method: 'DELETE',
+          header: {
+            Authorization: token,
+          },
         }).then((result: any) => {
           setRendering(!rendering);
           result.message.includes('SUCCESS') &&
             Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
         });
-    });
+      }
+    );
   };
-
   const editHandler = (e: any) => {
     setInputContent(e.target.name);
     setCurrentCommentId(e.target.value);
-    inputContent !== null && inputContent.focus();
+    inputRef !== null && inputRef.focus();
     setIsEdit(true);
   };
 
