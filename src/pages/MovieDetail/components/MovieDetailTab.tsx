@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MovieChat from './MovieChat';
+import MovieChat from '../../MovieChat/MovieChat';
 import Comments from '../../../components/Comment/Comments';
 import MovieDetailBlog from './MovieDetailBlog';
 
