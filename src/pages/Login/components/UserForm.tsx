@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserInput } from './UserInput';
+import useAxios from '../../../hooks/useAxios';
+import { infoAlert, warningAlert } from '../../../components/Alert/Modal';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { tokenState } from '../../../recoil/TokenState';
+import { inputValueState } from '../../../recoil/InputValueState';
+import { toggleSelector } from '../../../recoil/ToggleState';
 
 export default function UserForm() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
+  const [loading, error, data, fetchData] = useAxios();
 
-  type UserInfos = { id: string; pw: string };
-  const [inputValues, setInputValues] = useState<UserInfos>({
-    id: '',
-    pw: '',
-  });
+  const [inputValues, setInputValues] = useRecoilState(inputValueState);
+  const { id, pw } = inputValues;
 
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState<boolean>(false);
+  const [active, setActive] = useRecoilState(toggleSelector('active'));
+  const setTokenState = useSetRecoilState(tokenState);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,49 +27,61 @@ export default function UserForm() {
   };
 
   const activeLogin = () => {
-    return inputValues.id.includes('@' && '.') && inputValues.pw.length >= 8
+    return id.includes('@' && '.') && pw.length >= 8
       ? setActive(true)
       : setActive(false);
   };
 
-  const gotoPage = (page: string) => {
-    navigate(`/${page}`);
+  const loginAxios = () => {
+    fetchData({
+      url: `${BASE_URL}/users/signin`,
+      method: 'POST',
+      headers: { 'Content-Type': `application/json` },
+      data: { email: id, password: pw },
+    }).then((res: any) => {
+      if (res.accessToken) {
+        localStorage.setItem('token', res.accessToken);
+        const token = localStorage.getItem('token');
+        token && setTokenState(token);
+        infoAlert('로그인 성공', '환영합니다 :)');
+        navigate('/');
+      } else if (res.message === '이메일과 비밀번호를 확인해주세요') {
+        warningAlert(
+          '로그인 실패',
+          '이메일이나 비밀번호가 다릅니다. 다시 로그인 해주세요 :)'
+        );
+      }
+    });
   };
 
-  // + 유효성 검사 표시해주기 (빨간 글씨? 인풋창 빨간 테두리?)
   return (
     <form>
       <div className="block text-center">
-        <div className="block">
-          <input
-            id="id"
-            className="input input-bordered w-1/3 h-14"
-            type="email"
-            placeholder="meerkats@hello.com"
-            name="id"
-            value={inputValues.id}
-            onChange={handleInput}
-          />
-        </div>
-        <div className="block">
-          <input
-            id="pw"
-            className="input input-bordered w-1/3 h-14 mt-3"
-            type="password"
-            placeholder="password"
-            name="pw"
-            value={inputValues.pw}
-            onChange={handleInput}
-          />
-        </div>
+        <UserInput
+          id="id"
+          type="email"
+          placeholder="meerkats@hello.com"
+          name="id"
+          value={id}
+          handleInput={handleInput}
+          margin={false}
+        />
+        <UserInput
+          id="pw"
+          type="password"
+          placeholder="password"
+          name="pw"
+          value={pw}
+          handleInput={handleInput}
+          margin={true}
+        />
       </div>
       <div className="block text-center">
         <button
-          type="submit"
           className={`${
             active && 'bg-mkOrange hover:bg-mkDarkOrange'
-          } btn text-white text-base border-none w-1/3 mt-5 h-14`}
-          onClick={() => gotoPage('')}
+          } btn w-1/3 h-14 mt-5 border-none text-white text-base`}
+          onClick={loginAxios}
           disabled={!active}
         >
           Login

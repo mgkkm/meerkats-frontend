@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import UserForm from './components/UserForm';
 import KakaoLoginBtn from './components/KakaoLoginBtn';
+import GoogleLoginBtn from './components/GoogleLoginBtn';
 import NaverLoginBtn from './components/NaverLoginBtn';
 
 export default function Login() {
+  const googleOauthClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
+
   return (
     <div className="container xl mt-24 pt-28 pb-9 bg-mkBg text-mkBlack">
       <div className="w-44 m-auto pt-4 pb-16 text-center">
@@ -22,9 +26,22 @@ export default function Login() {
         <span>다른 서비스 계정으로 로그인</span>
         <hr className="inline-block border-mkGray w-1/4 ml-10" />
       </div>
-      <div className="socialLoginBtn mt-5 text-center">
-        <div className="inline-block m-auto mt-6 mx-3">
+      <div className="socialLoginBtn-box mt-5 text-center m-auto">
+        {/* google */}
+        <GoogleOAuthProvider clientId={googleOauthClientId}>
+          <div className="socialLoginBtn">
+            <GoogleLoginBtn />
+          </div>
+        </GoogleOAuthProvider>
+
+        {/* kakao */}
+        <div className="socialLoginBtn">
           <KakaoLoginBtn />
+        </div>
+
+        {/* naver */}
+        <div className="socialLoginBtn">
+          <NaverLoginBtn />
         </div>
       </div>
     </div>
