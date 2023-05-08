@@ -7,7 +7,6 @@ import Login from './pages/Login/Login';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
 import EventList from './pages/Event/EventList';
 import EventDetail from './pages/Event/EventDetail';
-import KakaoLogin from './pages/Login/components/KakaoLogin';
 import BlogPosting from './pages/Blog/BlogPosting';
 import Membership from './pages/Membership/Membership';
 
