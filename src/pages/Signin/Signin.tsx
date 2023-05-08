@@ -2,14 +2,14 @@ import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
-import { UserInputState } from '../../recoil/UserInputState';
+import { userInputState } from '../../recoil/UserInputState';
 import { infoAlert } from '../../components/Alert/Modal';
 import { EmailInput } from './components/EmailInput';
 
 export default function Signin() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-  const [userInput, setUserInput] = useRecoilState(UserInputState);
+  const [userInput, setUserInput] = useRecoilState(userInputState);
   const { email, nickname, password } = userInput;
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,15 +31,13 @@ export default function Signin() {
         password: password,
         nickname: nickname,
       },
-    })
-      .then((res: any) => {
-        infoAlert(
-          'meerkats 회원이 되신 것을 축하드립니다!',
-          '로그인 해 주세요 :)'
-        );
-        navigate('/login');
-      })
-      .catch((err: any) => console.log(err));
+    }).then(() => {
+      infoAlert(
+        'meerkats 회원이 되신 것을 축하드립니다!',
+        '로그인 해 주세요 :)'
+      );
+      navigate('/login');
+    });
   };
 
   return (

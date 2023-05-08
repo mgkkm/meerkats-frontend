@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { memo, useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { warningAlert } from '../../../components/Alert/Modal';
-import { UserInputState } from '../../../recoil/UserInputState';
+import { userInputState } from '../../../recoil/UserInputState';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
 
@@ -18,7 +18,7 @@ export const EmailInput = memo((props: propsType) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const { userInputHandler } = props;
-  const userInput = useRecoilValue(UserInputState);
+  const userInput = useRecoilValue(userInputState);
   const { email, certifiNumber } = userInput;
   const [certifiNumInput, setCertifiNumInput] = useRecoilState(
     toggleSelector('certificationNumber')

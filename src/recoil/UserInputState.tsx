@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
-export const UserInputState = atom({
-  key: 'UserInputState',
+export const userInputState = atom({
+  key: 'userInputState',
   default: {
     email: '',
     password: '',
