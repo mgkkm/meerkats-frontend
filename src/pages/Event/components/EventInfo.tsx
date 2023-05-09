@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import EventSchedule from './EventSchedule';
 import useAxios from '../../../hooks/useAxios';
 import { useParams } from 'react-router-dom';
@@ -10,10 +10,10 @@ type EventData = {
   product: string;
   place: string;
   img: string;
-  schedule: EventSchedule[];
+  schedule: EventScheduleProps[];
 };
 
-type EventSchedule = {
+type EventScheduleProps = {
   id: number;
   date: string;
   time: string;
@@ -32,15 +32,12 @@ export default function EventInfo() {
   }, []);
 
   let findEvent =
-    data !== null &&
-    data.find((item: EventData) => {
-      return item.id === event;
-    });
+    data !== null && data.find((item: EventData) => item.id === event);
 
   return (
-    <div className=" flex justify-center font-semibold">
-      <div className=" w-1/3 h-[650px] shadow-2xl mr-10 mt-6">
-        <img src={findEvent.img} className="w-full h-[100%]" />
+    <div className="flex justify-center font-semibold">
+      <div className="w-1/3 h-[650px] shadow-2xl mr-10 mt-6">
+        <img src={findEvent.img} alt="movie_img" className="w-full h-[100%]" />
       </div>
       <div className="w-[55%] px-5 ">
         <h1 className="border-b border-solid border-mkGray text-3xl py-5 mt-3">
@@ -48,23 +45,20 @@ export default function EventInfo() {
         </h1>
         <ul className="border-b border-solid border-mkGray text-lg py-12">
           <li className="text-mkGray font-semibold mb-1">
-            Period
+            기간
             <span className="ml-3 text-black">{findEvent.due}</span>
           </li>
           <li className="text-mkGray font-semibold mb-7">
-            Giveaway
+            상품
             <span className="ml-3 text-black">{findEvent.product}</span>
           </li>
           <li className=" font-medium">
-            Introducing our special premiere event! <br />
-            Join us for the highly anticipated release of {findEvent.title} and
-            receive a complimentary gift with admission. This limited-time offer
-            includes {findEvent.product} and is available at select screenings.
-            Don't miss your chance to experience the excitement of the big
-            screen and take home a special memento from this unforgettable
-            event. <br />
-            Book your tickets now and get ready to be transported to a world of
-            cinematic magic!
+            [이벤트 안내] {findEvent.title} 개봉 기념 특별 이벤트! <br />
+            {findEvent.place}에서만 진행되는 이벤트로 여러분을 초대합니다.
+            <br /> 오직 이곳에서만 즐길 수 있는 영화 경험과 {findEvent.product}
+            를 비롯한 다양한 선물을 드립니다. 이벤트 기간은 {findEvent.due}
+            까지로 제한되니, 놓치지 마세요. <br /> {findEvent.title}의 열정과
+            스릴이 가득한 이 영화와 함께 더욱 특별한 순간을 만들어보세요.
           </li>
         </ul>
         <EventSchedule findEvent={findEvent} />

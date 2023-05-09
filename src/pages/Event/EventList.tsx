@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Pagenation from './components/Pagenation';
 import useAxios from '../../hooks/useAxios';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 type EventType = {
   id: number;
   title: string;
+  sub: string;
   due: string;
   product: string;
   place: string;
@@ -20,7 +21,6 @@ type EventType = {
 
 export default function EventList() {
   const [loading, error, data, fetchData] = useAxios();
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,22 +29,33 @@ export default function EventList() {
     });
   }, []);
 
-  const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-    let eventId = e.currentTarget.value;
+  const clickHandler = (
+    e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLDivElement>
+  ) => {
+    let eventId;
+    if (e.currentTarget instanceof HTMLButtonElement) {
+      eventId = e.currentTarget.value;
+    } else {
+      eventId = e.currentTarget.getAttribute('data-value');
+    }
     navigate(`/event/${eventId}`);
   };
 
   return (
-    <div className="container xl mt-28 bg-white py-14 px-20 ">
-      <h1 className="text-3xl text-center font-semibold mb-14">
+    <div className="container xl pt-24 pb-14 px-20 bg-white">
+      <h1 className="text-4xl text-center font-semibold my-14">
         Ongoing Event
       </h1>
-      <div className="container md p-2.5 flex flex-wrap	">
-        {data !== null &&
+      <div className="container md p-2.5 flex flex-wrap">
+        {data &&
           data.map((row: EventType) => {
             return (
-              <div key={row.id} className="w-1/2 p-5 mb-5 flex relative">
-                <div className="w-40 h-56 mr-7 shadow-xl">
+              <div key={row.id} className="w-1/2 p-5 mb-5 flex relative ">
+                <div
+                  onClick={clickHandler}
+                  data-value={row.id}
+                  className="w-40 h-56 mr-7 shadow-xl cursor-pointer	"
+                >
                   <img
                     src={row.img}
                     alt="movie_img"
@@ -52,10 +63,8 @@ export default function EventList() {
                   />
                 </div>
                 <ul className="w-3/4 h-56 border-b py-3 border-mkLightGray ">
-                  <li className="text-xl font-semibold mb-4">
-                    [{row.title}]
-                    <br /> Launching Promotion
-                  </li>
+                  <li className="text-xl font-semibold mb-2">[{row.title}]</li>
+                  <li className="text-lg font-semibold mb-10">{row.sub}</li>
                   <li className="font-medium text-mkGray ">
                     장소
                     <span className="ml-2.5 font-semibold text-black">
@@ -78,10 +87,10 @@ export default function EventList() {
                 <button
                   value={row.id}
                   onClick={clickHandler}
-                  className="btn btn-outline rounded-none font-medium	border-none text-mkOrange  hover:border-mkOrange hover:bg-transparent hover:text-black absolute left-[185px] bottom-5"
+                  className=" btn btn-outline rounded-none font-medium border-none text-mkOrange  hover:border-mkOrange hover:bg-transparent hover:text-black absolute right-10"
                 >
                   More
-                  <i className="fa-solid fa-arrow-right-long ml-2" />
+                  <i className="fa-solid fa-caret-right ml-2" />
                 </button>
               </div>
             );
