@@ -60,7 +60,7 @@ export default function MovieDetailHeader() {
             <p className="mr-3 w-7 font-semibold">소개</p>
             <p className="px-1.5">{isBlank(category.name)}</p>
             <p className="text-mkLightGray ml-2 mr-1">|</p>
-            <p className="px-1.5">{isBlank(region.name)}</p>
+            <p className="px-1.5">{region?.name && isBlank(region.name)}</p>
             <p className="text-mkLightGray ml-2 mr-1">|</p>
             <p className="px-1.5">{isBlank(running_time)}</p>
           </div>

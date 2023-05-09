@@ -5,7 +5,8 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import { useRecoilValue } from 'recoil';
 import { currentUserNicknameState } from '../../../recoil/JwtDecode';
 
-const socket = io('https://www.meerkats.monster/');
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const socket = io(`${BASE_URL}`);
 
 interface MessageDataType {
   room: number;

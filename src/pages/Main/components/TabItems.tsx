@@ -29,7 +29,7 @@ export default function TabItems({ item }: tabProps) {
     >
       {isHover && (
         <div className="z-100">
-          <div className="bg-white w-[250px] h-96 absolute opacity-50" />
+          <div className="bg-white w-[235px] h-96 absolute opacity-50" />
           <button
             onClick={moveHandler}
             className="absolute bottom-0 border-2 border-solid border-black bg-white py-4 w-[235px]"

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Category from './components/Category';
 import CustomEditor from './components/CustomEditor';
 import PostBtn from './components/PostBtn';
@@ -45,7 +45,7 @@ export default function BlogPosting() {
   }, [isEdit]);
 
   return (
-    <div className=" container md mt-24 h-full ">
+    <div className=" container md pt-24 h-full ">
       <div className="w-3/4 m-auto px-20 py-5 bg-white">
         <Title />
         <Category />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { numberSelector, numberState } from '../../../recoil/NumberState';
@@ -68,7 +68,6 @@ export default function BlogDetail() {
   );
 
   const resetCommentState = useResetRecoilState(commentState('blog'));
-
   const [loading, error, data, fetchData] = useAxios();
 
   useEffect(() => {

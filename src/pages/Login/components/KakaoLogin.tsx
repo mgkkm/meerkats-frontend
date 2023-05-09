@@ -1,19 +1,13 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   currentUserIdState,
   currentUserNicknameState,
 } from '../../../recoil/JwtDecode';
-import { tokenState } from '../../../recoil/TokenState';
 import useAxios from '../../../hooks/useAxios';
 import { REST_API_KEY, REDIRECT_URI, KAKAO_TOKEN_URL } from './KakaoConfig';
-
-interface DecodedToken {
-  id: number;
-  nickname: string;
-}
+import { DecodeToken } from '../../../components/DecodeToken/DecodeToken';
 
 type ResType = {
   accessToken: string;
@@ -27,13 +21,7 @@ export default function KakaoLogin() {
   const KAKAO_CODE = location.search.split('=')[1];
   const [loading, error, data, fetchData] = useAxios();
   const [currentId, setCurrentId] = useRecoilState(currentUserIdState);
-  const [currentNickname, setCurrentNickname] = useRecoilState(
-    currentUserNicknameState
-  );
-  const setTokenState = useSetRecoilState(tokenState);
-
-  // console.log(currentId); // 기본값만 나옴. setter 함수에 안담기는 것 같음
-  // console.log(currentNickname); // 기본값만 나옴. setter 함수에 안담기는 것 같음
+  const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
   useEffect(() => {
     fetchData({
@@ -55,19 +43,8 @@ export default function KakaoLogin() {
         method: 'POST',
         headers: { Authorization: res.access_token },
       }).then((res: ResType) => {
-        const token = res.accessToken;
-        if (token === null) {
-          setCurrentId(0);
-        }
-        if (token) {
-          const decodedToken: DecodedToken = jwt_decode(token);
-          console.log('decodedToken =>', decodedToken);
-          setCurrentId(decodedToken?.id);
-          setCurrentNickname(decodedToken?.nickname);
-        }
-        localStorage.setItem('token', res.accessToken);
-        const tokenState = localStorage.getItem('token');
-        tokenState && setTokenState(tokenState);
+        sessionStorage.setItem('token', res.accessToken);
+        DecodeToken(setCurrentId, setCurrentNickname);
         navigate('/');
       });
     });

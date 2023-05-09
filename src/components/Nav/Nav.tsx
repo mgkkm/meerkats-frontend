@@ -8,11 +8,11 @@ interface HidePropsType {
 
 export default function Nav({ show }: HidePropsType) {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   const logInNOut = () => {
     if (token) {
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
       navigate('/');
     } else if (token === null) {
       navigate('/login');

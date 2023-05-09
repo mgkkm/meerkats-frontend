@@ -40,8 +40,8 @@ export default function UserForm() {
       data: { email: id, password: pw },
     }).then((res: any) => {
       if (res.accessToken) {
-        localStorage.setItem('token', res.accessToken);
-        const token = localStorage.getItem('token');
+        sessionStorage.setItem('token', res.accessToken);
+        const token = sessionStorage.getItem('token');
         token && setTokenState(token);
         infoAlert('로그인 성공', '환영합니다 :)');
         navigate('/');

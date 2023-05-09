@@ -1,4 +1,3 @@
-import React from 'react';
 import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { currentUserIdState } from '../../../../recoil/JwtDecode';
