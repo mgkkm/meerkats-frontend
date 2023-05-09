@@ -1,147 +1,207 @@
 [
   {
     "id": 1,
-    "title": "John Wick: Chapter 4",
+    "title": "존 윅 4",
+    "sub": "영화 개봉 프로모션 이벤트",
     "due": "2023-04-12 ~ 2023-04-30",
-    "product": "Naver Pay 30,000 won gift certificate.",
-    "place": "CGV Gangnam",
+    "product": "네이버 페이 3만 포인트",
+    "place": "CGV 강남",
     "img": "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230329_142%2F1680055399492ipxkq_JPEG%2Fmovie_image.jpg",
     "schedule": [
       {
         "id": 1,
         "date": "May 5",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 역삼동 814-6 스타플렉스"
       },
       {
         "id": 2,
         "date": "May 6",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 역삼동 814-6 스타플렉스"
       },
       {
         "id": 3,
         "date": "May 7",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 역삼동 814-6 스타플렉스"
+      }
+    ],
+    "movieInfo": [
+      {
+        "id": 1,
+        "youtubeId": "_RnF_9XHz9w",
+        "release": "2023-04-12",
+        "director": "Charles F. Stahelski",
+        "mainActor": "Keanu Reeves",
+        "runningTime": "169 minutes",
+        "des": "죽을 위기에서 살아난 ‘존 윅’은 ‘최고 회의’를 쓰러트릴 방법을 찾아낸다. 비로소 완전한 자유의 희망을 보지만, NEW 빌런 ‘그라몽 후작’과 전 세계의 최강 연합은 ‘존 윅’의 오랜 친구까지 적으로 만들어 버리고, 새로운 위기에 놓인 ‘존 윅’은 최후의 반격을 준비하는데,, 레전드 액션 블록버스터 <존 윅>의 새로운 챕터가 열린다!"
       }
     ]
   },
   {
     "id": 2,
-    "title": "Killing Romance",
+    "title": "킬링 로맨스",
+    "sub": "영화 개봉 프로모션 이벤트",
     "due": "2023-04-14 ~ 2023-05-10",
-    "product": "Shinsegae Department Store 10,000 won gift card.",
-    "place": "CGV Gangnam",
+    "product": "킬링로맨스 시사회 티켓",
+    "place": "롯데시네마 김포공항",
     "img": "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230414_79%2F16814517611575tadE_JPEG%2Fmovie_image.jpg",
     "schedule": [
       {
         "id": 1,
         "date": "May 13",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강서구 하늘길 38, 롯데몰 김포공항 1층"
       },
       {
         "id": 2,
         "date": "May 14",
         "time": "8:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강서구 하늘길 38, 롯데몰 김포공항 1층"
       },
       {
         "id": 3,
         "date": "May 20",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강서구 하늘길 38, 롯데몰 김포공항 1층"
       },
       {
         "id": 4,
         "date": "May 21",
         "time": "8:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울 강서구 하늘길 38"
+      }
+    ],
+    "movieInfo": [
+      {
+        "id": 2,
+        "youtubeId": "lNW1TvpM3hE",
+        "release": "2023-04-14",
+        "director": "이원석",
+        "mainActor": "이하늬, 이선균, 공명",
+        "runningTime": "107 minutes",
+        "des": "대재앙 같은 발연기로 국민 조롱거리로 전락한 톱스타 ‘여래’(이하늬). 현실에서 벗어나고자 떠난 남태평양 ‘콸라’섬에서 운명처럼 자신을 구해준 재벌 ‘조나단’(이선균)을 만나 결혼을 하고 새로운 인생을 꿈꾸며 돌연 은퇴를 선언한다. 한편, 서울대가 당연한 집안에서 홀로 고독한 입시 싸움 중인 4수생 ‘범우’(공명)는 한때 자신의 최애였던 여래가 옆집에 이사온 것을 알게 되고 날마다 옥상에서 단독 팬미팅(?)을 여는 호사를 누린다. 그러던 어느 날 조나단의 사업 확장을 위한 인형 역할에 지친 여래는 완벽한 스크린 컴백을 위해 범우에게 SOS를 보내게 되고 이들은 여래의 인생을 되찾기 위한 죽여주는 계획을 함께 모의하는데…"
       }
     ]
   },
   {
     "id": 3,
-    "title": "Suzume",
+    "title": "스즈메의 문단속",
+    "sub": "영화 개봉 프로모션 이벤트",
     "due": "2023-03-08 ~ 2023-04-30",
-    "product": "Naver Pay 30,000 won gift certificate.",
-    "place": "Online",
+    "product": "네이버 페이 3만 포인트",
+    "place": "온라인 시사회",
     "img": "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230206_264%2F1675649061557DaJHD_JPEG%2Fmovie_image.jpg",
     "schedule": [
       {
         "id": 1,
         "date": "May 20",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "네이버 라이브 스트리밍"
       },
       {
         "id": 2,
         "date": "May 21",
         "time": "7:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "네이버 라이브 스트리밍"
+      }
+    ],
+    "movieInfo": [
+      {
+        "id": 3,
+        "youtubeId": "UUpk0wnNhtU",
+        "release": "2023-03-08",
+        "director": "신카이 마코토",
+        "mainActor": "하라 나노카, 마츠무라 호쿠토, 후카츠 에리",
+        "runningTime": "122 minutes",
+        "des": "이 근처에 폐허 없니? 문을 찾고 있어” 규슈의 한적한 마을에 살고 있는 소녀 ‘스즈메’는 문을 찾아 여행 중인 청년 ‘소타’를 만난다. 그의 뒤를 쫓아 산속 폐허에서 발견한 낡은 문. ‘스즈메’가 무언가에 이끌리듯 문을 열자 마을에 재난의 위기가 닥쳐오고 가문 대대로 문 너머의 재난을 봉인하는 ‘소타’를 도와 간신히 문을 닫는다. “닫아야만 하잖아요, 여기를!” 재난을 막았다는 안도감도 잠시, 수수께끼의 고양이 ‘다이진’이 나타나 ‘소타’를 의자로 바꿔 버리고 일본 각지의 폐허에 재난을 부르는 문이 열리기 시작하자 ‘스즈메’는 의자가 된 ‘소타’와 함께 재난을 막기 위한 여정에 나선다. “꿈이 아니었어” 규슈, 시코쿠, 고베, 도쿄 재난을 막기 위해 일본 전역을 돌며 필사적으로 문을 닫아가던 중 어릴 적 고향에 닿은 ‘스즈메’는 잊고 있던 진실과 마주하게 되는데…"
       }
     ]
   },
   {
     "id": 4,
-    "title": "Rebound",
+    "title": "리바운드",
+    "sub": "영화 개봉 프로모션 이벤트",
     "due": "2023-04-05 ~ 2023-04-30",
-    "product": "Shinsegae Department Store 30,000 won gift card.",
-    "place": "Online",
+    "product": "신세계 상품권 5만원권",
+    "place": "CGV 영등포",
     "img": "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230314_230%2F1678778778401QNFnU_JPEG%2Fmovie_image.jpg",
     "schedule": [
       {
         "id": 1,
         "date": "May 6",
         "time": "8:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울시특별시 영등포구 영중로 15, 4층"
       },
       {
         "id": 2,
         "date": "May 7",
         "time": "6:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울시특별시 영등포구 영중로 15, 4층"
       },
       {
         "id": 3,
         "date": "May 13",
         "time": "8:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울시특별시 영등포구 영중로 15, 4층"
       },
       {
         "id": 4,
         "date": "May 14",
         "time": "6:00",
-        "address": "438, Gangnam-daero, Gangnam-gu, Seoul, Republic of Korea"
+        "address": "서울시특별시 영등포구 영중로 15, 4층"
+      }
+    ],
+    "movieInfo": [
+      {
+        "id": 4,
+        "youtubeId": "_SCwPaNSua8",
+        "release": "2023-04-05",
+        "director": "장항준",
+        "mainActor": "안재홍, 이신영, 정진운 등",
+        "runningTime": "122 minutes",
+        "des": "농구선수 출신 공익근무요원 ‘양현’은 해체 위기에 놓인 부산중앙고 농구부의 신임 코치로 발탁된다. 하지만 전국대회에서의 첫 경기 상대는 고교농구 최강자 용산고. 팀워크가 무너진 중앙고는 몰수패라는 치욕의 결과를 낳고 학교는 농구부 해체까지 논의하지만, ‘양현’은 MVP까지 올랐던 고교 시절을 떠올리며 다시 선수들을 모은다. 주목받던 천재 선수였지만 슬럼프에 빠진 가드 ‘기범’ 부상으로 꿈을 접은 올라운더 스몰 포워드 ‘규혁’ 점프력만 좋은 축구선수 출신의 괴력 센터 ‘순규’ 길거리 농구만 해온 파워 포워드 ‘강호’ 농구 경력 7년 차지만 만년 벤치 식스맨 ‘재윤’ 농구 열정만 만렙인 자칭 마이클 조던 ‘진욱’까지 아무도 주목하지 않은 최약체 팀이었지만 신임 코치와 6명의 선수가 2012년 전국 고교농구대회에서 써 내려간 8일간의 기적 모두가 불가능이라 말할 때, 우리는 ‘리바운드’라는 또 다른 기회를 잡는다."
       }
     ]
   },
   {
     "id": 5,
-    "title": "Ghost Station",
+    "title": "옥수역 귀신",
+    "sub": "영화 개봉 프로모션 이벤트",
     "due": "2023-04-19 ~ 2023-05-05",
-    "product": "Naver Pay 30,000 won gift certificate",
-    "place": "CGV Oksu",
+    "product": "옥수역 귀신 시사회 티켓",
+    "place": "CGV 압구정",
     "img": "https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230419_143%2F168187149954769TL2_JPEG%2Fmovie_image.jpg",
     "schedule": [
       {
         "id": 1,
         "date": "May 20",
         "time": "7:00",
-        "address": "17, Wangsimnigwangjang-ro, Seongdong-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 압구정로30길 45, 6층"
       },
       {
         "id": 2,
         "date": "May 21",
         "time": "7:00",
-        "address": "17, Wangsimnigwangjang-ro, Seongdong-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 압구정로30길 45, 6층"
       },
       {
         "id": 3,
         "date": "May 27",
         "time": "7:00",
-        "address": "17, Wangsimnigwangjang-ro, Seongdong-gu, Seoul, Republic of Korea"
+        "address": "서울특별시 강남구 압구정로30길 45, 6층"
+      }
+    ],
+    "movieInfo": [
+      {
+        "id": 5,
+        "youtubeId": "Medg8btyy3A",
+        "release": "2023-04-19",
+        "director": "정용기",
+        "mainActor": "김보라, 김재현, 신소율",
+        "runningTime": "80 minutes",
+        "des": "특종이 필요한 기자 ‘나영’은 옥수역에서 근무하는 친구 ‘우원’을 통해 ‘옥수역’에서 계속해서 일어난 사망사건들을 듣게 된다. ‘나영’은 ‘우원’과 함께 취재를 시작하고 그녀에게 계속 괴이한 일들이 벌어지는데… 무언가 있다. 옥수역에…"
       }
     ]
   }
