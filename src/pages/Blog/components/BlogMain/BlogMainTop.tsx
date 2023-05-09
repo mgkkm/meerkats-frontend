@@ -35,7 +35,7 @@ export default function BlogMainTop() {
         <Search />
         <button
           className="btn w-28 text-xl rounded-lg text-white bg-mkOrange hover:bg-mkDarkOrange border-none"
-          onClick={() => navigate('/posting')}
+          onClick={() => navigate('/post')}
         >
           글쓰기
         </button>
