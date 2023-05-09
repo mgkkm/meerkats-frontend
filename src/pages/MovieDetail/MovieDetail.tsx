@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MoviePlayer from './components/MoviePlayer';
 import MovieDetailHeader from './components/MovieDetailHeader';
 import MovieDetailTab from './components/MovieDetailTab';
 import TrailerPlaylist from './components/TrailerPlaylist';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
 import {
   movieHeaderState,
@@ -13,7 +13,11 @@ import {
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
 import { CommentData, commentState } from '../../recoil/CommentState';
-import { tokenState } from '../../recoil/TokenState';
+import {
+  currentUserIdState,
+  currentUserNicknameState,
+} from '../../recoil/JwtDecode';
+import { DecodeToken } from '../../components/DecodeToken/DecodeToken';
 
 export interface MovieHeaderData {
   category: {
@@ -77,10 +81,14 @@ export default function MovieDetail() {
   const params = useParams();
   const postId = params.id;
 
+  const token = sessionStorage.getItem('token');
+
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const token = useRecoilValue(tokenState);
 
   const [loading, error, data, fetchData] = useAxios();
+
+  const setCurrentId = useSetRecoilState(currentUserIdState);
+  const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
   const setMovieHeaderData = useSetRecoilState(movieHeaderState);
   const setMovieCommentData = useSetRecoilState(commentState('movie'));
@@ -116,6 +124,7 @@ export default function MovieDetail() {
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
+        DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
 
@@ -135,7 +144,7 @@ export default function MovieDetail() {
         <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
       </div>
       <div className="lg:flex justify-around gap-5 mt-5">
-        <div className="movieDetailLeft w-full lg:w-2/3">
+        <div className="movieDetailLeft w-full lg:w-2/3 max-lg:mb-14">
           <MovieDetailHeader />
           <MovieDetailTab />
         </div>
