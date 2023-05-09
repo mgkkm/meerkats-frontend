@@ -1,15 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-
-const sideData = [
-  { id: 1, title: 'New' },
-  { id: 2, title: 'International Movies' },
-  { id: 3, title: 'Korean Movies' },
-];
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function SideBar() {
   const [show, setShow] = useState(false);
   const side = useRef<HTMLDivElement>(null);
-
+  const navigate = useNavigate();
   const showSideBar = () => {
     setShow(show => !show);
   };
@@ -57,13 +52,26 @@ export default function SideBar() {
           show ? 'block' : 'hidden'
         }`}
       >
-        {sideData.map(list => {
+        {SIDEBAR_DATA.map(list => {
+          const clickHandler = () => {
+            if (list.id === 4) {
+              navigate('/event');
+              setShow(false);
+            } else if (list.id === 5) {
+              navigate('/membership');
+              setShow(false);
+            }
+          };
           return (
-            <li key={list.id} className="h-20 font-semibold ">
-              <a className="flex justify-between active:bg-mkOrange">
+            <li
+              key={list.id}
+              onClick={clickHandler}
+              className="h-20 font-semibold"
+            >
+              <div className="flex justify-between active:bg-mkOrange">
                 {list.title}
-                <span className="fa-solid fa-chevron-right text-mkOrange"></span>
-              </a>
+                <span className="fa-solid fa-chevron-right text-mkOrange" />
+              </div>
             </li>
           );
         })}
@@ -71,3 +79,11 @@ export default function SideBar() {
     </>
   );
 }
+
+const SIDEBAR_DATA = [
+  { id: 1, title: 'New' },
+  { id: 2, title: 'International Movies' },
+  { id: 3, title: 'Korean Movies' },
+  { id: 4, title: 'Event' },
+  { id: 5, title: 'Membership' },
+];

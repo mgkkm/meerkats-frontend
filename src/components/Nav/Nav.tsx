@@ -26,7 +26,7 @@ export default function Nav({ show }: HidePropsType) {
       }`}
     >
       <div className="navbar-start ml-5">
-        <div className="dropdown opacity-90">
+        <div className="dropdown">
           <SideBar />
         </div>
       </div>
