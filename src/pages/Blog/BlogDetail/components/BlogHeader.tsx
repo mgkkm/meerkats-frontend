@@ -5,10 +5,17 @@ import { useRecoilValue } from 'recoil';
 import { blogDetailState } from '../../../../recoil/BlogDetailState';
 import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useNavigate } from 'react-router-dom';
+import useAxios from '../../../../hooks/useAxios';
+import { failedAxiosAlert } from '../../../../components/Alert/Modal';
+import Swal from 'sweetalert2';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function BlogHeader() {
   const currentUserId = useRecoilValue(currentUserIdState);
   const blogDetailData = useRecoilValue(blogDetailState);
+  const [loading, error, data, fetchData] = useAxios();
+  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
 
   const { id, title, created_at, category, spoiler_info_id, user } =
@@ -18,6 +25,28 @@ export default function BlogHeader() {
 
   const updateHandler = () => {
     navigate(`/edit/${id}`);
+  };
+
+  const deleteHandler = () => {
+    failedAxiosAlert(
+      'Are you sure?',
+      "You won't be able to revert this!",
+      () => {
+        fetchData({
+          url: `${BASE_URL}/blog/${postId}`,
+          method: 'DELETE',
+          headers: {
+            Authorization: token,
+            'Content-Type': `application/json`,
+          },
+        }).then((result: any) => {
+          if (result.message.includes('SUCCESS')) {
+            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            navigate('/blogMain');
+          }
+        });
+      }
+    );
   };
 
   return (
@@ -50,7 +79,7 @@ export default function BlogHeader() {
                 수정
               </p>
             </li>
-            <li>
+            <li onClick={deleteHandler}>
               <p className="text-sm flex justify-center active:bg-mkOrange">
                 삭제
               </p>
