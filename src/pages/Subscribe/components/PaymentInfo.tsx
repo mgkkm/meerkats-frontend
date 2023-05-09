@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
+import PaymentInput from './PaymentInput';
 
-export default function Payment() {
+export interface PaymentDetail {
+  id: number;
+  detail: string;
+  placeholder: string;
+  width: number;
+}
+
+export default function PaymentInfo() {
   const [paymentBox, setPaymentBox] = useState(false);
-  const [selectedPayment, setSelectedPayment] = useState('Select');
+  const [selectedPayment, setSelectedPayment] = useState('SELECT');
 
   const paymentHandler = (payment: string) => {
     setPaymentBox(!paymentBox);
@@ -28,42 +36,33 @@ export default function Payment() {
               className="w-3 ml-3"
             />
           </label>
-          <ul
-            tabIndex={0}
-            className={`dropdown-content menu w-64 p-2 shadow bg-base-100 rounded-box ${
-              paymentBox ? 'block' : 'hidden'
-            }`}
-          >
-            {PAYMENT_METHOD.map(item => {
-              return (
-                <li
-                  key={item.id}
-                  className="text-sm cursor-pointer"
-                  onClick={() => paymentHandler(item.method)}
-                >
-                  <a className="active:bg-mkLightGray rounded-md">
-                    {item.method}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
+          {paymentBox && (
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu w-64 p-2 shadow bg-base-100 rounded-box"
+            >
+              {PAYMENT_METHOD.map(item => {
+                return (
+                  <li
+                    key={item.id}
+                    className="text-sm cursor-pointer"
+                    onClick={() => paymentHandler(item.method)}
+                  >
+                    <a className="active:bg-mkLightGray rounded-md">
+                      {item.method}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
         </div>
       </div>
       <div>
         <p className="text-xl font-semibold py-5">Payment Details</p>
-        <div className="grid grid-cols-2 gap-x-32">
-          {PAYMENT_DETAILS.map(({ id, detail, placeholder, width }) => {
-            return (
-              <div key={id}>
-                <p>{detail}</p>
-                <input
-                  className={`w-${width} focus:outline-none focus:border-b-black border-2 border-x-transparent border-t-transparent border-b-mkLightGray mt-1 mb-5 placeholder:text-sm`}
-                  type="input"
-                  placeholder={placeholder}
-                />
-              </div>
-            );
+        <div className="grid grid-cols-2 gap-x-32 items-center">
+          {PAYMENT_DETAILS.map(item => {
+            return <PaymentInput key={item.id} item={item} />;
           })}
         </div>
       </div>
@@ -79,25 +78,25 @@ const PAYMENT_DETAILS = [
     width: 52,
   },
   {
-    id: 1,
+    id: 2,
     detail: 'Name on Card',
     placeholder: 'Thomas Anderson',
+    width: 40,
+  },
+  {
+    id: 3,
+    detail: 'Expiry Date',
+    placeholder: 'MM/YY',
+    width: 16,
+  },
+  {
+    id: 4,
+    detail: 'Date of Birth',
+    placeholder: 'YYMMDD',
     width: 24,
   },
   {
-    id: 1,
-    detail: 'Expiray Date',
-    placeholder: 'MM / YYYY',
-    width: 52,
-  },
-  {
-    id: 1,
-    detail: 'CVV',
-    placeholder: '***',
-    width: 24,
-  },
-  {
-    id: 1,
+    id: 5,
     detail: 'Email',
     placeholder: 'example@gmail.com',
     width: 52,

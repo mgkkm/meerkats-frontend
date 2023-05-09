@@ -38,7 +38,7 @@ export default function Terms() {
         Date of purchase memberships start on the day that they were purchased
         on. Your membership will renew on the
       </p>
-      <p className="text-sm text-mkGray font-semibold">
+      <p className="text-md text-mkGray font-semibold mt-4">
         Renewal date: every&nbsp;
         {renewalDay} of a month.
       </p>
