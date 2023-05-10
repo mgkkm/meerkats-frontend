@@ -10,10 +10,11 @@ import {
 } from '../../../recoil/PaymentState';
 
 export default function SubscribeBtn() {
+  const token = sessionStorage.getItem('token');
   const [loading, error, data, fetchData] = useAxios();
 
   // const customerKey = useRecoilValue(paymentInputState(0));
-  const customerKey = 'BeAmbitious';
+  const customerKey = 'Enjoymeerkats';
 
   const subscriptionType = useRecoilValue(subscriptionTypeState);
   const subscriptionFee = useRecoilValue(subscriptionFeeState);
@@ -77,7 +78,6 @@ export default function SubscribeBtn() {
       },
     }).then((result: any) => {
       if (result && result.billingKey) {
-        console.log(result);
         setUserBillingKey(result.billingKey);
         fetchData({
           method: 'POST',
@@ -113,6 +113,7 @@ export default function SubscribeBtn() {
     <button
       className="btn bg-mkOrange border-none hover:bg-mkDarkOrange hover:border-none"
       onClick={() => billingKeyRequest()}
+      disabled={!token}
     >
       SUBSCRIBE
     </button>

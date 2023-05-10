@@ -63,3 +63,15 @@ export const warningAlert = (title: string, text: string) => {
 export const infoAlert = (title: string, text: string) => {
   Swal.fire(title, text, 'info');
 };
+
+export const successAlert = (title: string, text: string) => {
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: title,
+    text: text,
+    showConfirmButton: true,
+    confirmButtonText: 'OK',
+    confirmButtonColor: '#e35c02',
+  });
+};

@@ -1,5 +1,7 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
+import { failedNavigateAlert } from '../../../components/Alert/Modal';
 import { paymentInputState } from '../../../recoil/PaymentState';
 import { PaymentDetail } from './PaymentInfo';
 
@@ -8,9 +10,23 @@ interface PaymentInputProps {
 }
 
 export default function PaymentInput({ item }: PaymentInputProps) {
+  const token = sessionStorage.getItem('token');
   const { id, detail, placeholder, width } = item;
+  const navigate = useNavigate();
 
   const setPaymentInput = useSetRecoilState(paymentInputState(id));
+
+  const loginCheck = (e: React.MouseEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    if (input.readOnly && e.button === 0) {
+      failedNavigateAlert(
+        'Login Required',
+        'Please login and try again.',
+        '/login',
+        navigate
+      );
+    }
+  };
 
   return (
     <div key={id}>
@@ -22,6 +38,8 @@ export default function PaymentInput({ item }: PaymentInputProps) {
         onChange={e => {
           setPaymentInput(e.target.value);
         }}
+        readOnly={!token}
+        onClick={loginCheck}
       />
     </div>
   );
