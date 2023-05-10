@@ -39,7 +39,8 @@ export default function BlogPosting() {
           content: res.data.postDetails.content,
           categoryId: res.data.postDetails.category.id,
           spoilerInfoId: res.data.postDetails.spoiler_info_id,
-          thumbnail: '썸네일',
+          thumbnail:
+            'https://velog.velcdn.com/images/ijinkyung/post/20935c86-64b5-4b1d-abbc-01ed7d5e0e7d/image.jpg',
         });
       });
   }, [isEdit]);

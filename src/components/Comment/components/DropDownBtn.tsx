@@ -10,7 +10,7 @@ import {
   renderingState,
 } from '../../../recoil/BlogPostState';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
-import { failedAxiosAlert } from '../../Alert/Modal';
+import { failedAxiosAlert, successAlert } from '../../Alert/Modal';
 import { useLocation } from 'react-router-dom';
 const Swal = require('sweetalert2');
 
@@ -58,7 +58,7 @@ export default function DropDownBtn({
         }).then((result: any) => {
           setRendering(!rendering);
           if (result.message.includes('SUCCESS')) {
-            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            successAlert('Deleted!', 'Your post has been deleted.');
           }
         });
       }
