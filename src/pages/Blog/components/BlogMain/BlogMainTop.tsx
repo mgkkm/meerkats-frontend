@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
+import { warningAlert } from '../../../../components/Alert/Modal';
 
 export default function BlogMainTop() {
   const navigate = useNavigate();
@@ -8,6 +9,19 @@ export default function BlogMainTop() {
 
   const tabClickHandler = (id: number, title: string) => {
     setActiveTab(id);
+  };
+
+  const isUser = () => {
+    const token = sessionStorage.getItem('token');
+    if (token === null) {
+      warningAlert(
+        '로그인 해주세요!',
+        '미어캐츠 회원만 블로그 글쓰기를 이용하실 수 있습니다.'
+      );
+      navigate('/login');
+    }
+
+    token && navigate('/post');
   };
 
   return (
@@ -35,7 +49,7 @@ export default function BlogMainTop() {
         <Search />
         <button
           className="btn w-28 text-xl rounded-lg text-white bg-mkOrange hover:bg-mkDarkOrange border-none"
-          onClick={() => navigate('/post')}
+          onClick={isUser}
         >
           글쓰기
         </button>
