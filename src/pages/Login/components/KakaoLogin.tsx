@@ -53,7 +53,6 @@ export default function KakaoLogin() {
   return (
     <div className="mt-24 pt-24 text-2xl text-center">
       <p>로그인 확인 중입니다 :)</p>
-      <p>{currentId}</p>
     </div>
   );
 }

@@ -10,7 +10,11 @@ import BlogFooter from './components/BlogFooter';
 import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
 import { CommentData } from '../../../recoil/CommentState';
-import { tokenState } from '../../../recoil/TokenState';
+import { DecodeToken } from '../../../components/DecodeToken/DecodeToken';
+import {
+  currentUserIdState,
+  currentUserNicknameState,
+} from '../../../recoil/JwtDecode';
 
 export interface BlogDetailData {
   id: number;
@@ -40,8 +44,13 @@ export default function BlogDetail() {
   const params = useParams();
   const postId = params.id;
 
+  const token = sessionStorage.getItem('token');
+
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const token = useRecoilValue(tokenState);
+  const [loading, error, data, fetchData] = useAxios();
+
+  const setCurrentId = useSetRecoilState(currentUserIdState);
+  const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
 
@@ -62,8 +71,6 @@ export default function BlogDetail() {
     numberState(`blogComment${postId}`)
   );
 
-  const [loading, error, data, fetchData] = useAxios();
-
   useEffect(() => {
     fetchData({
       url: `${BASE_URL}/blog/${postId}`,
@@ -79,6 +86,7 @@ export default function BlogDetail() {
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
         setScrapN(result.data.postDetails.scrapCount);
+        DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
 

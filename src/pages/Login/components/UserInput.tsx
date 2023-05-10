@@ -21,6 +21,11 @@ export const UserInput = memo((props: UserInputProps) => {
     margin = false,
   } = props;
 
+  // 비밀번호 input 에 복사, 붙여넣기, 자르기 금지시키는 함수
+  const doNotHandlePw = (e: any) => {
+    margin && e.preventDefault();
+  };
+
   return (
     <div className="block">
       <input
@@ -31,6 +36,9 @@ export const UserInput = memo((props: UserInputProps) => {
         name={name}
         value={value}
         onChange={handleInput}
+        onPaste={doNotHandlePw}
+        onCopy={doNotHandlePw}
+        onCut={doNotHandlePw}
       />
     </div>
   );
