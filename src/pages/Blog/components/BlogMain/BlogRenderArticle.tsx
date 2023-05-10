@@ -15,7 +15,7 @@ export default function BlogRenderArticle() {
 
   // token 관리 및 저장
   const setTokenValue = useSetRecoilState(tokenState);
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   token && setTokenValue(token);
 
   useEffect(() => {

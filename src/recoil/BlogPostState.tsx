@@ -8,23 +8,9 @@ export const blogPostState = atom({
     content: '',
     categoryId: 0,
     spoilerInfoId: 0,
-    thumbnail: '썸네일',
+    thumbnail:
+      'https://velog.velcdn.com/images/ijinkyung/post/20935c86-64b5-4b1d-abbc-01ed7d5e0e7d/image.jpg',
   },
-});
-
-export const blogCommentState = atom({
-  key: 'blogCommentState',
-  default: [
-    {
-      commentId: 0,
-      content: '',
-      created_at: '',
-      user: {
-        id: 0,
-        nickname: '',
-      },
-    },
-  ],
 });
 
 export const blogInputState = atom({

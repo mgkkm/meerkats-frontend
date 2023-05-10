@@ -8,6 +8,7 @@ import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import { currentUserIdState } from '../../recoil/JwtDecode';
 import { failedNavigateAlert, warningAlert } from '../Alert/Modal';
+import { tokenState } from '../../recoil/TokenState';
 
 interface LikeScrapType {
   postType: string;
@@ -35,6 +36,10 @@ export default function LikeScrapBtn({
   btnSize,
 }: LikeScrapType) {
   const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [loading, error, data, fetchData] = useAxios();
+
+  const token = useRecoilValue(tokenState);
 
   const type = postType + btnType + postId;
 
@@ -83,14 +88,10 @@ export default function LikeScrapBtn({
 
   let fetchUrl = '';
   if (postType === 'blog') {
-    fetchUrl = `https://www.meerkats.monster/blog/post${btnType}/${postId}`;
+    fetchUrl = `${BASE_URL}/blog/post${btnType}/${postId}`;
   } else if (postType === 'movie') {
-    fetchUrl = `https://www.meerkats.monster/movie/${postId}/likes`;
+    fetchUrl = `${BASE_URL}/movie/${postId}/likes`;
   }
-
-  const token = localStorage.getItem('token');
-
-  const [loading, error, data, fetchData] = useAxios();
 
   const postBtnState = () => {
     fetchData({

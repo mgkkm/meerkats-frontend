@@ -1,4 +1,3 @@
-import React from 'react';
 import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { currentUserIdState } from '../../../../recoil/JwtDecode';
@@ -6,10 +5,17 @@ import { useRecoilValue } from 'recoil';
 import { blogDetailState } from '../../../../recoil/BlogDetailState';
 import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useNavigate } from 'react-router-dom';
+import useAxios from '../../../../hooks/useAxios';
+import { failedAxiosAlert } from '../../../../components/Alert/Modal';
+import Swal from 'sweetalert2';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function BlogHeader() {
-  const currentUserId = useRecoilValue(currentUserIdState);
+  const currentId = useRecoilValue(currentUserIdState);
   const blogDetailData = useRecoilValue(blogDetailState);
+  const [loading, error, data, fetchData] = useAxios();
+  const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
 
   const { id, title, created_at, category, spoiler_info_id, user } =
@@ -19,6 +25,28 @@ export default function BlogHeader() {
 
   const updateHandler = () => {
     navigate(`/edit/${id}`);
+  };
+
+  const deleteHandler = () => {
+    failedAxiosAlert(
+      'Are you sure?',
+      "You won't be able to revert this!",
+      () => {
+        fetchData({
+          url: `${BASE_URL}/blog/${postId}`,
+          method: 'DELETE',
+          headers: {
+            Authorization: token,
+            'Content-Type': `application/json`,
+          },
+        }).then((result: any) => {
+          if (result.message.includes('SUCCESS')) {
+            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            navigate('/blogMain');
+          }
+        });
+      }
+    );
   };
 
   return (
@@ -36,11 +64,9 @@ export default function BlogHeader() {
         <p className="text-3xl font-semibold mt-10 mb-3">{title}</p>
         <div className="dropdown dropdown-end">
           <label tabIndex={0}>
-            <HiOutlineDotsHorizontal
-              className={`text-xl hover:cursor-pointer ${
-                currentUserId !== user.id && 'hidden'
-              }`}
-            />
+            {currentId === user.id && (
+              <HiOutlineDotsHorizontal className="text-xl hover:cursor-pointer" />
+            )}
           </label>
           <ul
             tabIndex={0}
@@ -51,7 +77,7 @@ export default function BlogHeader() {
                 수정
               </p>
             </li>
-            <li>
+            <li onClick={deleteHandler}>
               <p className="text-sm flex justify-center active:bg-mkOrange">
                 삭제
               </p>

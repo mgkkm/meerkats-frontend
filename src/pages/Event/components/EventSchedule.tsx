@@ -7,10 +7,10 @@ type EventData = {
   product: string;
   place: string;
   img: string;
-  schedule: EventSchedule[];
+  schedule: EventScheduleProps[];
 };
 
-type EventSchedule = {
+type EventScheduleProps = {
   id: number;
   date: string;
   time: string;
@@ -29,9 +29,9 @@ export default function EventSchedule({ findEvent }: eventProps) {
   };
 
   return (
-    <div className="mb-20 ">
-      <h1 className="pt-10 mb-5">Schedules</h1>
-      <div className={`overflow-hidden  ${show ? 'h-full' : 'h-48'} `}>
+    <>
+      <h1 className="text-xl pt-10 mb-5">Schedules</h1>
+      <div className={`overflow-hidden  ${show ? 'h-fit' : 'h-44'}`}>
         {findEvent.schedule !== undefined &&
           findEvent.schedule.map(info => {
             return (
@@ -40,18 +40,15 @@ export default function EventSchedule({ findEvent }: eventProps) {
                 className="flex justify-around text-center text-lg font-medium mb-3"
               >
                 <li className="w-1/5 h-20 flex p-5 border-r border-solid border-mkGray">
-                  <i className="fa-regular fa-calendar text-mkOrange text-2xl mr-5" />
-                  <span>{info.date}</span>
+                  <i className="fa-regular fa-calendar text-mkOrange text-2xl mr-5 py-1" />
+                  <span className="py-1">{info.date}</span>
                 </li>
-                <li className="w-1/5 p-5 border-r border-solid border-mkGray">
+                <li className="w-1/5 py-6 border-r border-solid border-mkGray">
                   {info.time}
                 </li>
-                <li className="w-3/5 h-20  flex py-3 border-r border-solid border-mkGray">
-                  <i className="fa-solid fa-location-dot text-mkOrange text-2xl py-2 ml-7 mr-5" />
-                  <span className="text-left">{info.address}</span>
-                </li>
-                <li className="w-1/5 py-5">
-                  <button className="btn">Share</button>
+                <li className="w-3/5 h-20  flex py-3 ">
+                  <i className="fa-solid fa-location-dot text-mkOrange text-2xl py-2.5 ml-7 mr-5" />
+                  <span className="text-left py-3">{info.address}</span>
                 </li>
               </ul>
             );
@@ -60,9 +57,13 @@ export default function EventSchedule({ findEvent }: eventProps) {
       <div className="text-center">
         <button onClick={clickHandler} className="btn btn-ghost ">
           SEE MORE
-          <span className="fa-solid fa-caret-down ml-2.5 text-xl"></span>
+          {show ? (
+            <span className="fa-solid fa-caret-up ml-2.5 text-xl" />
+          ) : (
+            <span className="fa-solid fa-caret-down ml-2.5 text-xl" />
+          )}
         </button>
       </div>
-    </div>
+    </>
   );
 }

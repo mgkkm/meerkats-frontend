@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function EmailInput() {
   return (
-    <div className="relative">
+    <div className="relative mb-64">
       <div className="border-2 border-solid border-black w-3/5 h-96 absolute top-7 left-1/4" />
       <div className="border border-solid border-black text-center py-28 w-3/5 m-auto">
         <p className="mb-10 font-normal text-3xl">

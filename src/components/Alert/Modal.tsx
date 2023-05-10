@@ -64,6 +64,16 @@ export const infoAlert = (title: string, text: string) => {
   Swal.fire(title, text, 'info');
 };
 
+export const autoCloseAlert = (icon: string, title: string) => {
+  Swal.fire({
+    position: 'center',
+    icon: icon,
+    title: title,
+    showConfirmButton: false,
+    timer: 1500,
+  });
+};
+
 export const successAlert = (title: string, text: string) => {
   Swal.fire({
     position: 'center',

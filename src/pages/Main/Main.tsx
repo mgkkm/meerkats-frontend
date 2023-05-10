@@ -8,13 +8,13 @@ import { mainDataState } from '../../recoil/MainDataState';
 import MembershipMain from '../Membership/MembershipMain';
 
 export default function Main() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setMainData = useSetRecoilState(mainDataState);
 
   useEffect(() => {
     fetchData({
-      url: 'https://www.meerkats.monster/movie/main?skip=0&take=10',
-      method: 'GET',
+      url: `${BASE_URL}/movie/main?skip=0&take=10`,
     }).then((data: any) =>
       setMainData([
         {

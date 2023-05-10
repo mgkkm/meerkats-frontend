@@ -8,11 +8,11 @@ interface HidePropsType {
 
 export default function Nav({ show }: HidePropsType) {
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   const logInNOut = () => {
     if (token) {
-      localStorage.removeItem('token');
+      sessionStorage.removeItem('token');
       navigate('/');
     } else if (token === null) {
       navigate('/login');
@@ -26,7 +26,7 @@ export default function Nav({ show }: HidePropsType) {
       }`}
     >
       <div className="navbar-start ml-5">
-        <div className="dropdown opacity-90">
+        <div className="dropdown">
           <SideBar />
         </div>
       </div>

@@ -9,7 +9,7 @@ export default function Login() {
   const googleOauthClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
   return (
-    <div className="container xl mt-24 pt-28 pb-9 bg-mkBg text-mkBlack">
+    <div className="container xl pt-48 pb-9 bg-mkBg text-mkBlack">
       <div className="w-44 m-auto pt-4 pb-16 text-center">
         <img src="/images/logo_b.png" alt="logo" className="w-full" />
       </div>
@@ -26,7 +26,7 @@ export default function Login() {
         <span>다른 서비스 계정으로 로그인</span>
         <hr className="inline-block border-mkGray w-1/4 ml-10" />
       </div>
-      <div className="socialLoginBtn-box mt-5 text-center m-auto">
+      <div className="socialLoginBtn-box flex justify-center gap-10 mt-12 text-center m-auto">
         {/* google */}
         <GoogleOAuthProvider clientId={googleOauthClientId}>
           <div className="socialLoginBtn">

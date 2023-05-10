@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MoviePlayer from './components/MoviePlayer';
 import MovieDetailHeader from './components/MovieDetailHeader';
 import MovieDetailTab from './components/MovieDetailTab';
 import TrailerPlaylist from './components/TrailerPlaylist';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
-import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
 import {
   movieHeaderState,
@@ -13,7 +13,11 @@ import {
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
 import { CommentData, commentState } from '../../recoil/CommentState';
-import { tokenState } from '../../recoil/TokenState';
+import {
+  currentUserIdState,
+  currentUserNicknameState,
+} from '../../recoil/JwtDecode';
+import { DecodeToken } from '../../components/DecodeToken/DecodeToken';
 
 export interface MovieHeaderData {
   category: {
@@ -77,16 +81,16 @@ export default function MovieDetail() {
   const params = useParams();
   const postId = params.id;
 
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
-  // const token = useRecoilValue(tokenState);
+  const token = sessionStorage.getItem('token');
 
-  const token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsImlhdCI6MTY4MzIwMTc3MH0.CcSqdtSLNHjdaTbcoP_JfKJmjMerUDKx7NZR-z37O0A';
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const [loading, error, data, fetchData] = useAxios();
 
+  const setCurrentId = useSetRecoilState(currentUserIdState);
+  const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
+
   const setMovieHeaderData = useSetRecoilState(movieHeaderState);
-  const setMovieCommentData = useSetRecoilState(commentState('movie'));
   const setMovieBlogData = useSetRecoilState(movieBlogState);
   const [mainVideoId, setMainVideoId] = useState('');
   const setPlaylistYoutubeData = useSetRecoilState(playlistYoutubeState);
@@ -95,7 +99,6 @@ export default function MovieDetail() {
   );
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
-  const resetMovieCommentState = useResetRecoilState(commentState('movie'));
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
   const resetPlaylistYoutubeState = useResetRecoilState(playlistYoutubeState);
   const resetIsMovieLiked = useResetRecoilState(
@@ -114,17 +117,16 @@ export default function MovieDetail() {
         const { movieInfo, andMore, mainYoutube, playlistYoutube } =
           result.data;
         setMovieHeaderData(movieInfo);
-        setMovieCommentData(andMore.movieTrailerComments);
         setMovieBlogData(andMore.blogLikesAndPopularitySorting);
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
+        DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
 
     return () => {
       resetMovieHeaderState();
-      resetMovieCommentState();
       resetMovieBlogState();
       setMainVideoId('');
       resetPlaylistYoutubeState();
@@ -138,7 +140,7 @@ export default function MovieDetail() {
         <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
       </div>
       <div className="lg:flex justify-around gap-5 mt-5">
-        <div className="movieDetailLeft w-full lg:w-2/3">
+        <div className="movieDetailLeft w-full lg:w-2/3 max-lg:mb-24">
           <MovieDetailHeader />
           <MovieDetailTab />
         </div>
