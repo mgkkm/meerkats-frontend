@@ -1,13 +1,10 @@
-import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
-import SearchModal from './SearchModal';
-import useAxios from '../../../hooks/useAxios';
+import { SearchModal } from './SearchModal';
 
 export default function Search() {
-  const [loading, error, data, fetchData] = useAxios();
   const [searchInput, setSearchInput] = useRecoilState(
-    toggleSelector('search')
+    toggleSelector('navSearch')
   );
 
   return (

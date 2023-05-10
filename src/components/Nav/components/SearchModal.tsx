@@ -1,49 +1,73 @@
-import React, { useState } from 'react';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import React, { memo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
+import { navSearchDataState } from '../../../recoil/SearchDataState';
 import useAxios from '../../../hooks/useAxios';
 
-export default function SearchModal() {
+type dataType = {
+  data: [];
+};
+
+export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
-  const [searchInput, setSearchInput] = useRecoilState(
-    toggleSelector('search')
-  );
+  const navigate = useNavigate();
+  const setSearchInput = useSetRecoilState(toggleSelector('navSearch'));
+  const [searchData, setSearchData] = useRecoilState(navSearchDataState);
+  const setCloseBtn = useSetRecoilState(toggleSelector('close'));
+  const resetSearchData = useResetRecoilState(navSearchDataState);
   const [searchValue, setSearchValue] = useState<string>('');
-  const setSearchList = useSetRecoilState(toggleSelector('searchListData'));
-
-  const closeBtnHandler = () => {
-    setSearchInput(false);
-  };
 
   const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 
+  const closeSearchInput = () => {
+    setSearchInput(false);
+    setCloseBtn(true);
+    resetSearchData();
+  };
+
   const searchAxios = () => {
     fetchData({
       url: `${BASE_URL}/search/movie?movieTitle=${searchValue}`,
-    }).then((res: any) => {
-      console.log(res);
-      // const result = res.data;
-      // setSearchData(result);
+    }).then((res: dataType) => {
+      setSearchData(res);
+      setCloseBtn(false);
     });
-
-    setSearchList(true);
   };
 
   return (
     <div className="relative z-50">
-      <div className="flex flex-row items-center h-1/2 mr-12">
+      <div className="flex flex-row items-center h-1/2 mr-7">
         <input
-          className="input input-bordered inline-block w-72 mr-3 border-2 shadow-sm"
+          className="input input-bordered relative inline-block w-72 mr-3 border-2 shadow-sm"
           placeholder="검색어를 입력해주세요"
           onChange={searchInputHandler}
-          onKeyUp={searchAxios}
         />
         <button
-          className="btn btn-circle btn-outline inline-block border-none hover:bg-mkLightGray hover:text-black opacity-90"
-          onClick={closeBtnHandler}
+          className="btn btn-ghost btn-circle absolute top-0 right-[4rem] mr-7 opacity-70"
+          onClick={searchAxios}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+        <button
+          className="btn btn-circle btn-outline inline-block border-none hover:bg-mkLightGray hover:text-mkGray"
+          onClick={closeSearchInput}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -61,6 +85,33 @@ export default function SearchModal() {
           </svg>
         </button>
       </div>
+      <ul
+        className={`${
+          searchData?.length === 0 || searchData?.data?.length === 0
+            ? 'hidden'
+            : 'block'
+        } absolute left-0 top-14 w-72 h-auto px-5 py-4 border-mkGray border-1 bg-white shadow-md rounded overflow-y-scroll`}
+      >
+        {searchData?.data?.map((el: { id: number; name: string }) => {
+          const { id, name } = el;
+          return (
+            <li
+              key={id}
+              className="dropdown block p-3 cursor-pointer hover:bg-mkLightGray hover:rounded"
+              onClick={() => navigate(`/movieDetail/${id}`)}
+            >
+              {name}
+            </li>
+          );
+        })}
+      </ul>
+      <ul
+        className={`${
+          searchData?.data?.length === 0 ? 'block' : 'hidden'
+        } absolute left-0 top-14 w-72 h-auto px-5 py-4 border-mkGray border-1 bg-white shadow-md rounded overflow-y-scroll`}
+      >
+        <li className="p-3 text-mkGray text-center">검색 결과가 없습니다 :(</li>
+      </ul>
     </div>
   );
-}
+});
