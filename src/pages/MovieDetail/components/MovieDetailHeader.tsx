@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { useParams } from 'react-router-dom';
 import LikeScrapBtn from '../../../components/LikeScrapBtn/LikeScrapBtn';
-// import ShareBtn from '../../../components/ShareBtn/ShareBtn';
+import CopyBtn from '../../../components/CopyBtn/CopyBtn';
 import { movieHeaderState } from '../../../recoil/MovieDetailState';
 import parse from 'html-react-parser';
 
@@ -76,7 +76,7 @@ export default function MovieDetailHeader() {
             postId={`${postId}`}
             btnSize="text-2xl"
           />
-          {/* <ShareBtn /> */}
+          <CopyBtn />
         </div>
       </div>
       <div>
