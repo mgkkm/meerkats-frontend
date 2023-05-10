@@ -1,9 +1,13 @@
 import React, { memo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
-import useAxios from '../../../hooks/useAxios';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { navSearchDataState } from '../../../recoil/SearchDataState';
-import { useNavigate } from 'react-router-dom';
+import useAxios from '../../../hooks/useAxios';
+
+type dataType = {
+  data: [];
+};
 
 export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -15,8 +19,6 @@ export const SearchModal = memo(() => {
   const resetSearchData = useResetRecoilState(navSearchDataState);
   const [searchValue, setSearchValue] = useState<string>('');
 
-  console.log(searchData);
-
   const searchInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
@@ -27,14 +29,10 @@ export const SearchModal = memo(() => {
     resetSearchData();
   };
 
-  // 검색어를 입력하여, 검색 버튼을 클릭했을 때 통신이 되고
-  // 해당 검색어가 들어가있는 무비정보들을 내가 받게된다
-  // 받은 데이터가 뿌려져야 하는데...
   const searchAxios = () => {
     fetchData({
       url: `${BASE_URL}/search/movie?movieTitle=${searchValue}`,
-    }).then((res: any) => {
-      console.log(res);
+    }).then((res: dataType) => {
       setSearchData(res);
       setCloseBtn(false);
     });
