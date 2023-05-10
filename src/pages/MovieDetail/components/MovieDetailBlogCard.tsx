@@ -38,20 +38,18 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
           </div>
         </div>
       </div>
-      <div
-        className={`w-[23rem] h-52 bg-white opacity-90 absolute cursor-pointer ${
-          blogHover === true ? '' : 'hidden'
-        }`}
-      >
-        <div className="mt-12 h-[50px] flex flex-col justify-center text-center">
-          <p className="text-ml font-semibold px-12 box-content overflow-hidden text-ellipsis line-clamp-2 underline underline-offset-4">
-            {title}
+      {blogHover && (
+        <div className="w-[23rem] h-52 bg-white opacity-90 absolute cursor-pointer">
+          <div className="mt-12 h-[50px] flex flex-col justify-center text-center">
+            <p className="text-ml font-semibold px-12 box-content overflow-hidden text-ellipsis line-clamp-2 underline underline-offset-4">
+              {title}
+            </p>
+          </div>
+          <p className="text-sm px-7 overflow-hidden text-ellipsis line-clamp-2 absolute bottom-14 hover:underline hover:underline-offset-4">
+            {parse(content)}
           </p>
         </div>
-        <p className="text-sm px-7 overflow-hidden text-ellipsis line-clamp-2 absolute bottom-14 hover:underline hover:underline-offset-4">
-          {parse(content)}
-        </p>
-      </div>
+      )}
     </div>
   );
 }

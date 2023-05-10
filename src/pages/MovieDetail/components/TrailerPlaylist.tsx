@@ -7,7 +7,7 @@ export default function TrailerPlaylist() {
   const playlistYoutubeData = useRecoilValue(playlistYoutubeState);
 
   return (
-    <div className="relatedVideos flex-row lg:w-[427px] max-lg:px-5">
+    <div className="flex-row lg:w-[427px] max-lg:px-5">
       {playlistYoutubeData.map(relatedVideoData => {
         return (
           <RelatedVideo

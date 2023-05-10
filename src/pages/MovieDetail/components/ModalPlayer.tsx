@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import MoviePlayer from './MoviePlayer';
+import { GrClose } from 'react-icons/gr';
 
 interface ModalPlayerProps {
   videoId: string | undefined;
@@ -26,8 +27,8 @@ export default function ModalPlayer({
         setIsModalOpen(false);
       }
     };
-    window.addEventListener('keydown', escEvent);
-    return () => window.removeEventListener('keydown', escEvent);
+    document.addEventListener('keydown', escEvent);
+    return () => document.removeEventListener('keydown', escEvent);
   }, [setIsModalOpen]);
 
   return (
@@ -35,6 +36,10 @@ export default function ModalPlayer({
       className="w-full h-screen z-50 left-0 absolute flex justify-center items-center"
       style={{ top: `${modalTop}px` }}
     >
+      <GrClose
+        className="text-4xl absolute right-5 top-5 hover:cursor-pointer z-50"
+        onClick={() => setIsModalOpen(false)}
+      />
       <div
         className="w-full h-full bg-black opacity-60 relative"
         ref={modalRef}

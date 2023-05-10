@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { useRecoilValue } from 'recoil';
 import { currentUserNicknameState } from '../../../recoil/JwtDecode';
+import { failedNavigateAlert } from '../../../components/Alert/Modal';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const socket = io(`${BASE_URL}`);
@@ -17,6 +18,7 @@ interface MessageDataType {
 }
 
 export default function MovieChat() {
+  const navigate = useNavigate();
   const userNickname = useRecoilValue(currentUserNicknameState);
   const username = userNickname === '' ? socket.id : userNickname;
   const params = useParams();
@@ -26,16 +28,19 @@ export default function MovieChat() {
   const [messageList, setMessageList] = useState<MessageDataType[]>([]);
   const [onlineCount, setOnlineCount] = useState<number>(1);
 
+  const token = sessionStorage.getItem('token');
+
   const joinRoom = () => {
     socket.emit('join_room', roomId);
   };
 
+  const handleCount = useCallback((data: number) => {
+    setOnlineCount(data);
+  }, []);
+
   useEffect(() => {
     joinRoom();
 
-    const handleCount = (data: number) => {
-      setOnlineCount(data);
-    };
     socket.on('count', handleCount);
 
     const handlePopstate = () => {
@@ -50,6 +55,10 @@ export default function MovieChat() {
       socket.off('count', handleCount);
     };
   }, []);
+
+  useEffect(() => {
+    socket.on('count', handleCount);
+  }, [handleCount]);
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -83,6 +92,18 @@ export default function MovieChat() {
     }
   };
 
+  const loginCheck = (e: React.MouseEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    if (input.readOnly && e.button === 0) {
+      failedNavigateAlert(
+        'Login Required',
+        'Please login and try again.',
+        '/login',
+        navigate
+      );
+    }
+  };
+
   return (
     <div className="MovieChat">
       <div className="chatBox border border-mkLightGray border-b-transparent rounded-lg relative shadow-2xl">
@@ -106,7 +127,7 @@ export default function MovieChat() {
                   }`}
                   key={id}
                 >
-                  <div className="chat-header">
+                  <div className="chat-header mb-1">
                     {author}
                     <time className="text-xs opacity-50 px-1.5">{time}</time>
                   </div>
@@ -126,14 +147,17 @@ export default function MovieChat() {
           <input
             type="text"
             value={currentMessage}
-            placeholder="Type here"
+            placeholder={`${token ? 'Enjoy meerkats!' : 'Please login.'}`}
             className="input input-bordered w-full pr-20"
             onChange={e => setCurrentMessage(e.target.value)}
             onKeyPress={enterEvent}
+            readOnly={!token}
+            onClick={loginCheck}
           />
           <button
             className="btn absolute right-0 hover:bg-mkOrange hover:border-transparent"
             onClick={sendMessage}
+            disabled={!token}
           >
             SEND
           </button>
