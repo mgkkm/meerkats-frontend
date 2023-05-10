@@ -13,21 +13,6 @@ export const blogPostState = atom({
   },
 });
 
-export const blogCommentState = atom({
-  key: 'blogCommentState',
-  default: [
-    {
-      commentId: 0,
-      content: '',
-      created_at: '',
-      user: {
-        id: 0,
-        nickname: '',
-      },
-    },
-  ],
-});
-
 export const blogInputState = atom({
   key: 'blogInputState',
   default: '',

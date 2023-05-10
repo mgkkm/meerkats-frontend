@@ -9,9 +9,12 @@ import BlogContent from './components/BlogContent';
 import BlogFooter from './components/BlogFooter';
 import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
-import { commentState, CommentData } from '../../../recoil/CommentState';
-import { tokenState } from '../../../recoil/TokenState';
-import { renderingState } from '../../../recoil/BlogPostState';
+import { CommentData } from '../../../recoil/CommentState';
+import { DecodeToken } from '../../../components/DecodeToken/DecodeToken';
+import {
+  currentUserIdState,
+  currentUserNicknameState,
+} from '../../../recoil/JwtDecode';
 
 export interface BlogDetailData {
   id: number;
@@ -41,9 +44,13 @@ export default function BlogDetail() {
   const params = useParams();
   const postId = params.id;
 
+  const token = sessionStorage.getItem('token');
+
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const token = useRecoilValue(tokenState);
-  const rendering = useRecoilValue(renderingState);
+  const [loading, error, data, fetchData] = useAxios();
+
+  const setCurrentId = useSetRecoilState(currentUserIdState);
+  const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
 
@@ -52,9 +59,6 @@ export default function BlogDetail() {
 
   const setLikeN = useSetRecoilState(numberSelector(`blogLike${postId}`));
   const setScrapN = useSetRecoilState(numberSelector(`blogScrap${postId}`));
-  const setCommentN = useSetRecoilState(numberState(`blogComment${postId}`));
-
-  const setBlogDetailComment = useSetRecoilState(commentState('blog'));
 
   const resetBlogDetailState = useResetRecoilState(blogDetailState);
   const resetIsLiked = useResetRecoilState(toggleSelector(`blogLike${postId}`));
@@ -66,9 +70,6 @@ export default function BlogDetail() {
   const resetCommentN = useResetRecoilState(
     numberState(`blogComment${postId}`)
   );
-
-  const resetCommentState = useResetRecoilState(commentState('blog'));
-  const [loading, error, data, fetchData] = useAxios();
 
   useEffect(() => {
     fetchData({
@@ -85,8 +86,7 @@ export default function BlogDetail() {
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
         setScrapN(result.data.postDetails.scrapCount);
-        setCommentN(result.data.comments.length);
-        setBlogDetailComment(result.data.comments);
+        DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
 
@@ -97,9 +97,8 @@ export default function BlogDetail() {
       resetLikeN();
       resetScrapN();
       resetCommentN();
-      resetCommentState();
     };
-  }, [rendering]);
+  }, []);
 
   return (
     <div className="container xl flex justify-center pt-48">
