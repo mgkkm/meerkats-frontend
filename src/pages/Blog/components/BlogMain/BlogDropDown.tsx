@@ -12,6 +12,11 @@ export const BlogDropDown = memo(() => {
     setSelectGenre(el);
   };
 
+  const dropDownAllGenre = (genre: string) => {
+    setShow(show => !show);
+    setSelectGenre(genre);
+  };
+
   return (
     <div className="dropdown cursor-pointer" onClick={() => setShow(!show)}>
       <label
@@ -31,6 +36,12 @@ export const BlogDropDown = memo(() => {
           show ? 'block' : 'hidden'
         }`}
       >
+        <li
+          className="h-15 cursor-pointer"
+          onClick={() => dropDownAllGenre('모든 장르')}
+        >
+          <a className="active:bg-mkOrange rounded-md">모든 장르</a>
+        </li>
         {articleData?.data?.category?.map(
           (item: { id: number; name: string }) => {
             return (
