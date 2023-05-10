@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import MoviePlayer from './components/MoviePlayer';
 import MovieDetailHeader from './components/MovieDetailHeader';
 import MovieDetailTab from './components/MovieDetailTab';
@@ -12,7 +12,7 @@ import {
   movieBlogState,
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
-import { CommentData, commentState } from '../../recoil/CommentState';
+import { CommentData } from '../../recoil/CommentState';
 import {
   currentUserIdState,
   currentUserNicknameState,

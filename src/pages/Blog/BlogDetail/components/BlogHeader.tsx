@@ -6,7 +6,10 @@ import { blogDetailState } from '../../../../recoil/BlogDetailState';
 import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../../../../hooks/useAxios';
-import { failedAxiosAlert } from '../../../../components/Alert/Modal';
+import {
+  failedAxiosAlert,
+  successAlert,
+} from '../../../../components/Alert/Modal';
 import Swal from 'sweetalert2';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -41,7 +44,7 @@ export default function BlogHeader() {
           },
         }).then((result: any) => {
           if (result.message.includes('SUCCESS')) {
-            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            successAlert('Deleted!', 'Your post has been deleted.');
             navigate('/blogMain');
           }
         });

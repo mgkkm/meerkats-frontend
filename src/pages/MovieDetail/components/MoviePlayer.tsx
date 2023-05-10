@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { playerRefState } from '../../../recoil/MovieDetailState';
 
 interface MoviePlayerProps {
   videoId?: string;
@@ -9,34 +7,15 @@ interface MoviePlayerProps {
   autoplay: number;
 }
 
-export default function MoviePlayer({
-  videoId,
-  height,
-  autoplay,
-}: MoviePlayerProps) {
-  const playerRef = useRef(null);
-
-  const onModalPlayerReady: YouTubeProps['onReady'] = event => {
-    playerRef.current = event.target;
-  };
-
-  console.log('ref ref ref', playerRef);
-
-  const [currentPlayerRef, setCurrentPlayerRef] =
-    useRecoilState(playerRefState);
-
-  setCurrentPlayerRef(playerRef.current);
-
-  console.log('next', currentPlayerRef);
-
+export default function MoviePlayer({ videoId, height }: MoviePlayerProps) {
   const opts: YouTubeProps['opts'] = {
     width: '100%',
     height: height,
     playerVars: {
-      autoplay: autoplay,
+      autoplay: 1,
       modestbranding: 1,
     },
   };
 
-  return <YouTube videoId={videoId} opts={opts} onReady={onModalPlayerReady} />;
+  return <YouTube videoId={videoId} opts={opts} />;
 }
