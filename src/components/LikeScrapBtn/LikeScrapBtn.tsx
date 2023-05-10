@@ -1,14 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
 import { numberSelector } from '../../recoil/NumberState';
 import useAxios from '../../hooks/useAxios';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
-import { currentUserIdState } from '../../recoil/JwtDecode';
-import { failedNavigateAlert, warningAlert } from '../Alert/Modal';
-import { tokenState } from '../../recoil/TokenState';
+import {
+  autoCloseAlert,
+  failedNavigateAlert,
+  warningAlert,
+} from '../Alert/Modal';
 
 interface LikeScrapType {
   postType: string;
@@ -37,13 +39,12 @@ export default function LikeScrapBtn({
 }: LikeScrapType) {
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
+
   const [loading, error, data, fetchData] = useAxios();
 
-  const token = useRecoilValue(tokenState);
+  const token = sessionStorage.getItem('token');
 
   const type = postType + btnType + postId;
-
-  const currentUserId = useRecoilValue(currentUserIdState);
 
   const [isClicked, setIsClicked] = useRecoilState(toggleSelector(type));
   const setCounterN = useSetRecoilState(numberSelector(type));
@@ -65,22 +66,14 @@ export default function LikeScrapBtn({
 
   const Icon = iconMap[btnType][clickedValue];
 
-  const failedAlert = (errorType: string) => {
-    if (errorType === 'loginRequired') {
+  const LikeScrapHandler = () => {
+    if (!token) {
       failedNavigateAlert(
         'Login Required',
         'Please login and try again.',
         '/login',
         navigate
       );
-    } else {
-      warningAlert('Something went wrong!', 'Please try again.');
-    }
-  };
-
-  const LikeScrapHandler = () => {
-    if (currentUserId === 0) {
-      failedAlert('loginRequired');
       return;
     }
     postBtnState();
@@ -106,9 +99,10 @@ export default function LikeScrapBtn({
         if (result.message.includes('SUCCESS')) {
           setCounterN(1);
           setIsClicked(true);
+          autoCloseAlert('success', 'Success!');
         }
       } else {
-        failedAlert('failed');
+        warningAlert('Something went wrong!', 'Please try again.');
       }
     });
   };

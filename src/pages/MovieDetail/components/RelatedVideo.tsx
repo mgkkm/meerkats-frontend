@@ -17,6 +17,9 @@ export default function RelatedVideo({
 
   useEffect(() => {
     if (isModalOpen) {
+      // if (playerRef.current) {
+      //   playerRef.current.pauseVideo(); // 참조한 유튜브 플레이어를 일시정지합니다.
+      // }
       setModalTop(window.scrollY);
       document.body.style.overflow = 'hidden';
     } else {
