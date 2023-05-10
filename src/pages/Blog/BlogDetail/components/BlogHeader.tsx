@@ -7,7 +7,7 @@ import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useNavigate } from 'react-router-dom';
 
 export default function BlogHeader() {
-  const currentUserId = useRecoilValue(currentUserIdState);
+  const currentId = useRecoilValue(currentUserIdState);
   const blogDetailData = useRecoilValue(blogDetailState);
   const navigate = useNavigate();
 
@@ -35,11 +35,9 @@ export default function BlogHeader() {
         <p className="text-3xl font-semibold mt-10 mb-3">{title}</p>
         <div className="dropdown dropdown-end">
           <label tabIndex={0}>
-            <HiOutlineDotsHorizontal
-              className={`text-xl hover:cursor-pointer ${
-                currentUserId !== user.id && 'hidden'
-              }`}
-            />
+            {currentId === user.id && (
+              <HiOutlineDotsHorizontal className="text-xl hover:cursor-pointer" />
+            )}
           </label>
           <ul
             tabIndex={0}

@@ -11,7 +11,6 @@ import {
 } from '../../../recoil/BlogPostState';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { failedAxiosAlert } from '../../Alert/Modal';
-import { tokenState } from '../../../recoil/TokenState';
 const Swal = require('sweetalert2');
 
 type commentProps = {
@@ -30,7 +29,7 @@ export default function DropDownBtn({
   content,
   commentId,
 }: commentProps) {
-  const token = useRecoilValue(tokenState);
+  const token = sessionStorage.getItem('token');
   const inputRef = useRecoilValue(refState);
   const setIsEdit = useSetRecoilState(isEditState);
   const currentUserId = useRecoilValue(currentUserIdState);
@@ -47,17 +46,19 @@ export default function DropDownBtn({
         fetchData({
           url: `${BASE_URL}/blog/postComment/${commentId}`,
           method: 'DELETE',
-          header: {
+          headers: {
             Authorization: token,
           },
         }).then((result: any) => {
           setRendering(!rendering);
-          result.message.includes('SUCCESS') &&
+          if (result.message.includes('SUCCESS')) {
             Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+          }
         });
       }
     );
   };
+
   const editHandler = (e: any) => {
     setInputContent(e.target.name);
     setCurrentCommentId(e.target.value);
@@ -78,18 +79,18 @@ export default function DropDownBtn({
         tabIndex={0}
         className="dropdown-content menu shadow bg-base-100 rounded-box"
       >
-        <li>
+        <li className="w-16">
           <button
             onClick={editHandler}
             name={content}
             value={commentId}
             className="text-sm flex justify-center active:bg-mkOrange"
           >
-            Edit
+            수정
           </button>
         </li>
         <li
-          className={`hover:cursor-pointer  text-xs ${
+          className={`hover:cursor-pointer  text-xs w-16 ${
             currentUserId !== user.id && 'hidden'
           }`}
         >
@@ -98,7 +99,7 @@ export default function DropDownBtn({
             value={commentId}
             className="text-sm flex justify-center active:bg-mkOrange"
           >
-            Delete
+            삭제
           </button>
         </li>
       </ul>
