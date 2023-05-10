@@ -27,17 +27,22 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
     spoiler_info_id,
   } = props;
 
+  const toBlogDetail = () => {
+    navigate(`/blogDetail/${id}`);
+  };
+
   return (
     <article
       key={id}
       className="blogPost shadow-sm xl:mx-[1.6rem] xl:my-[2rem] xl:pb-2 2xl:pb-2"
-      onClick={() => navigate(`/blogDetail/${id}`)}
     >
-      <div className="blogThumbnail cursor-pointer">
+      <div className="blogThumbnail cursor-pointer" onClick={toBlogDetail}>
         <img src={thumbnail} alt="썸네일" className="w-full" />
       </div>
       <div className="blogText">
-        <h1 className="blogTextTitle cursor-pointer">{title}</h1>
+        <h1 className="blogTextTitle cursor-pointer" onClick={toBlogDetail}>
+          {title}
+        </h1>
         <p className="blogTextInfo text-mkGray">
           {blogDate}일 전 • {commentCount}개의 댓글
         </p>
@@ -47,7 +52,6 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
             by <span className="font-semibold">{nickname}</span>
           </span>
           <div className="blogLike">
-            {/* 조아요 버튼 서윤님껄로 바꾸기 */}
             <LikeScrapBtn
               postType="blog"
               btnType="Like"
