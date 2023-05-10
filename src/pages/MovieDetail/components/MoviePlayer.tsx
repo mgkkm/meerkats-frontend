@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { playerRefState } from '../../../recoil/MovieDetailState';
 
 interface MoviePlayerProps {
   videoId?: string;
@@ -12,9 +14,20 @@ export default function MoviePlayer({
   height,
   autoplay,
 }: MoviePlayerProps) {
-  const onPlayerReady: YouTubeProps['onReady'] = event => {
-    event.target.pauseVideo();
+  const playerRef = useRef(null);
+
+  const onModalPlayerReady: YouTubeProps['onReady'] = event => {
+    playerRef.current = event.target;
   };
+
+  console.log('ref ref ref', playerRef);
+
+  const [currentPlayerRef, setCurrentPlayerRef] =
+    useRecoilState(playerRefState);
+
+  setCurrentPlayerRef(playerRef.current);
+
+  console.log('next', currentPlayerRef);
 
   const opts: YouTubeProps['opts'] = {
     width: '100%',
@@ -25,5 +38,5 @@ export default function MoviePlayer({
     },
   };
 
-  return <YouTube videoId={videoId} opts={opts} onReady={onPlayerReady} />;
+  return <YouTube videoId={videoId} opts={opts} onReady={onModalPlayerReady} />;
 }

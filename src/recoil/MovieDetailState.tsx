@@ -61,3 +61,8 @@ export const playlistYoutubeState = atom<PlaylistYoutubeData[]>({
     },
   ],
 });
+
+export const playerRefState = atom({
+  key: 'playerRefState',
+  default: null,
+});
