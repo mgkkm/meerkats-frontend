@@ -1,4 +1,3 @@
-import React from 'react';
 import useAxios from '../../../../hooks/useAxios';
 import { useRecoilValue } from 'recoil';
 import { blogPostState, isEditState } from '../../../../recoil/BlogPostState';
@@ -7,15 +6,15 @@ import {
   failedNavigateAlert,
   infoAlert,
 } from '../../../../components/Alert/Modal';
-import { tokenState } from '../../../../recoil/TokenState';
+import { warningAlert } from '../../../../components/Alert/Modal';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function PostBtn() {
   const isEdit = useRecoilValue(isEditState);
   const blogPost = useRecoilValue(blogPostState);
-  const token = useRecoilValue(tokenState);
   const [loading, error, data, fetchData] = useAxios();
+  const token = sessionStorage.getItem('token');
 
   const navigate = useNavigate();
   const param = useParams();
@@ -23,6 +22,17 @@ export default function PostBtn() {
   const backClickHandler = () => navigate(-1);
 
   const clickHandler = () => {
+    if (blogPost.title === '') {
+      warningAlert('Title is empty', 'Please enter a title');
+      return;
+    } else if (blogPost.categoryId === 0 && blogPost.spoilerInfoId === 0) {
+      warningAlert('Category Select Required', 'Please select a category');
+      return;
+    } else if (blogPost.content === '') {
+      warningAlert('Content is empty', 'Please enter a content');
+      return;
+    }
+
     fetchData({
       url: `${BASE_URL}/blog${isEdit ? `/${param.id}` : ''}`,
       method: isEdit ? 'PATCH' : 'POST',
@@ -33,8 +43,8 @@ export default function PostBtn() {
       data: blogPost,
     }).then((res: any) => {
       if (res.message.includes('SUCCESS')) {
-        infoAlert('Success Update ! ', 'Move to the Blog Detail Page');
-        navigate(`${isEdit ? '/blogDetail' : '/blogMain'}`);
+        infoAlert('Success Update ! ', 'Enjoy meerkats Blog');
+        navigate(`${isEdit ? `/blogDetail/${param.id}` : '/blogMain'}`);
       } else {
         failedNavigateAlert(
           'Login Required',
