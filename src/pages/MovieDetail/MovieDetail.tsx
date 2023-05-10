@@ -5,7 +5,7 @@ import MovieDetailTab from './components/MovieDetailTab';
 import TrailerPlaylist from './components/TrailerPlaylist';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
 import {
   movieHeaderState,
@@ -144,7 +144,7 @@ export default function MovieDetail() {
         <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
       </div>
       <div className="lg:flex justify-around gap-5 mt-5">
-        <div className="movieDetailLeft w-full lg:w-2/3 max-lg:mb-14">
+        <div className="movieDetailLeft w-full lg:w-2/3 max-lg:mb-24">
           <MovieDetailHeader />
           <MovieDetailTab />
         </div>

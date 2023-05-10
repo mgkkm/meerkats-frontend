@@ -4,7 +4,7 @@ import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { useParams } from 'react-router-dom';
 import LikeScrapBtn from '../../../components/LikeScrapBtn/LikeScrapBtn';
-// import ShareBtn from '../../../components/ShareBtn/ShareBtn';
+import CopyBtn from '../../../components/CopyBtn/CopyBtn';
 import { movieHeaderState } from '../../../recoil/MovieDetailState';
 import parse from 'html-react-parser';
 
@@ -76,49 +76,46 @@ export default function MovieDetailHeader() {
             postId={`${postId}`}
             btnSize="text-2xl"
           />
-          {/* <ShareBtn /> */}
+          <CopyBtn />
         </div>
       </div>
       <div>
-        <div
-          className={`flex justify-center items-center h-5 ${
-            moreArrowToggle ? 'hidden' : ''
-          }`}
-          onClick={handleMore}
-        >
-          <IoIosArrowDown className="hover:cursor-pointer text-3xl" />
-        </div>
-        <div
-          className={`hover:cursor-pointer text-sm ${
-            moreArrowToggle ? '' : 'hidden'
-          }`}
-          onClick={handleMore}
-        >
-          <div className="info flex text-sm text-mkDarkGray mt-3 mb-1">
-            <p className="mr-3 w-7 font-semibold">감독</p>
-            <p className="px-1.5">{isBlank(director)}</p>
+        {!moreArrowToggle && (
+          <div
+            className="flex justify-center items-center h-5"
+            onClick={handleMore}
+          >
+            <IoIosArrowDown className="hover:cursor-pointer text-3xl" />
           </div>
-          <div className="flex text-sm text-mkDarkGray mb-1">
-            <p className="mr-3 w-7 font-semibold">출연</p>
-            {actorArray.map((name: string) => {
-              return (
-                <>
-                  <span className="px-1.5">{name}</span>
-                  <span className="text-mkLightGray ml-2 mr-1 last:hidden">
-                    |
-                  </span>
-                </>
-              );
-            })}
+        )}
+        {moreArrowToggle && (
+          <div className="hover:cursor-pointer text-sm" onClick={handleMore}>
+            <div className="info flex text-sm text-mkDarkGray mt-3 mb-1">
+              <p className="mr-3 w-7 font-semibold">감독</p>
+              <p className="px-1.5">{isBlank(director)}</p>
+            </div>
+            <div className="flex text-sm text-mkDarkGray mb-1">
+              <p className="mr-3 w-7 font-semibold">출연</p>
+              {actorArray.map((name: string) => {
+                return (
+                  <>
+                    <span className="px-1.5">{name}</span>
+                    <span className="text-mkLightGray ml-2 mr-1 last:hidden">
+                      |
+                    </span>
+                  </>
+                );
+              })}
+            </div>
+            <div className="flex text-sm text-mkDarkGray mt-3 mb-1">
+              <p className="mr-3 w-7 font-semibold">내용</p>
+              <p className="px-1.5 w-fit">{parse(isBlank(summary))}</p>
+            </div>
+            <div className="flex justify-center items-center h-5">
+              <IoIosArrowUp className="text-3xl" />
+            </div>
           </div>
-          <div className="flex text-sm text-mkDarkGray mt-3 mb-1">
-            <p className="mr-3 w-7 font-semibold">내용</p>
-            <p className="px-1.5 w-fit">{parse(isBlank(summary))}</p>
-          </div>
-          <div className="flex justify-center items-center h-5">
-            <IoIosArrowUp className="text-3xl" />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
