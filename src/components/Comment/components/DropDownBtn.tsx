@@ -11,6 +11,7 @@ import {
 } from '../../../recoil/BlogPostState';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { failedAxiosAlert } from '../../Alert/Modal';
+import { useLocation } from 'react-router-dom';
 const Swal = require('sweetalert2');
 
 type commentProps = {
@@ -30,6 +31,7 @@ export default function DropDownBtn({
   commentId,
 }: commentProps) {
   const token = sessionStorage.getItem('token');
+  const location = useLocation();
   const inputRef = useRecoilValue(refState);
   const setIsEdit = useSetRecoilState(isEditState);
   const currentUserId = useRecoilValue(currentUserIdState);
@@ -38,13 +40,17 @@ export default function DropDownBtn({
   const setInputContent = useSetRecoilState(blogInputState);
   const [loading, error, data, fetchData] = useAxios();
 
+  const deleteAxiosUrl = location.pathname.includes('blogDetail')
+    ? `${BASE_URL}/blog/postComment/${commentId}`
+    : `${BASE_URL}/movie/comments/${commentId}`;
+
   const deleteHandler = () => {
     failedAxiosAlert(
       'Are you sure?',
       "You won't be able to revert this!",
       () => {
         fetchData({
-          url: `${BASE_URL}/blog/postComment/${commentId}`,
+          url: deleteAxiosUrl,
           method: 'DELETE',
           headers: {
             Authorization: token,
