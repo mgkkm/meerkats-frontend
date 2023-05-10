@@ -49,22 +49,18 @@ export default function MembershipCard({ membership }: MembershipCardProps) {
             </p>
           );
         })}
-        <div
-          className={`card-actions justify-end ${
-            isSubscribe === true
-              ? 'max-sm:mt-[450px] max-lg:mt-[400px] max-lg:justify-center max-lg:-right-20 lg:mt-[480px] xl:mt-96'
-              : 'mt-7'
-          }`}
-        >
-          <button
-            className="btn bg-mkOrange border-none hover:bg-mkDarkOrange hover:border-none"
-            onClick={() => {
-              navigate(`/membership/subscribe/${id}`);
-            }}
-          >
-            SUBSCRIBE
-          </button>
-        </div>
+        {!isSubscribe && (
+          <div className="card-actions justify-end mt-7">
+            <button
+              className="btn bg-mkOrange border-none hover:bg-mkDarkOrange hover:border-none"
+              onClick={() => {
+                navigate(`/membership/subscribe/${id}`);
+              }}
+            >
+              SUBSCRIBE
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

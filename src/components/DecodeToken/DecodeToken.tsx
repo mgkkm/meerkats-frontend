@@ -11,10 +11,6 @@ export const DecodeToken = (
 ) => {
   const token = sessionStorage.getItem('token');
 
-  if (token === null) {
-    setCurrentId(0);
-  }
-
   if (token) {
     const decodedToken: DecodedToken = jwt_decode(token);
     const tokenId = decodedToken.id;
@@ -22,6 +18,4 @@ export const DecodeToken = (
     setCurrentId(tokenId);
     setCurrentNickname(tokenNickname);
   }
-
-  return;
 };
