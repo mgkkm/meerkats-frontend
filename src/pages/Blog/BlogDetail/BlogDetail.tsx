@@ -9,8 +9,7 @@ import BlogContent from './components/BlogContent';
 import BlogFooter from './components/BlogFooter';
 import Comments from '../../../components/Comment/Comments';
 import { blogDetailState } from '../../../recoil/BlogDetailState';
-import { commentState, CommentData } from '../../../recoil/CommentState';
-import { renderingState } from '../../../recoil/BlogPostState';
+import { CommentData } from '../../../recoil/CommentState';
 import { DecodeToken } from '../../../components/DecodeToken/DecodeToken';
 import {
   currentUserIdState,
@@ -50,8 +49,6 @@ export default function BlogDetail() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
 
-  const rendering = useRecoilValue(renderingState);
-
   const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
@@ -62,9 +59,6 @@ export default function BlogDetail() {
 
   const setLikeN = useSetRecoilState(numberSelector(`blogLike${postId}`));
   const setScrapN = useSetRecoilState(numberSelector(`blogScrap${postId}`));
-  const setCommentN = useSetRecoilState(numberState(`blogComment${postId}`));
-
-  const setBlogDetailComment = useSetRecoilState(commentState('blog'));
 
   const resetBlogDetailState = useResetRecoilState(blogDetailState);
   const resetIsLiked = useResetRecoilState(toggleSelector(`blogLike${postId}`));
@@ -76,8 +70,6 @@ export default function BlogDetail() {
   const resetCommentN = useResetRecoilState(
     numberState(`blogComment${postId}`)
   );
-
-  const resetCommentState = useResetRecoilState(commentState('blog'));
 
   useEffect(() => {
     fetchData({
@@ -94,8 +86,6 @@ export default function BlogDetail() {
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
         setScrapN(result.data.postDetails.scrapCount);
-        setCommentN(result.data.comments.length);
-        setBlogDetailComment(result.data.comments);
         DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
@@ -107,9 +97,8 @@ export default function BlogDetail() {
       resetLikeN();
       resetScrapN();
       resetCommentN();
-      resetCommentState();
     };
-  }, [rendering]);
+  }, []);
 
   return (
     <div className="container xl flex justify-center pt-48">

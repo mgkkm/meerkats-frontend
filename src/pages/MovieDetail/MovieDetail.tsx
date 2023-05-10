@@ -83,7 +83,6 @@ export default function MovieDetail() {
   const [loading, error, data, fetchData] = useAxios();
 
   const setMovieHeaderData = useSetRecoilState(movieHeaderState);
-  const setMovieCommentData = useSetRecoilState(commentState('movie'));
   const setMovieBlogData = useSetRecoilState(movieBlogState);
   const [mainVideoId, setMainVideoId] = useState('');
   const setPlaylistYoutubeData = useSetRecoilState(playlistYoutubeState);
@@ -92,7 +91,6 @@ export default function MovieDetail() {
   );
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
-  const resetMovieCommentState = useResetRecoilState(commentState('movie'));
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
   const resetPlaylistYoutubeState = useResetRecoilState(playlistYoutubeState);
   const resetIsMovieLiked = useResetRecoilState(
@@ -111,7 +109,6 @@ export default function MovieDetail() {
         const { movieInfo, andMore, mainYoutube, playlistYoutube } =
           result.data;
         setMovieHeaderData(movieInfo);
-        setMovieCommentData(andMore.movieTrailerComments);
         setMovieBlogData(andMore.blogLikesAndPopularitySorting);
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
@@ -121,7 +118,6 @@ export default function MovieDetail() {
 
     return () => {
       resetMovieHeaderState();
-      resetMovieCommentState();
       resetMovieBlogState();
       setMainVideoId('');
       resetPlaylistYoutubeState();

@@ -1,23 +1,40 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { commentState } from '../../../recoil/CommentState';
 import DropDownBtn from './DropDownBtn';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { displayCreatedAt } from '../../CreatedAt/CreatedAt';
+import useAxios from '../../../hooks/useAxios';
+import { renderingState } from '../../../recoil/BlogPostState';
+import { numberState } from '../../../recoil/NumberState';
+
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function CommentList() {
+  const param = useParams();
   const location = useLocation();
-  const pathname = location.pathname;
 
-  const blogCommentData = useRecoilValue(commentState('blog'));
-  const movieCommentData = useRecoilValue(commentState('movie'));
+  const [loading, error, data, fetchData] = useAxios();
 
-  const commentData = pathname.split('/')[1].includes('blog')
-    ? blogCommentData
-    : movieCommentData;
+  const rendering = useRecoilValue(renderingState);
+  const [commentData, setCommentData] = useRecoilState(commentState);
+  const setCommentN = useSetRecoilState(numberState(`blogComment${param.id}`));
 
   const currentUserId = useRecoilValue(currentUserIdState);
+
+  const getAxiosUrl = location.pathname.includes('blogDetail')
+    ? `${BASE_URL}/blog/${param.id}`
+    : `${BASE_URL}/movie/${param.id}/comments`;
+
+  useEffect(() => {
+    fetchData({
+      url: getAxiosUrl,
+    }).then((data: any) => {
+      setCommentData(data.data);
+      setCommentN(data.data.length);
+    });
+  }, [rendering]);
 
   return (
     <div>

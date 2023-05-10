@@ -43,9 +43,13 @@ export default function CommentInput() {
     setContent(e.target.value);
   };
 
+  const movieAxiosUrl = isEdit
+    ? `${BASE_URL}/movie/comments/${commentId}`
+    : `${BASE_URL}/movie/${param.id}/comments`;
+
   const commentAxiosUrl = location.pathname.includes('blogDetail')
     ? `${BASE_URL}/blog/postComment/${isEdit ? commentId : param.id}`
-    : `${BASE_URL}/movie/${commentId}/comments`;
+    : movieAxiosUrl;
 
   const clickHandler = () => {
     fetchData({
