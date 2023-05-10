@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -8,32 +8,48 @@ import {
   refState,
   renderingState,
 } from '../../../recoil/BlogPostState';
-import { useParams } from 'react-router-dom';
-import { tokenState } from '../../../recoil/TokenState';
+import { useLocation, useParams } from 'react-router-dom';
+import { DecodeToken } from '../../DecodeToken/DecodeToken';
+import { currentUserIdState } from '../../../recoil/JwtDecode';
+import { currentUserNicknameState } from '../../../recoil/JwtDecode';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function CommentInput() {
-  const token = useRecoilValue(tokenState);
+  const token = sessionStorage.getItem('token');
+  const setCurrentId = useSetRecoilState(currentUserIdState);
+  const [currentNickName, setCurrentNickname] = useRecoilState(
+    currentUserNicknameState
+  );
   const setInputState = useSetRecoilState(refState);
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
   const commentId = useRecoilValue(commentIdState);
   const [content, setContent] = useRecoilState(blogInputState);
   const [rendering, setRendering] = useRecoilState(renderingState);
-  const [loading, error, data, fetchData] = useAxios();
-  const inputRef = useRef<HTMLTextAreaElement | null>(null);
 
+  const [loading, error, data, fetchData] = useAxios();
+
+  const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const param = useParams();
+  const location = useLocation();
+
+  setInputState(inputRef.current);
+
+  useEffect(() => {
+    DecodeToken(setCurrentId, setCurrentNickname);
+  });
 
   const changeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   };
 
-  setInputState(inputRef.current);
+  const commentAxiosUrl = location.pathname.includes('blogDetail')
+    ? `${BASE_URL}/blog/postComment/${isEdit ? commentId : param.id}`
+    : `${BASE_URL}/movie/${commentId}/comments`;
 
   const clickHandler = () => {
     fetchData({
-      url: `${BASE_URL}/blog/postComment/${isEdit ? commentId : param.id}`,
+      url: commentAxiosUrl,
       method: isEdit ? 'PATCH' : 'POST',
       headers: {
         Authorization: token,
@@ -49,7 +65,7 @@ export default function CommentInput() {
 
   return (
     <div className="commentInput border border-mkLightGray my-10 pt-5 bg-white">
-      <p className="text-sm font-semibold px-4">username</p>
+      <p className="text-sm font-semibold px-4">{currentNickName}</p>
       <div className="flex justify-center">
         <textarea
           ref={inputRef}
