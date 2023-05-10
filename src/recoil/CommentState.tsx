@@ -1,18 +1,8 @@
-import { atomFamily } from 'recoil';
+import { atom } from 'recoil';
 
-export const commentState = atomFamily<CommentData[], string>({
+export const commentState = atom<CommentData[]>({
   key: 'commentState',
-  default: [
-    {
-      commentId: 0,
-      content: '',
-      created_at: '',
-      user: {
-        id: 0,
-        nickname: '',
-      },
-    },
-  ],
+  default: [],
 });
 
 export interface CommentData {
