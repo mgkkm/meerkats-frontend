@@ -2,10 +2,11 @@
   <br/>
   <br/>
   <div>
-    <img src="https://github.com/hyunjoo1130/meerkats-frontend/assets/58460131/bc6dc5b3-b45f-441d-bfb0-57c7533abda1" width="200" height="auto" />
+    <img src="https://github.com/mgkkm/meerkats-frontend/assets/58460131/c0740a1f-afa9-4a1f-b77e-effcf8841731" width="90%" />
   </div>
   <br/>
-  <h1 align="center">Team</h1>
+  <br/>
+  <h1 align="center">👋🏻 Team</h1>
   <br />
   <table>
     <thead>
@@ -35,8 +36,9 @@
     </tbody>
   </table>
     <br />
-  <h1 align="center">Skills</h1>
+  <h1 align="center">🛠️ Skills</h1>
   <br />
+  <h3 align="center">FE<h3>
   <div align="center">
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -49,6 +51,7 @@
     <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white">
 </div>
 <br />
+ <h3 align="center">BE<h3>
  <div align="center">
  <img src="https://img.shields.io/badge/Node JS-339933?style=for-the-badge&logo=nodedotjs&logoColor=white">
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
@@ -62,44 +65,44 @@
   <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white">
 </div>
 <br />
+<h3 align="center">ETC<h3>
 <div align="center">
 <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white">
 <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white">
 <img src="https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=jira&logoColor=white">
 <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+<img src="https://img.shields.io/badge/PhotoShop-31A8FF?style=for-the-badge&logo=Photoshop&logoColor=white">
  </div>
 </div>
 <br /><br />
-  <h1 align="center">기간</h1>
+  <h1 align="center">🗓️ 기간</h1>
   <p align="center">2023.04.10 ~ 2023.05.10 </p>
   <br />
   <br />
-  <h1 align="center" width="300px">미어캣 프로젝트</h1>
+  <h1 align="center" width="300px">🦦 미어캣 프로젝트</h1>
   <br />
   <div align="center">
     <img src="https://velog.velcdn.com/images/ijinkyung/post/ca34a9b2-61d0-46fb-b203-74a27b38f08f/image.png" width="300" >
   </div>
   <br />
   <div align="center">
-    <p>
-      <strong>🎥🌟 meerkats: 영화 예고편과 함께 하는 영화 커뮤니티 🌟🎥</strong>
+  <p> 
+        
+  ### 🎥🌟 meerkats: 영화 예고편과 함께 하는 영화 커뮤니티 🌟🎥
+  <br />      
       
-      영화는 많은 사람들이 관심을 가지고 있는 대중적인 분야입니다.<br />
-      
-      이에 저희는 미어캣처럼 예고편을 힐끗 본다는 의미에서 웹서비스의 이름을 "meerkats"라고 정하게 됐습니다.<br />
-      
-      meerkats에서는 유저들끼리 영화 예고편을 감상하고, 다양한 의견을 나눌 수 있으며 블로그를 통해 자유롭게 의견을 표현할 수도 있습니다.
-      
-      우리의 목표는 영화를 사랑하는 사람들이 모여 의견을 나눌 수 있는 공간을 만드는 것입니다.
-      
-    </p>
+  <p>영화는 많은 사람들이 관심을 가지고 있는 대중적인 분야입니다.</p>
+  <p>이에 저희는 미어캣처럼 예고편을 힐끗 본다는 의미에서 웹서비스의 이름을 "meerkats"라고 정하게 됐습니다.</p>
+  <p>meerkats에서는 유저들끼리 영화 예고편을 감상하고, 다양한 의견을 나눌 수 있으며 블로그를 통해 자유롭게 의견을 표현할 수도 있습니다.</p>
+  <p>우리의 목표는 영화를 사랑하는 사람들이 모여 의견을 나눌 수 있는 공간을 만드는 것입니다.</p>
   
+  </p>
   </div>
 
 <br />
 <br />
 
-  <h1 align="left">Pages</h1>
+  <h1 align="left">🖥️ Pages</h1>
   <br />
   <h2>⓿ 헤더</h2>
   <p>- 로그인/로그아웃 기능으로 TOKEN 존재여부에 따라 텍스트가 바뀌도록 구현했습니다.</p>
