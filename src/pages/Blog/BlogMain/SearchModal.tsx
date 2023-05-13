@@ -1,8 +1,8 @@
 import React, { memo, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { toggleSelector } from '../../../../recoil/ToggleState';
-import { SearchDataState } from '../../../../recoil/SearchDataState';
-import useAxios from '../../../../hooks/useAxios';
+import { toggleSelector } from '../../../recoil/ToggleState';
+import { SearchDataState } from '../../../recoil/SearchDataState';
+import useAxios from '../../../hooks/useAxios';
 
 // type itemType = {
 //   title: string;

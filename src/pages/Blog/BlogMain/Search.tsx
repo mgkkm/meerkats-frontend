@@ -1,5 +1,5 @@
 import { useRecoilState } from 'recoil';
-import { toggleSelector } from '../../../../recoil/ToggleState';
+import { toggleSelector } from '../../../recoil/ToggleState';
 import { SearchModal } from './SearchModal';
 
 export default function Search() {

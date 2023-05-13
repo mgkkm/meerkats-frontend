@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { toggleSelector } from '../../../../recoil/ToggleState';
-import useAxios from '../../../../hooks/useAxios';
+import { toggleSelector } from '../../../recoil/ToggleState';
+import useAxios from '../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
-import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { blogCreatedAt } from '../../../components/CreatedAt/CreatedAt';
 
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션
 export default function BlogScrollArticle() {
@@ -55,7 +55,7 @@ export default function BlogScrollArticle() {
     <>
       <section>
         {articles?.map((el: any) => {
-          const nonSpoData = el.data.nonSpoPostData;
+          const nonSpoData = el?.data?.nonSpoPostData;
           const spoData = el?.data?.spoPostData;
           const spoToggleData = toggle ? spoData : nonSpoData;
           return spoToggleData?.map((el: any) => {

@@ -1,7 +1,7 @@
 import { useRecoilValue } from 'recoil';
 import { BlogArticle } from './BlogArticle';
-import { SearchDataState } from '../../../../recoil/SearchDataState';
-import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { SearchDataState } from '../../../recoil/SearchDataState';
+import { blogCreatedAt } from '../../../components/CreatedAt/CreatedAt';
 
 export default function BlogSearchArticle() {
   const searchArticleData = useRecoilValue(SearchDataState);
