@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Search from './Search';
-import { warningAlert } from '../../../components/Alert/Modal';
+import { warningAlert } from '../../../../components/Alert/Modal';
 
 export default function BlogMainTop() {
   const navigate = useNavigate();

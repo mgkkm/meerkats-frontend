@@ -1,12 +1,12 @@
 import { useRecoilValue } from 'recoil';
-import { SearchDataState } from '../../recoil/SearchDataState';
-import { toggleSelector } from '../../recoil/ToggleState';
-import BlogMainTop from './BlogMain/BlogMainTop';
-import { BlogDropDown } from './BlogMain/BlogDropDown';
-import { BlogSpoToggle } from './BlogMain/BlogSpoToggle';
-import BlogSearchArticle from './BlogMain/BlogSearchArticle';
-import BlogRenderArticle from './BlogMain/BlogRenderArticle';
-import BlogScrollArticle from './BlogMain/BlogScrollArticle';
+import { SearchDataState } from '../../../recoil/SearchDataState';
+import { toggleSelector } from '../../../recoil/ToggleState';
+import BlogMainTop from './components/BlogMainTop';
+import { BlogDropDown } from './components/BlogDropDown';
+import { BlogSpoToggle } from './components/BlogSpoToggle';
+import BlogSearchArticle from './components/BlogSearchArticle';
+import BlogRenderArticle from './components/BlogRenderArticle';
+import BlogScrollArticle from './components/BlogScrollArticle';
 
 export default function BlogMain() {
   const searchArticleData = useRecoilValue(SearchDataState);

@@ -5,7 +5,7 @@ import NotFound from './pages/NotFound/NotFound';
 import Main from './pages/Main/Main';
 import Login from './pages/Login/Login';
 import KakaoLogin from './pages/Login/components/KakaoLogin';
-import BlogMain from './pages/Blog/BlogMain';
+import BlogMain from './pages/Blog/BlogMain/BlogMain';
 import EventList from './pages/Event/EventList';
 import EventDetail from './pages/Event/EventDetail';
 import Membership from './pages/Membership/Membership';

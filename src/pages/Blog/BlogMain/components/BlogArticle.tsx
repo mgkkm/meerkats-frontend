@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import LikeScrapBtn from '../../../components/LikeScrapBtn/LikeScrapBtn';
+import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
 import { useNavigate } from 'react-router-dom';
 
 interface BlogArticleProps {

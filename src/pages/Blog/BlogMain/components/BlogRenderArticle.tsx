@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { ArticleDataState } from '../../../recoil/ArticleDataState';
-import { toggleSelector } from '../../../recoil/ToggleState';
-import { tokenState } from '../../../recoil/TokenState';
-import useAxios from '../../../hooks/useAxios';
+import { ArticleDataState } from '../../../../recoil/ArticleDataState';
+import { toggleSelector } from '../../../../recoil/ToggleState';
+import { tokenState } from '../../../../recoil/TokenState';
+import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
-import { blogCreatedAt } from '../../../components/CreatedAt/CreatedAt';
+import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 
 export default function BlogRenderArticle() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;

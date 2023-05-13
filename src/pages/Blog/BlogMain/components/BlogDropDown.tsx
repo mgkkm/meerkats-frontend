@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { ArticleDataState } from '../../../recoil/ArticleDataState';
+import { ArticleDataState } from '../../../../recoil/ArticleDataState';
 
 export const BlogDropDown = memo(() => {
   const [selectGenre, setSelectGenre] = useState('모든 장르');
