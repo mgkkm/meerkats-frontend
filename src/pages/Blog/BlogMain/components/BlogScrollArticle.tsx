@@ -55,7 +55,7 @@ export default function BlogScrollArticle() {
     <>
       <section>
         {articles?.map((el: any) => {
-          const nonSpoData = el.data.nonSpoPostData;
+          const nonSpoData = el?.data?.nonSpoPostData;
           const spoData = el?.data?.spoPostData;
           const spoToggleData = toggle ? spoData : nonSpoData;
           return spoToggleData?.map((el: any) => {
