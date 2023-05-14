@@ -37,16 +37,16 @@ export default function EventSchedule({ findEvent }: eventProps) {
             return (
               <ul
                 key={info.id}
-                className="flex justify-around text-center text-lg font-medium mb-3"
+                className="flex justify-around text-center text-lg font-medium mb-3 xs:text-sm"
               >
-                <li className="w-1/5 h-20 flex p-5 border-r border-solid border-mkGray">
+                <li className="w-1/5 h-20 flex p-5 xs:px-2 xs:border-none xl:border-r xl:border-solid xl:border-mkGray ">
                   <i className="fa-regular fa-calendar text-mkOrange text-2xl mr-5 py-1" />
                   <span className="py-1">{info.date}</span>
                 </li>
-                <li className="w-1/5 py-6 border-r border-solid border-mkGray">
+                <li className="w-1/5 xs:py-8 xs:border-none xl:py-6 xl:border-r xl:border-solid xl:border-mkGray">
                   {info.time}
                 </li>
-                <li className="w-3/5 h-20  flex py-3 ">
+                <li className="w-3/5 h-20 flex py-3 ">
                   <i className="fa-solid fa-location-dot text-mkOrange text-2xl py-2.5 ml-7 mr-5" />
                   <span className="text-left py-3">{info.address}</span>
                 </li>
@@ -55,7 +55,7 @@ export default function EventSchedule({ findEvent }: eventProps) {
           })}
       </div>
       <div className="text-center">
-        <button onClick={clickHandler} className="btn btn-ghost ">
+        <button onClick={clickHandler} className="btn btn-ghost sm:mt-7">
           SEE MORE
           {show ? (
             <span className="fa-solid fa-caret-up ml-2.5 text-xl" />

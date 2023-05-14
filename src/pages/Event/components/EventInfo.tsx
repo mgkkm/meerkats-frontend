@@ -35,11 +35,11 @@ export default function EventInfo() {
     data !== null && data.find((item: EventData) => item.id === event);
 
   return (
-    <div className="flex justify-center font-semibold">
-      <div className="w-1/3 h-[650px] shadow-2xl mr-10 mt-6">
+    <div className="flex justify-center font-semibold xl:p-10">
+      <div className="shadow-2xl xs:hidden sm:hidden md:hidden xl:w-1/2 xl:h-[650px] xl:block xl:mr-10 xl:mt-6">
         <img src={findEvent.img} alt="movie_img" className="w-full h-[100%]" />
       </div>
-      <div className="w-[55%] px-5 ">
+      <div className="w-[55%] px-5 xs:w-full sm:w-full md:w-10/12">
         <h1 className="border-b border-solid border-mkGray text-3xl py-5 mt-3">
           {findEvent.title}
         </h1>
@@ -52,7 +52,7 @@ export default function EventInfo() {
             상품
             <span className="ml-3 text-black">{findEvent.product}</span>
           </li>
-          <li className=" font-medium">
+          <li className="xs:text-sm xl:text-base ">
             [이벤트 안내] {findEvent.title} 개봉 기념 특별 이벤트! <br />
             {findEvent.place}에서만 진행되는 이벤트로 여러분을 초대합니다.
             <br /> 오직 이곳에서만 즐길 수 있는 영화 경험과 {findEvent.product}

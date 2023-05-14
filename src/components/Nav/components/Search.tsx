@@ -10,14 +10,14 @@ export default function Search() {
   return (
     <div>
       <button
-        className={`btn btn-ghost btn-circle mr-12 opacity-90 ${
+        className={`btn btn-ghost btn-circle opacity-90${
           searchInput ? 'hidden' : 'block'
         }`}
         onClick={() => setSearchInput(!searchInput)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 ml-[0.5rem]"
+          className="h-8 w-8 max-sm:w-6 max-sm:h-6 ml-[0.5rem]"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
