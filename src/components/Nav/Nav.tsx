@@ -21,30 +21,34 @@ export default function Nav({ show }: HidePropsType) {
 
   return (
     <div
-      className={`navbar bg-base-100 fixed top-0 flex items-center py-6 px-7 shadow visible transition duration-500 ease-in-out z-10 ${
+      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-6 xl:px-7 shadow visible transition duration-500 ease-in-out z-10${
         show ? '' : 'opacity-0'
       }`}
     >
-      <div className="navbar-start ml-5">
+      <div className="navbar-start ml-5 xs:w-28 sm:w-36 md:w-44 xl:w-52">
         <div className="dropdown">
           <SideBar />
         </div>
       </div>
       <div className="navbar-center">
         <Link to="/">
-          <img alt="logo" src="/images/logo_b.png" className="w-52" />
+          <img
+            alt="logo"
+            src="/images/logo_b.png"
+            className="w-52 max-md:w-32"
+          />
         </Link>
       </div>
-      <div className="navbar-end flex items-center mr-5">
+      <div className="navbar-end flex items-center justify-between xs:w-28 sm:w-36 md:w-44 xl:w-52">
         <Search />
         <div
-          className="navBlogBtn w-12 h-12 mr-12 hover:bg-[#e6e7e9] rounded-full text-[2rem] text-center cursor-pointer"
+          className="navBlogBtn w-12 h-12 hover:bg-[#e6e7e9] rounded-full text-[2rem] text-center cursor-pointer"
           onClick={() => navigate('/blogMain')}
         >
-          <i className="fa-regular fa-b inline-block pt-[0.47rem] pl-[0.2rem] opacity-90" />
+          <i className="fa-regular fa-b inline-block pt-[0.47rem] pl-[0.2rem] opacity-90 max-sm:text-[25px]" />
         </div>
         <div
-          className="navIsUser w-12 h-12 mr-5 mb-1 hover:bg-[#e6e7e9] rounded-full text-center text-base leading-[1.1rem] font-semibold cursor-pointer"
+          className="navIsUser w-12 h-12 mb-1 hover:bg-[#e6e7e9] rounded-full text-center leading-[1.1rem] font-semibold cursor-pointer max-sm:text-sm"
           onClick={logInNOut}
         >
           <span className="inline-block pt-[0.5rem] opacity-90">

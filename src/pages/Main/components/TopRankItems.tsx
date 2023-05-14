@@ -28,7 +28,7 @@ export default function TopRankItems({ item }: topRankProps) {
           <div className="bg-white w-[410px] h-[550px] absolute opacity-50" />
           <button
             onClick={moveHandler}
-            className="absolute bottom-0 border-2 border-solid border-black bg-white py-4 w-full"
+            className="absolute w-full bottom-0 border-2 border-solid border-black bg-white xs:text-[10px] max-md:py-2 xl:py-4"
           >
             MORE
           </button>
