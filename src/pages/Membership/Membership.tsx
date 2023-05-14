@@ -26,7 +26,7 @@ export const MEMBERSHIP_CARD_DATA = [
   {
     id: 1,
     type: 'Basic',
-    price: '15,900',
+    price: '23,900',
     content: 'Get 2 FREE tickets \n Enjoy the best deals for couples',
     ticket: 2,
     benefit: [
@@ -38,7 +38,7 @@ export const MEMBERSHIP_CARD_DATA = [
   {
     id: 2,
     type: 'Premium',
-    price: '29,900',
+    price: '35,900',
     content: 'Get 4 FREE tickets \n Perfect fit for families with children',
     ticket: 4,
     benefit: [
@@ -50,11 +50,11 @@ export const MEMBERSHIP_CARD_DATA = [
   {
     id: 3,
     type: 'Super',
-    price: '35,900',
+    price: '39,900',
     content: 'Get 4 FREE tickets \n Exclusively for moviegoers',
     ticket: 4,
     benefit: [
-      { id: 1, content: 'Get 2 FREE Movie Tickets' },
+      { id: 1, content: 'Get 4 FREE Movie Tickets' },
       { id: 2, content: 'Movie Primere Tickets' },
       { id: 3, content: 'Share Benefits with your Friends' },
     ],
