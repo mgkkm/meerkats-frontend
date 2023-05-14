@@ -20,7 +20,7 @@ export default function MainTab() {
 
   return (
     <div className="container xl">
-      <h1 className=" text-3xl text-center mb-20 font-[ChosunGs]">
+      <h1 className="text-center font-[ChosunGs] xs:text-lg xs:mb-5 sm:mb-10 sm:text-2xl xl:text-4xl xl:mb-20">
         Meet Your Next Movie
       </h1>
       <div className="tabs justify-center">
@@ -28,10 +28,10 @@ export default function MainTab() {
           return (
             <div
               key={idx}
-              className={`tab font-semibold text-base w-48 h-10 mr-5 mb-8	${
+              className={`tab font-semibold h-10 mr-5 mb-8 xs:text-[12px] xs:h-8 xs:ml-3 sm:w-28 sm:text-xs md:w-36 md:text-sm xl:w-48${
                 activeTab === idx
                   ? ' bg-white border-4 border-solid border-mkOrange text-black rounded'
-                  : 'hover:border-4 border-solid border-mkGray rounded'
+                  : 'hover:border-4 border-solid border-mkGray rounded xs:text-[12px]'
               }`}
               onClick={() => tabClickHandler(idx)}
             >
@@ -40,7 +40,7 @@ export default function MainTab() {
           );
         })}
       </div>
-      <div className=" tabContent m-auto w-[1400px] h-[830px] flex flex-wrap justify-around overflow-hidden">
+      <div className="tabContent m-auto flex flex-wrap justify-around overflow-hidden xl:w-[1400px] xl:h-[830px] md:w-fit md:h-[480px] sm:w-fit sm:h-[390px] xs:h-[245px]">
         {content !== undefined &&
           content.map((item, idx) => {
             return <TabItems key={idx} item={item} />;

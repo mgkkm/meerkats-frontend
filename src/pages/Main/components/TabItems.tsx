@@ -25,14 +25,14 @@ export default function TabItems({ item }: tabProps) {
       key={item.id}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
-      className="relative px-2 mb-2 w-[250px] "
+      className="relative px-2 mb-2 xs:w-24 sm:w-36 md:w-44 xl:w-[250px] "
     >
       {isHover && (
         <div className="z-100">
-          <div className="bg-white w-[235px] h-96 absolute opacity-50" />
+          <div className="absolute bg-white h-96 opacity-50 xs:w-20 sm:w-32 md:w-40 xl:w-[235px]" />
           <button
             onClick={moveHandler}
-            className="absolute bottom-0 border-2 border-solid border-black bg-white py-4 w-[235px]"
+            className="absolute py-4 text-lg bottom-0 border-2 border-solid border-black bg-white xs:w-20 max-md:text-[10px] max-md:py-2 sm:w-32 md:w-40 xl:w-[235px]"
           >
             MORE
           </button>

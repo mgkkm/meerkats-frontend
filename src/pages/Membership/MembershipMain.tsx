@@ -13,7 +13,7 @@ export default function MembershipMain() {
         className="mb-14 hover:cursor-pointer"
         onClick={() => navigate('/membership')}
       >
-        <p className="text-4xl flex justify-center font-[ChosunGs] font-semibold text-center">
+        <p className="text-center font-[ChosunGs] xl:text-4xl xl:mb-20 sm:mb-10 sm:text-2xl xs:text-lg xs:mb-5">
           Enjoy the benefits of the meerkats membership!
         </p>
         <p className="text-lg flex justify-center text-mkGray mt-3">

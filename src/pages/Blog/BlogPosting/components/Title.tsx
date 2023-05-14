@@ -18,7 +18,7 @@ export default function Title() {
       <input
         type="text"
         placeholder="Title"
-        className=" w-full h-20 text-4xl	py-4 outline-0"
+        className=" w-full h-20 text-4xl max-sm:text-3xl	py-4 outline-0"
         onChange={changeHandler}
         value={blogPost.title}
       />
