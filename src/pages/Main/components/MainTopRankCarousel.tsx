@@ -1,4 +1,3 @@
-import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper';
 import { useRecoilValue } from 'recoil';
@@ -10,12 +9,11 @@ import 'swiper/css/navigation';
 
 export default function MainTopRankCarousel() {
   const mainData = useRecoilValue(mainDataState);
-
   const bestMovie = mainData[0].bestMovie;
 
   return (
     <div className="container xl">
-      <h1 className=" text-4xl text-center mb-14 font-[ChosunGs]">
+      <h1 className="text-center font-[ChosunGs] xs:text-lg xs:mb-5 sm:mb-10 sm:text-2xl xl:text-4xl xl:mb-20">
         Best Movie in Meerkats
       </h1>
 
@@ -26,11 +24,11 @@ export default function MainTopRankCarousel() {
         autoplay={{ delay: 1500 }}
         navigation={true}
         modules={[Navigation, Autoplay]}
-        className="h-[500px]  p-4"
+        className="p-4 xl:h-[500px] max-md:h-fit"
       >
         {bestMovie.map((item, idx) => {
           return (
-            <SwiperSlide key={idx} className="w-fit h-fit b">
+            <SwiperSlide key={idx} className="w-fit h-fit">
               <TopRankItems item={item} />
             </SwiperSlide>
           );
