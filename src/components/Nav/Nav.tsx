@@ -21,11 +21,11 @@ export default function Nav({ show }: HidePropsType) {
 
   return (
     <div
-      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-6 xl:px-7 shadow visible transition duration-500 ease-in-out z-10${
+      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-6 xl:px-7 shadow visible transition duration-500 ease-in-out z-10 ${
         show ? '' : 'opacity-0'
       }`}
     >
-      <div className="navbar-start ml-5 xs:w-28 sm:w-36 md:w-44 xl:w-52">
+      <div className="navbar-start ml-5">
         <div className="dropdown">
           <SideBar />
         </div>
@@ -39,7 +39,7 @@ export default function Nav({ show }: HidePropsType) {
           />
         </Link>
       </div>
-      <div className="navbar-end flex items-center justify-between xs:w-28 sm:w-36 md:w-44 xl:w-52">
+      <div className="navbar-end flex items-center gap-8 mr-3">
         <Search />
         <div
           className="navBlogBtn w-12 h-12 hover:bg-[#e6e7e9] rounded-full text-[2rem] text-center cursor-pointer"
