@@ -15,8 +15,9 @@ type dataType = {
 };
 
 export default function GoogleLoginBtn() {
-  const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
+  const navigate = useNavigate();
   const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
@@ -24,7 +25,7 @@ export default function GoogleLoginBtn() {
     onSuccess: async (response: { access_token: string }) => {
       const accessToken = response.access_token;
       fetchData({
-        url: 'http://172.20.10.5:3000/users/google-login',
+        url: `${BASE_URL}/users/google-login`,
         method: 'POST',
         headers: {
           authorization: accessToken,
