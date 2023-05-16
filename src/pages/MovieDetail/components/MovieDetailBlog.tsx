@@ -7,7 +7,7 @@ export default function MovieDetailBlog() {
   const movieBlogData = useRecoilValue(movieBlogState);
 
   return (
-    <div className="w-full flex justify-center flex-wrap gap-9">
+    <div className="w-full grid grid-cols-1 justify-items-center gap-9 md:max-lg:grid-cols-2 xl:grid-cols-2">
       {movieBlogData?.map(blogPost => {
         return <MovieDetailBlogCard key={blogPost.id} blogPost={blogPost} />;
       })}
