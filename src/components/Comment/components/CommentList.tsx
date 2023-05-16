@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { commentState } from '../../../recoil/CommentState';
+import { CommentData, commentState } from '../../../recoil/CommentState';
 import DropDownBtn from './DropDownBtn';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { displayCreatedAt } from '../../CreatedAt/CreatedAt';
@@ -10,6 +10,10 @@ import { renderingState } from '../../../recoil/BlogPostState';
 import { numberState } from '../../../recoil/NumberState';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+interface CommentListData {
+  data: CommentData[];
+}
 
 export default function CommentList() {
   const param = useParams();
@@ -30,7 +34,7 @@ export default function CommentList() {
   useEffect(() => {
     fetchData({
       url: getAxiosUrl,
-    }).then((data: any) => {
+    }).then((data: CommentListData) => {
       setCommentData(data.data);
       setCommentN(data.data.length);
     });
