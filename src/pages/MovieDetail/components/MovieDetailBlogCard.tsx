@@ -16,7 +16,7 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
 
   return (
     <div
-      className="w-[23rem] h-52 flex mb-10 bg-white relative drop-shadow-md"
+      className="w-[23rem] h-52 flex mb-10 bg-white relative drop-shadow-md md:max-lg:w-[20rem] md:max-lg:h-44"
       key={id}
       onMouseOver={() => setBlogHover(true)}
       onMouseLeave={() => setBlogHover(false)}
@@ -39,7 +39,7 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
         </div>
       </div>
       {blogHover && (
-        <div className="w-[23rem] h-52 bg-white opacity-90 absolute cursor-pointer">
+        <div className="w-[23rem] h-52 bg-white opacity-90 absolute cursor-pointer md:max-lg:w-[20rem] md:max-lg:h-44">
           <div className="mt-12 h-[50px] flex flex-col justify-center text-center">
             <p className="text-ml font-semibold px-12 box-content overflow-hidden text-ellipsis line-clamp-2 underline underline-offset-4">
               {title}

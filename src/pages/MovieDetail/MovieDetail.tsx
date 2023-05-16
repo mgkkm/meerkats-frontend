@@ -12,7 +12,6 @@ import {
   movieBlogState,
   playlistYoutubeState,
 } from '../../recoil/MovieDetailState';
-import { CommentData } from '../../recoil/CommentState';
 import {
   currentUserIdState,
   currentUserNicknameState,
@@ -68,10 +67,7 @@ export interface PlaylistYoutubeData extends MainYoutubeData {
 interface MovieDetailData {
   data: {
     movieInfo: MovieHeaderData;
-    andMore: {
-      movieTrailerComments: CommentData[];
-      blogLikesAndPopularitySorting: MovieBlogData[];
-    };
+    andMore: MovieBlogData[];
     mainYoutube: MainYoutubeData;
     playlistYoutube: PlaylistYoutubeData[];
   };
@@ -117,7 +113,7 @@ export default function MovieDetail() {
         const { movieInfo, andMore, mainYoutube, playlistYoutube } =
           result.data;
         setMovieHeaderData(movieInfo);
-        setMovieBlogData(andMore.blogLikesAndPopularitySorting);
+        setMovieBlogData(andMore);
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
