@@ -40,14 +40,14 @@ export const SearchModal = memo(() => {
 
   return (
     <div className="relative z-50">
-      <div className="flex flex-row items-center h-1/2 mr-7">
+      <div className="flex flex-row items-center h-1/2">
         <input
-          className="input input-bordered relative inline-block w-72 mr-3 border-2 shadow-sm"
+          className="input input-bordered inline-block w-72 border-2 mr-3 shadow-sm"
           placeholder="검색어를 입력해주세요"
           onChange={searchInputHandler}
         />
         <button
-          className="btn btn-ghost btn-circle absolute top-0 right-[4rem] mr-7 opacity-70"
+          className="btn btn-ghost btn-circle search-btn2 absolute right-[4rem] opacity-70"
           onClick={searchAxios}
         >
           <svg
@@ -66,7 +66,7 @@ export const SearchModal = memo(() => {
           </svg>
         </button>
         <button
-          className="btn btn-circle btn-outline inline-block border-none hover:bg-mkLightGray hover:text-mkGray"
+          className="btn btn-circle btn-outline close-btn inline-block border-none hover:bg-mkLightGray hover:text-mkGray"
           onClick={closeSearchInput}
         >
           <svg
