@@ -10,7 +10,7 @@ export default function Search() {
   return (
     <div>
       <button
-        className={`btn btn-ghost btn-circle opacity-90${
+        className={`btn btn-ghost btn-circle search-btn opacity-90 ${
           searchInput ? 'hidden' : 'block'
         }`}
         onClick={() => setSearchInput(!searchInput)}
