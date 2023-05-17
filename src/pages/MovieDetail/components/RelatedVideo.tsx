@@ -36,10 +36,10 @@ export default function RelatedVideo({
 
   return (
     <div className="flex items-center h-28" key={videoId}>
-      <div className="h-[96px] w-[168px] relative">
+      <div className="w-[168px] h-[96px] relative">
         <img src={thumbnail} alt="thumbnail" className="w-full h-full" />
         <div
-          className="h-full w-full bg-black absolute top-0 opacity-10 hover:opacity-50 hover:cursor-pointer"
+          className="w-full h-full bg-black absolute top-0 opacity-10 hover:opacity-50 hover:cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         />
       </div>
@@ -50,9 +50,9 @@ export default function RelatedVideo({
           modalTop={modalTop}
         />
       )}
-      <div className="px-3 w-[78%] lg:w-[259px]">
+      <div className="px-3 w-[78%] h-[96px] lg:w-[259px]">
         <p
-          className="font-semibold h-12 overflow-hidden text-ellipsis line-clamp-2 hover:underline hover:underline-offset-4 hover:cursor-pointer"
+          className="font-semibold overflow-hidden text-ellipsis line-clamp-2 hover:underline hover:underline-offset-4 hover:cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
           {title}
