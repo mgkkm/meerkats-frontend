@@ -50,16 +50,7 @@ export const movieBlogState = atom<MovieBlogData[]>({
 
 export const playlistYoutubeState = atom<PlaylistYoutubeData[]>({
   key: 'playlistYoutubeState',
-  default: [
-    {
-      videoId: '',
-      title: '',
-      channel: '',
-      thumbnail: '',
-      viewCount: '',
-      publishedAt: '',
-    },
-  ],
+  default: undefined,
 });
 
 export const playerRefState = atom({
