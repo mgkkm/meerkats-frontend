@@ -17,6 +17,7 @@ import {
   currentUserNicknameState,
 } from '../../recoil/JwtDecode';
 import { DecodeToken } from '../../components/DecodeToken/DecodeToken';
+import { MoviePlayerSkeleton } from '../../components/Skeleton/MovieDetailSkeleton';
 
 export interface MovieHeaderData {
   category: {
@@ -52,6 +53,7 @@ export interface MovieBlogData {
   weeklyLikeCount: number;
   blogLikes: number;
 }
+
 interface MainYoutubeData {
   videoId: string;
 }
@@ -93,6 +95,7 @@ export default function MovieDetail() {
   const setIsMovieLiked = useSetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
+  const setMoreArrowToggle = useSetRecoilState(toggleSelector('moreArrow'));
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
@@ -117,6 +120,7 @@ export default function MovieDetail() {
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
+        setMoreArrowToggle(false);
         DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
@@ -128,19 +132,23 @@ export default function MovieDetail() {
       resetPlaylistYoutubeState();
       resetIsMovieLiked();
     };
-  }, []);
+  }, [postId]);
 
   return (
     <div className="container xl pt-24">
-      <div className="h-[630px] w-full">
-        <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
-      </div>
+      {loading || !mainVideoId ? (
+        <MoviePlayerSkeleton />
+      ) : (
+        <div className="h-[630px] w-full">
+          <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
+        </div>
+      )}
       <div className="lg:flex justify-around gap-5 mt-5">
         <div className="movieDetailLeft w-full lg:w-2/3 max-lg:mb-24">
           <MovieDetailHeader />
           <MovieDetailTab />
         </div>
-        <TrailerPlaylist />
+        <TrailerPlaylist loading={loading} />
       </div>
     </div>
   );
