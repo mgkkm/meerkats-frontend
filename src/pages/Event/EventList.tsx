@@ -25,7 +25,7 @@ export default function EventList() {
 
   useEffect(() => {
     fetchData({
-      url: 'http://localhost:3000/data/eventInfo.json',
+      url: '/data/eventInfo.json',
     });
   }, []);
 
@@ -42,7 +42,7 @@ export default function EventList() {
   };
 
   return (
-    <div className="container xl pt-24 pb-14 px-20 xs:p-0 bg-white">
+    <div className="container xl pt-48 pb-14 px-20 xs:p-0 bg-white">
       <h1 className="text-4xl text-center font-semibold my-14">
         Ongoing Event
       </h1>
