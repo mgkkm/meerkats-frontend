@@ -1,6 +1,6 @@
 import { useRecoilValue } from 'recoil';
-import { BlogArticle } from './BlogArticle';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
+import { BlogArticle } from './BlogArticle';
 import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 
 export default function BlogSearchArticle() {
@@ -17,7 +17,7 @@ export default function BlogSearchArticle() {
           thumbnail,
           title,
           commentCount,
-          weeklyLikeCount,
+          likeCount,
           spoiler_info_id,
         } = el;
 
@@ -30,7 +30,7 @@ export default function BlogSearchArticle() {
             nickname={nickname}
             commentCount={commentCount}
             blogDate={blogDate}
-            weeklyLikeCount={weeklyLikeCount}
+            likeCount={likeCount}
             spoiler_info_id={spoiler_info_id}
           />
         );
