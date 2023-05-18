@@ -52,6 +52,7 @@ export interface MovieBlogData {
   created_at: string;
   weeklyLikeCount: number;
   blogLikes: number;
+  blogScrap: number;
 }
 
 interface MainYoutubeData {
