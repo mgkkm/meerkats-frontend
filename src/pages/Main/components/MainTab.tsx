@@ -28,10 +28,10 @@ export default function MainTab() {
           return (
             <div
               key={idx}
-              className={`tab font-semibold h-10 mr-5 mb-8 xs:text-[12px] xs:h-8 xs:ml-3 sm:w-28 sm:text-xs md:w-36 md:text-sm xl:w-48${
+              className={`tab w-48 font-semibold text-xl h-10 mr-5 mb-8 xs:w-24 xs:text-[10px] xs:h-8 xs:ml-3 sm:w-28 sm:text-xs md:w-36 md:text-sm ${
                 activeTab === idx
                   ? ' bg-white border-4 border-solid border-mkOrange text-black rounded'
-                  : 'hover:border-4 border-solid border-mkGray rounded xs:text-[12px]'
+                  : 'hover:border-4 border-solid border-mkGray rounded xs:text-[10px]'
               }`}
               onClick={() => tabClickHandler(idx)}
             >
@@ -40,7 +40,7 @@ export default function MainTab() {
           );
         })}
       </div>
-      <div className="tabContent m-auto flex flex-wrap justify-around overflow-hidden xl:w-[1400px] xl:h-[830px] md:w-fit md:h-[480px] sm:w-fit sm:h-[390px] xs:h-[245px]">
+      <div className="tabContent w-fit m-auto flex flex-wrap justify-around overflow-hidden xs:h-[245px] sm:h-[390px] md:h-[480px] xl:h-fit">
         {content !== undefined &&
           content.map((item, idx) => {
             return <TabItems key={idx} item={item} />;

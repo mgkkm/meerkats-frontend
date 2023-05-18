@@ -51,7 +51,7 @@ body {
 
 .swiper-button-prev,
 .swiper-button-next {
-  @apply py-12 text-white xs:hidden sm:text-2xl md:text-4xl xl:text-6xl;
+  @apply py-12 px-28 text-white max-md:hidden sm:text-2xl md:px-10 md:py-8 md:text-4xl xl:text-6xl;
 }
 
 .swiper-button-prev::after,
