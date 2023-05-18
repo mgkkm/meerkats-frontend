@@ -9,9 +9,11 @@ interface BlogArticleProps {
   blogDate: number;
   commentCount: number;
   nickname: string;
-  weeklyLikeCount: number;
+  likeCount: number;
   spoiler_info_id: number;
 }
+
+// likeCount 로 바꾸기
 
 export const BlogArticle = memo((props: BlogArticleProps) => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
     blogDate,
     commentCount,
     nickname,
-    weeklyLikeCount,
+    likeCount,
     spoiler_info_id,
   } = props;
 
@@ -58,7 +60,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
               postId={`${id}`}
               btnSize="text-xl"
             />
-            <span className="text-base ml-2">{weeklyLikeCount}</span>
+            <span className="text-base ml-2">{likeCount}</span>
           </div>
         </div>
       </div>

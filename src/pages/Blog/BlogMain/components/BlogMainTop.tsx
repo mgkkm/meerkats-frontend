@@ -1,14 +1,46 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
+import { myblogArticleDataState } from '../../../../recoil/ArticleDataState';
+import { toggleSelector } from '../../../../recoil/ToggleState';
+import useAxios from '../../../../hooks/useAxios';
 import Search from './Search';
 import { warningAlert } from '../../../../components/Alert/Modal';
 
+type dataType = {
+  data: {
+    thisUserWrittenPosts: [];
+  };
+};
+
 export default function BlogMainTop() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [loading, error, data, fetchData] = useAxios();
+  const setMyblogBtn = useSetRecoilState(toggleSelector('My blog'));
+  const setMyblogData = useSetRecoilState(myblogArticleDataState);
+  const resetMyblogData = useResetRecoilState(myblogArticleDataState);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(1);
+  const token = sessionStorage.getItem('token');
 
   const tabClickHandler = (id: number, title: string) => {
     setActiveTab(id);
+
+    if (title === 'My blog') {
+      fetchData({
+        url: `${BASE_URL}/blog/main/mypost?take=6&skip=0`,
+        method: 'POST',
+        headers: {
+          Authorization: token,
+        },
+      }).then((res: dataType) => {
+        setMyblogData(res);
+        setMyblogBtn(true);
+      });
+    } else {
+      setMyblogBtn(false);
+      resetMyblogData();
+    }
   };
 
   const isUser = () => {
