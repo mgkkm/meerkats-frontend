@@ -60,7 +60,7 @@ export default function PaymentInfo() {
       </div>
       <div>
         <p className="text-xl font-semibold py-5">Payment Details</p>
-        <div className="grid grid-cols-2 gap-x-32 items-center">
+        <div className="grid grid-cols-2 gap-x-14 sm:gap-x-32 items-center">
           {PAYMENT_DETAILS.map(item => {
             return <PaymentInput key={item.id} item={item} />;
           })}

@@ -29,8 +29,8 @@ export default function PaymentInput({ item }: PaymentInputProps) {
   };
 
   return (
-    <div key={id}>
-      <p>{detail}</p>
+    <div className={`${id === 2 && 'max-sm:col-span-2'}`} key={id}>
+      <p className="text-sm sm:text-base">{detail}</p>
       <input
         className={`w-${width} focus:outline-none focus:border-b-black border-[1.5px] border-x-transparent border-t-transparent border-b-mkLightGray mt-1 mb-5 placeholder:text-base`}
         type="input"

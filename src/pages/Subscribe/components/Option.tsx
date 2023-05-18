@@ -14,7 +14,7 @@ export default function Option({ currentType, changeType }: subscribeProps) {
         return (
           <div className="form-control" key={id}>
             <label
-              className="label cursor-pointer max-sm:w-[24rem] w-[28rem] flex relative"
+              className="label cursor-pointer sm:w-[28rem] max-sm:block"
               onClick={() => {
                 changeType(id);
               }}
@@ -33,7 +33,9 @@ export default function Option({ currentType, changeType }: subscribeProps) {
                   }`}</p>
                 </div>
               </div>
-              <p className="">{price} / month</p>
+              <span className="ml-[3.25rem] font-semibold max-sm:mt-3">
+                ₩ {price} / month
+              </span>
             </label>
           </div>
         );

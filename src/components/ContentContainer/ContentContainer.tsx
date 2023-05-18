@@ -29,7 +29,7 @@ export default function ContentContainer({
   }, [location]);
 
   return (
-    <div className=" h-auto relative pb-28" onWheel={scrollHandler}>
+    <div className="h-auto relative pb-28" onWheel={scrollHandler}>
       {children}
       <TopBtn />
     </div>

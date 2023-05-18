@@ -38,15 +38,15 @@ export default function Subscribe() {
 
   return (
     <div className="container xl pt-24">
-      <div className="bg-white pt-24 px-14 pb-10 flex justify-center gap-44 max-lg:block">
-        <div className="subscriptionLeft max-lg:mb-10">
+      <div className="bg-white pt-24 pb-10 lg:flex justify-center xl:gap-36">
+        <div className="subscriptionLeft max-lg:mb-10 max-lg:pl-10">
           <p className="text-3xl font-semibold">Subscribe meerkats!</p>
           <div className="py-10 text-mkDarkGray flex flex-col gap-10">
             <Option currentType={currentType} changeType={changeType} />
             <PaymentInfo />
           </div>
         </div>
-        <div className="subscriptionRight w-96 max-lg:w-full">
+        <div className="subscriptionRight lg:w-96">
           <div className="flex justify-center">
             <MembershipCard
               key={currentType && currentType - 1}
