@@ -1,16 +1,63 @@
 import { useEffect, useRef, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
+import { scrollArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
 import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+
+type elType = {
+  data: {
+    nonSpoPostData: [
+      category_id: number,
+      commentCount: number,
+      created_at: string,
+      id: number,
+      likeCount: number,
+      spoiler_info_id: number,
+      thumbnail: string,
+      title: string,
+      user: {
+        nickname: string;
+      }
+    ];
+    spoPostData: [
+      category_id: number,
+      commentCount: number,
+      created_at: string,
+      id: number,
+      likeCount: number,
+      spoiler_info_id: number,
+      thumbnail: string,
+      title: string,
+      user: {
+        nickname: string;
+      }
+    ];
+  };
+};
+
+// type elelType = {
+//   category_id: number;
+//   commentCount: number;
+//   created_at: string;
+//   id: number;
+//   likeCount: number;
+//   spoiler_info_id: number;
+//   thumbnail: string;
+//   title: string;
+//   user: {
+//     nickname: string;
+//   };
+// };
 
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션
 export default function BlogScrollArticle() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const pageEnd = useRef<any>();
-  const [articles, setArticles] = useState([] as any); // article list
+  const [articles, setArticles] = useRecoilState(scrollArticleDataState);
+  const myBlogBtn = useRecoilValue(toggleSelector('My blog'));
   const [page, setPage] = useState<number>(1); // 현재 페이지
   const [load, setLoad] = useState<boolean>(false); // 로딩 성공, 실패를 담을 sstate
   let [offset, setOffset] = useState<number>(6); // offset 상태관리
@@ -54,38 +101,39 @@ export default function BlogScrollArticle() {
   return (
     <>
       <section>
-        {articles?.map((el: any) => {
-          const nonSpoData = el?.data?.nonSpoPostData;
-          const spoData = el?.data?.spoPostData;
-          const spoToggleData = toggle ? spoData : nonSpoData;
-          return spoToggleData?.map((el: any) => {
-            const nickname = el.user.nickname;
-            const blogDate = blogCreatedAt(el.created_at);
+        {myBlogBtn ||
+          articles?.map((el: elType) => {
+            const nonSpoData = el?.data?.nonSpoPostData;
+            const spoData = el?.data?.spoPostData;
+            const spoToggleData = toggle ? spoData : nonSpoData;
+            return spoToggleData?.map((el: any) => {
+              const nickname = el.user.nickname;
+              const blogDate = blogCreatedAt(el.created_at);
 
-            const {
-              id,
-              thumbnail,
-              title,
-              commentCount,
-              weeklyLikeCount,
-              spoiler_info_id,
-            } = el;
+              const {
+                id,
+                thumbnail,
+                title,
+                commentCount,
+                likeCount,
+                spoiler_info_id,
+              } = el;
 
-            return (
-              <BlogArticle
-                key={id}
-                id={id}
-                title={title}
-                thumbnail={thumbnail}
-                nickname={nickname}
-                commentCount={commentCount}
-                blogDate={blogDate}
-                weeklyLikeCount={weeklyLikeCount}
-                spoiler_info_id={spoiler_info_id}
-              />
-            );
-          });
-        })}
+              return (
+                <BlogArticle
+                  key={id}
+                  id={id}
+                  title={title}
+                  thumbnail={thumbnail}
+                  nickname={nickname}
+                  commentCount={commentCount}
+                  blogDate={blogDate}
+                  likeCount={likeCount}
+                  spoiler_info_id={spoiler_info_id}
+                />
+              );
+            });
+          })}
       </section>
 
       {/* observer */}

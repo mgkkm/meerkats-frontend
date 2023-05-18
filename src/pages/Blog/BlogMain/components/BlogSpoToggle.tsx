@@ -1,12 +1,13 @@
 import { memo } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 
 export const BlogSpoToggle = memo(() => {
   const [toggle, setToggle] = useRecoilState(toggleSelector('spo'));
+  const myBlogBtn = useRecoilValue(toggleSelector('My blog'));
 
   return (
-    <div className="spo-toggle inline-block mx-6">
+    <div className={`spo-toggle ${myBlogBtn ? 'hidden' : 'inline-block'} mx-6`}>
       <label className="label">
         <span
           className={`label-text text-xl font-semibold mr-3 ${
