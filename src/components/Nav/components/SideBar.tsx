@@ -48,7 +48,7 @@ export default function SideBar() {
       </label>
       <ul
         tabIndex={0}
-        className={`menu dropdown-content p-3.5 mt-3 shadow bg-base-100 max-md:w-60 max-md:text-sm max-xl:w-96  ${
+        className={`menu dropdown-content w-96 p-3.5 mt-3 shadow bg-base-100 max-md:w-60 max-md:text-sm   ${
           show ? 'block' : 'hidden'
         }`}
       >

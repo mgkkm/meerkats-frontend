@@ -13,7 +13,7 @@ export default function TopBtn() {
       onClick={scrollToTop}
       className={`${
         hide ? 'opacity-0' : 'opacity-100'
-      } btn  rounded-none bg-mkLightGray border-mkLightGray hover:bg-mkGray hover:border-mkGray fixed bottom-10 right-16 z-50`}
+      } btn rounded-none bg-mkLightGray border-mkLightGray hover:bg-mkGray hover:border-mkGray fixed bottom-10 right-16 z-50 max-md:hidden`}
     >
       <i className="fa-solid fa-angle-up text-xl text-white" />
     </button>
