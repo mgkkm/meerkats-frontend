@@ -96,10 +96,12 @@ export default function MovieDetailHeader() {
             </div>
             <div className="flex text-sm text-mkDarkGray mb-1">
               <p className="mr-3 w-7 font-semibold">출연</p>
-              {actorArray.map((name: string) => {
+              {actorArray.map((name, idx) => {
                 return (
                   <>
-                    <span className="px-1.5">{name}</span>
+                    <span className="px-1.5" key={idx}>
+                      {name}
+                    </span>
                     <span className="text-mkLightGray ml-2 mr-1 last:hidden">
                       |
                     </span>
@@ -109,7 +111,7 @@ export default function MovieDetailHeader() {
             </div>
             <div className="flex text-sm text-mkDarkGray mt-3 mb-1">
               <p className="mr-3 w-7 font-semibold">내용</p>
-              <p className="px-1.5 w-fit">{parse(isBlank(summary))}</p>
+              <div className="px-1.5 pb-3 w-fit">{parse(isBlank(summary))}</div>
             </div>
             <div className="flex justify-center items-center h-5">
               <IoIosArrowUp className="text-3xl" />
