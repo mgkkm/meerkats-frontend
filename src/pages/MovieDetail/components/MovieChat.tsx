@@ -6,8 +6,8 @@ import { useRecoilValue } from 'recoil';
 import { currentUserNicknameState } from '../../../recoil/JwtDecode';
 import { failedNavigateAlert } from '../../../components/Alert/Modal';
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
-const socket = io(`${BASE_URL}`);
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
+const socket = io(`${SOCKET_URL}`);
 
 interface MessageDataType {
   room: number;
@@ -113,7 +113,7 @@ export default function MovieChat() {
         </div>
         <div className="h-[1px] bg-gradient-to-r from-mkBg via-mkLightGray to-mkBg" />
         <div className="chatContent">
-          <ScrollToBottom className="h-[600px]">
+          <ScrollToBottom className="h-[450px] sm:h-[600px]">
             <div className="chat chat-start px-3 mt-5">
               <div className="chat-bubble">
                 meerkats 유저들과 영화에 대한 생각을 나눠보세요!

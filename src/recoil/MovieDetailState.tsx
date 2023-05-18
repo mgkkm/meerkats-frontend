@@ -44,6 +44,7 @@ export const movieBlogState = atom<MovieBlogData[]>({
       created_at: '',
       weeklyLikeCount: 0,
       blogLikes: 0,
+      blogScrap: 0,
     },
   ],
 });
