@@ -21,12 +21,12 @@ export default function Terms() {
   const renewalDay = day + nthNumber(day);
 
   return (
-    <div className="mt-14 px-2">
+    <div className="mt-14 px-2 flex flex-col items-center">
       <div className="flex">
         <input type="checkbox" className="checkbox" />
         <p className="font-semibold ml-3">Auto-renew my membership MONTHLY</p>
       </div>
-      <p className="text-sm text-mkGray mt-4">
+      <p className="text-sm text-mkGray mt-4 px-5">
         By Choosing auto-renew, you authorize meerkats to automatically charge
         the credit / debit card number listed on a monthly basis, at the
         then-current price for the membership category you have chosen. <br />
@@ -34,7 +34,7 @@ export default function Terms() {
         cancel at any time prior to the auto-renewal date by emailing us at
         meerkats@mgkkm.com.
       </p>
-      <p className="text-sm text-mkGray mt-4">
+      <p className="text-sm text-mkGray mt-4 px-5">
         Date of purchase memberships start on the day that they were purchased
         on. Your membership will renew on the
       </p>
