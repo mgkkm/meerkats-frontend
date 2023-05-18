@@ -18,16 +18,16 @@ export default function MainCarousel() {
         clickable: true,
       }}
       modules={[Pagination, Navigation, Autoplay]}
-      className="mt-24 xs:h-[200px] sm:h-[350px] md:h-[450px] xl:h-[600px]"
+      className="mt-24 xs:h-[200px] sm:h-[300px] md:h-[400px] xl:h-[550px]"
     >
       <SwiperSlide>
-        <div className="h-full shadow-xl">
+        <a href="movieDetail/71" className="h-full shadow-xl">
           <img
             className="m-auto w-full h-full "
             alt="main_poster"
             src="/images/Main/main_poster_1.jpeg"
           />
-        </div>
+        </a>
       </SwiperSlide>
       <SwiperSlide>
         <div className="h-full shadow-xl">
@@ -39,22 +39,22 @@ export default function MainCarousel() {
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-full shadow-xl">
+        <a href="movieDetail/11" className="h-full shadow-xl">
           <img
             className="m-auto w-full h-full"
-            alt="main_poster"
-            src="https://search.pstatic.net/common?quality=75&direct=true&src=https%3A%2F%2Fmovie-phinf.pstatic.net%2F20230420_107%2F1681956724322CsJcl_JPEG%2Fmovie_image.jpg"
+            alt="main_poster3"
+            src="/images/Main/main_poster_3.jpg"
           />
-        </div>
+        </a>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-full shadow-xl">
+        <a href="movieDetail/23" className="h-full shadow-xl">
           <img
             className="m-auto w-full h-full"
-            alt="main_poster"
-            src="https://image.wavve.com/v1/thumbnails/2480_1016_20_80/banner/pooq/2023/20230504_banner_143602.webp"
+            alt="main_poster4"
+            src="/images/Main/main_poster_4.jpg"
           />
-        </div>
+        </a>
       </SwiperSlide>
     </Swiper>
   );
