@@ -11,8 +11,16 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
   const navigate = useNavigate();
   const [blogHover, setBlogHover] = useState(false);
 
-  const { id, user, title, thumbnail, created_at, blogLikes, content } =
-    blogPost ?? {};
+  const {
+    id,
+    user,
+    title,
+    thumbnail,
+    created_at,
+    blogLikes,
+    blogScrap,
+    content,
+  } = blogPost ?? {};
 
   return (
     <div
@@ -34,7 +42,7 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
           <p className="text-xs mt-1">{created_at?.split('T')[0]}</p>
           <div className="flex mt-7">
             <p className="text-xs mr-3">Like {blogLikes}</p>
-            <p className="text-xs">Scrap 1</p>
+            <p className="text-xs">Scrap {blogScrap}</p>
           </div>
         </div>
       </div>
