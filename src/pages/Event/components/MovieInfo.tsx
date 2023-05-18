@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import MoviePlayer from '../../MovieDetail/components/MoviePlayer';
 import { useParams } from 'react-router-dom';
@@ -9,7 +9,7 @@ export default function MovieInfo() {
   const param = useParams();
   useEffect(() => {
     fetchData({
-      url: 'http://localhost:3000/data/eventInfo.json',
+      url: '/data/eventInfo.json',
     }).then();
   }, []);
 

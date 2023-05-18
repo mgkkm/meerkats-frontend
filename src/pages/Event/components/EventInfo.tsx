@@ -27,7 +27,7 @@ export default function EventInfo() {
 
   useEffect(() => {
     fetchData({
-      url: 'http://localhost:3000/data/eventInfo.json',
+      url: '/data/eventInfo.json',
     });
   }, []);
 

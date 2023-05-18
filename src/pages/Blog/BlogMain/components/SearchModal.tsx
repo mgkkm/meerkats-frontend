@@ -34,7 +34,6 @@ export const SearchModal = memo(() => {
     fetchData({
       url: `${BASE_URL}/search/blog?postTitle=${searchValue}`,
     }).then((res: any) => {
-      console.log(res);
       setSearchArticleData(res);
       setCloseBtn(false);
     });
