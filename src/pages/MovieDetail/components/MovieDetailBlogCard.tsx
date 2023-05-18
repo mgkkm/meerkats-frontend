@@ -40,7 +40,7 @@ export default function MovieDetailBlogCard({ blogPost }: MovieBlogCardProps) {
       </div>
       {blogHover && (
         <div className="w-[23rem] h-52 bg-white opacity-90 absolute cursor-pointer md:max-lg:w-[20rem] md:max-lg:h-44">
-          <div className="mt-12 h-[50px] flex flex-col justify-center text-center">
+          <div className="mt-12 h-[50px] flex items-center justify-center text-center">
             <p className="text-ml font-semibold px-12 box-content overflow-hidden text-ellipsis line-clamp-2 underline underline-offset-4">
               {title}
             </p>
