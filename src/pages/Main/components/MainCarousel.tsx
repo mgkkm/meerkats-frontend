@@ -23,20 +23,20 @@ export default function MainCarousel() {
       <SwiperSlide>
         <div className="h-full shadow-xl">
           <img
-            className="m-auto w-full h-full "
+            className="m-auto w-full h-full"
             alt="main_poster"
             src="/images/Main/main_poster_1.jpeg"
           />
         </div>
       </SwiperSlide>
       <SwiperSlide>
-        <div className="h-full shadow-xl">
+        <a className="h-full shadow-xl" href="movieDetail/1191">
           <img
             className="m-auto w-full h-full"
             alt="main_poster"
             src="/images/Main/main_poster_2.jpeg"
           />
-        </div>
+        </a>
       </SwiperSlide>
       <SwiperSlide>
         <div className="h-full shadow-xl">
