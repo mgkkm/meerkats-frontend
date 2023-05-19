@@ -96,7 +96,6 @@ export default function MovieDetail() {
   const setIsMovieLiked = useSetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
-  const setMoreArrowToggle = useSetRecoilState(toggleSelector('moreArrow'));
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
@@ -104,6 +103,7 @@ export default function MovieDetail() {
   const resetIsMovieLiked = useResetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
+  const resetMoreArrowToggle = useResetRecoilState(toggleSelector('moreArrow'));
 
   useEffect(() => {
     fetchData({
@@ -121,7 +121,6 @@ export default function MovieDetail() {
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
-        setMoreArrowToggle(false);
         DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
@@ -132,6 +131,7 @@ export default function MovieDetail() {
       setMainVideoId('');
       resetPlaylistYoutubeState();
       resetIsMovieLiked();
+      resetMoreArrowToggle();
     };
   }, [postId]);
 

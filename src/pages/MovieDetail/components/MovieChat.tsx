@@ -70,7 +70,7 @@ export default function MovieChat() {
         time:
           new Date(Date.now()).getHours() +
           ':' +
-          new Date(Date.now()).getMinutes(),
+          `${new Date().getMinutes()}`.padStart(2, '0'),
       };
       await socket.emit('send_message', messageData);
       setMessageList(
@@ -127,7 +127,11 @@ export default function MovieChat() {
                   }`}
                   key={id}
                 >
-                  <div className="chat-header mb-1">
+                  <div
+                    className={`chat-header mb-1 ${
+                      username !== author && 'ml-1'
+                    }`}
+                  >
                     {author}
                     <time className="text-xs opacity-50 px-1.5">{time}</time>
                   </div>

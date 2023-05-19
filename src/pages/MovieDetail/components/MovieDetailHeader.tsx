@@ -37,7 +37,7 @@ export default function MovieDetailHeader() {
   const actorArray = isBlank(actor) === '미정' ? ['미정'] : actor.split(',');
 
   const handleMore = () => {
-    setMoreArrowToggle(true);
+    setMoreArrowToggle(!moreArrowToggle);
   };
 
   return (
