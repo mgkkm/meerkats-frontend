@@ -1,11 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MEMBERSHIP_CARD_DATA } from './Membership';
+import { useRecoilState } from 'recoil';
+import { currencyFormat } from '../../components/CurrencyFormat/CurrencyFormat';
+import useAxios from '../../hooks/useAxios';
+import { membershipState } from '../../recoil/MembershipState';
+import { MembershipData } from './Membership';
 
 export default function MembershipMain() {
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
+  const [loading, error, data, fetchData] = useAxios();
 
   const [currentTab, setCurrentTab] = useState(2);
+  const [membershipData, setMembershipData] = useRecoilState(membershipState);
+
+  useEffect(() => {
+    fetchData({
+      url: `${BASE_URL}/membership`,
+      headers: {
+        'Content-Type': `application/json`,
+      },
+    }).then((result: MembershipData) => {
+      if (result) {
+        setMembershipData(result.data);
+      }
+    });
+  }, []);
 
   return (
     <div className="container xl">
@@ -21,7 +41,7 @@ export default function MembershipMain() {
         </p>
       </div>
       <div className="max-[1100px]:block lg:w-full flex justify-center gap-16 lg:gap-10 xl:gap-16">
-        {MEMBERSHIP_CARD_DATA.map(({ id, type, price, content }) => {
+        {membershipData?.map(({ id, name, price, content }) => {
           return (
             <div
               key={id}
@@ -39,7 +59,7 @@ export default function MembershipMain() {
                 }
               >
                 <p className="text-4xl flex justify-center font-black">
-                  {type}
+                  {name}
                 </p>
                 <div className="w-2/3 h-[2.5px] mx-auto my-5 bg-black" />
                 <p className="text-ml text-mkGray flex justify-center text-center whitespace-pre-line">
@@ -47,7 +67,7 @@ export default function MembershipMain() {
                 </p>
                 <div className="flex justify-center items-baseline gap-1">
                   <p className="mt-5 text-3xl flex justify-center font-semibold">
-                    ₩ {price}
+                    {currencyFormat(price)}
                   </p>
                   <p className="text-lg font-semibold">/ month</p>
                 </div>
