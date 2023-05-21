@@ -58,10 +58,12 @@ export default function RelatedVideo({
           {title}
         </p>
         <p className="text-sm mt-1.5">{channel}</p>
-        <span className="text-xs">
-          {viewCount && `조회 ${viewCountFormat(viewCount)}`}
-        </span>
-        <span className="px-2 text-xs">{publishedAt?.split('T')[0]}</span>
+        {viewCount && (
+          <span className="text-xs mr-2">
+            조회 {viewCountFormat(viewCount)}
+          </span>
+        )}
+        <span className="text-xs">{publishedAt?.split('T')[0]}</span>
       </div>
     </div>
   );
