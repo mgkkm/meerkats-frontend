@@ -45,7 +45,7 @@ export default function ModalPlayer({
         ref={modalRef}
         onClick={modalOutsideClick}
       />
-      <div className="w-3/4 h-[630px] absolute" tabIndex={0}>
+      <div className="w-full sm:w-3/4 absolute" tabIndex={0}>
         <MoviePlayer videoId={videoId} height="630" autoplay={1} />
       </div>
     </div>

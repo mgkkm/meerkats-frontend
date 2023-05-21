@@ -96,7 +96,8 @@ export default function MovieDetail() {
   const setIsMovieLiked = useSetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
-  const setMoreArrowToggle = useSetRecoilState(toggleSelector('moreArrow'));
+
+  const [playerHeight, setPlayerHeight] = useState('');
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
@@ -104,6 +105,7 @@ export default function MovieDetail() {
   const resetIsMovieLiked = useResetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
+  const resetMoreArrowToggle = useResetRecoilState(toggleSelector('moreArrow'));
 
   useEffect(() => {
     fetchData({
@@ -121,7 +123,6 @@ export default function MovieDetail() {
         setMainVideoId(mainYoutube.videoId);
         setPlaylistYoutubeData(playlistYoutube);
         setIsMovieLiked(movieInfo.isLikedByThisUser);
-        setMoreArrowToggle(false);
         DecodeToken(setCurrentId, setCurrentNickname);
       }
     });
@@ -132,16 +133,41 @@ export default function MovieDetail() {
       setMainVideoId('');
       resetPlaylistYoutubeState();
       resetIsMovieLiked();
+      resetMoreArrowToggle();
     };
   }, [postId]);
+
+  useEffect(() => {
+    const handleHeight = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        setPlayerHeight('350');
+      } else if (screenWidth >= 640 && screenWidth < 1024) {
+        setPlayerHeight('550');
+      } else {
+        setPlayerHeight('630');
+      }
+    };
+    handleHeight();
+
+    window.addEventListener('resize', handleHeight);
+
+    return () => {
+      window.removeEventListener('resize', handleHeight);
+    };
+  }, [playerHeight]);
 
   return (
     <div className="container xl pt-24">
       {loading || !mainVideoId ? (
         <MoviePlayerSkeleton />
       ) : (
-        <div className="h-[630px] w-full">
-          <MoviePlayer videoId={mainVideoId} height="630" autoplay={1} />
+        <div className="w-full">
+          <MoviePlayer
+            videoId={mainVideoId}
+            height={playerHeight}
+            autoplay={1}
+          />
         </div>
       )}
       <div className="lg:flex justify-around gap-5 mt-5">
