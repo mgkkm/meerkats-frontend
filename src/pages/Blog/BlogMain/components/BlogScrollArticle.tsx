@@ -5,6 +5,7 @@ import { scrollArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
 import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
 type elType = {
   data: {
@@ -57,7 +58,7 @@ export default function BlogScrollArticle() {
   const [loading, error, data, fetchData] = useAxios();
   const pageEnd = useRef<any>();
   const [articles, setArticles] = useRecoilState(scrollArticleDataState);
-  const myBlogBtn = useRecoilValue(toggleSelector('My blog'));
+  const myBlogBtn = useRecoilValue(myBlogBtnState);
   const [page, setPage] = useState<number>(1); // 현재 페이지
   const [load, setLoad] = useState<boolean>(false); // 로딩 성공, 실패를 담을 sstate
   let [offset, setOffset] = useState<number>(6); // offset 상태관리

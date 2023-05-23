@@ -6,6 +6,8 @@ import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 export default function BlogSearchArticle() {
   const searchArticleData = useRecoilValue(SearchDataState);
 
+  console.log(searchArticleData);
+
   return (
     <section className="mt-14 xl:mt-10 z-10">
       {searchArticleData?.data?.map((el: any) => {

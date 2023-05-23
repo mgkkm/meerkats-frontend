@@ -6,6 +6,7 @@ import {
 } from '../../../../recoil/ArticleDataState';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { tokenState } from '../../../../recoil/TokenState';
+import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
 import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
@@ -53,7 +54,7 @@ export default function BlogRenderArticle() {
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
-  const myBlogBtn = useRecoilValue(toggleSelector('My blog'));
+  const myBlogBtn = useRecoilValue(myBlogBtnState);
   const myBlogData = useRecoilValue(myblogArticleDataState);
 
   // token 관리 및 저장
