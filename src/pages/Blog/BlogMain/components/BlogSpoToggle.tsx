@@ -1,10 +1,11 @@
 import { memo } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
+import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
 export const BlogSpoToggle = memo(() => {
   const [toggle, setToggle] = useRecoilState(toggleSelector('spo'));
-  const myBlogBtn = useRecoilValue(toggleSelector('My blog'));
+  const myBlogBtn = useRecoilValue(myBlogBtnState);
 
   return (
     <div className={`spo-toggle ${myBlogBtn ? 'hidden' : 'inline-block'} mx-6`}>

@@ -13,7 +13,7 @@ export default function BlogMain() {
   const closeBtn = useRecoilValue(toggleSelector('close'));
 
   // *** to do 기능 ***
-  // 조건부 렌더링 (토글=완료 / my blog / 카테고리 필터링)
+  // 조건부 렌더링 (토글=완료 / my blog=완료 / 카테고리 필터링)
 
   return (
     <div className="px-32 pt-48 pb-28 bg-mkBg">

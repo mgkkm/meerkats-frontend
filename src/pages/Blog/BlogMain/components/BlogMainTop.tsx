@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { myblogArticleDataState } from '../../../../recoil/ArticleDataState';
-import { toggleSelector } from '../../../../recoil/ToggleState';
 import useAxios from '../../../../hooks/useAxios';
 import Search from './Search';
 import { warningAlert } from '../../../../components/Alert/Modal';
+import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
 type dataType = {
   data: {
@@ -16,7 +16,7 @@ type dataType = {
 export default function BlogMainTop() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
-  const setMyblogBtn = useSetRecoilState(toggleSelector('My blog'));
+  const setMyBlogBtn = useSetRecoilState(myBlogBtnState);
   const setMyblogData = useSetRecoilState(myblogArticleDataState);
   const resetMyblogData = useResetRecoilState(myblogArticleDataState);
   const navigate = useNavigate();
@@ -35,10 +35,10 @@ export default function BlogMainTop() {
         },
       }).then((res: dataType) => {
         setMyblogData(res);
-        setMyblogBtn(true);
+        setMyBlogBtn(true);
       });
     } else {
-      setMyblogBtn(false);
+      setMyBlogBtn(false);
       resetMyblogData();
     }
   };
