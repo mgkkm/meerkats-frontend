@@ -18,6 +18,7 @@ export default function BlogSearchArticle() {
           title,
           commentCount,
           likeCount,
+          isLikedByThisUser,
           spoiler_info_id,
         } = el;
 
@@ -31,6 +32,7 @@ export default function BlogSearchArticle() {
             commentCount={commentCount}
             blogDate={blogDate}
             likeCount={likeCount}
+            isLikedByThisUser={isLikedByThisUser}
             spoiler_info_id={spoiler_info_id}
           />
         );

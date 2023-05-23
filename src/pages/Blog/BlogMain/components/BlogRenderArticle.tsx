@@ -25,6 +25,7 @@ type elType = {
   created_at: string;
   id: number;
   likeCount: number;
+  isLikedByThisUser: boolean;
   spoiler_info_id: number;
   thumbnail: string;
   title: string;
@@ -40,6 +41,7 @@ type myBlogElType = {
   created_at: string;
   id: number;
   likeCount: number;
+  isLikedByThisUser: boolean;
   spoiler_info_id: number;
   thumbnail: string;
   title: string;
@@ -89,6 +91,7 @@ export default function BlogRenderArticle() {
               commentCount,
               spoiler_info_id,
               likeCount,
+              isLikedByThisUser,
             } = el;
 
             return (
@@ -101,6 +104,7 @@ export default function BlogRenderArticle() {
                 commentCount={commentCount}
                 blogDate={blogDate}
                 likeCount={likeCount}
+                isLikedByThisUser={isLikedByThisUser}
                 spoiler_info_id={spoiler_info_id}
               />
             );
@@ -115,6 +119,7 @@ export default function BlogRenderArticle() {
               title,
               commentCount,
               likeCount,
+              isLikedByThisUser,
               spoiler_info_id,
             } = el;
 
@@ -128,6 +133,7 @@ export default function BlogRenderArticle() {
                 commentCount={commentCount}
                 blogDate={blogDate}
                 likeCount={likeCount}
+                isLikedByThisUser={isLikedByThisUser}
                 spoiler_info_id={spoiler_info_id}
               />
             );
