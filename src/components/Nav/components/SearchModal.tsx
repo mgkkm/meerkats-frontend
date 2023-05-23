@@ -4,6 +4,7 @@ import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../recoil/ToggleState';
 import { navSearchDataState } from '../../../recoil/SearchDataState';
 import useAxios from '../../../hooks/useAxios';
+import { navSearchState } from '../../../recoil/SearchState';
 
 type dataType = {
   data: [];
@@ -13,7 +14,7 @@ export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const navigate = useNavigate();
-  const setSearchInput = useSetRecoilState(toggleSelector('navSearch'));
+  const setSearchInput = useSetRecoilState(navSearchState);
   const [searchData, setSearchData] = useRecoilState(navSearchDataState);
   const setCloseBtn = useSetRecoilState(toggleSelector('close'));
   const resetSearchData = useResetRecoilState(navSearchDataState);

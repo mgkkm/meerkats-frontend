@@ -1,11 +1,9 @@
 import { useRecoilState } from 'recoil';
-import { toggleSelector } from '../../../../recoil/ToggleState';
+import { searchState } from '../../../../recoil/SearchState';
 import { SearchModal } from './SearchModal';
 
 export default function Search() {
-  const [searchInput, setSearchInput] = useRecoilState(
-    toggleSelector('search')
-  );
+  const [searchInput, setSearchInput] = useRecoilState(searchState);
 
   return (
     <div>

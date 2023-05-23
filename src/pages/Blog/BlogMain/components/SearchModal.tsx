@@ -3,6 +3,7 @@ import { useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
 import useAxios from '../../../../hooks/useAxios';
+import { searchState } from '../../../../recoil/SearchState';
 
 // type itemType = {
 //   title: string;
@@ -11,7 +12,7 @@ import useAxios from '../../../../hooks/useAxios';
 export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
-  const setSearchInput = useSetRecoilState(toggleSelector('search'));
+  const setSearchInput = useSetRecoilState(searchState);
   const setSearchArticleData = useSetRecoilState(SearchDataState);
   const setCloseBtn = useSetRecoilState(toggleSelector('close'));
   const [searchValue, setSearchValue] = useState<string>('');
