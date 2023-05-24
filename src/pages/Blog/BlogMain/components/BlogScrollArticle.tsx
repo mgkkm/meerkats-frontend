@@ -117,6 +117,7 @@ export default function BlogScrollArticle() {
                 title,
                 commentCount,
                 likeCount,
+                isLikedByThisUser,
                 spoiler_info_id,
               } = el;
 
@@ -130,6 +131,7 @@ export default function BlogScrollArticle() {
                   commentCount={commentCount}
                   blogDate={blogDate}
                   likeCount={likeCount}
+                  isLikedByThisUser={isLikedByThisUser}
                   spoiler_info_id={spoiler_info_id}
                 />
               );

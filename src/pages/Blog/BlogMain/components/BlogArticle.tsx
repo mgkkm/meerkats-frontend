@@ -1,6 +1,9 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { numberState } from '../../../../recoil/NumberState';
+import { toggleState } from '../../../../recoil/ToggleState';
 
 interface BlogArticleProps {
   id: number;
@@ -10,10 +13,9 @@ interface BlogArticleProps {
   commentCount: number;
   nickname: string;
   likeCount: number;
+  isLikedByThisUser: boolean;
   spoiler_info_id: number;
 }
-
-// likeCount 로 바꾸기
 
 export const BlogArticle = memo((props: BlogArticleProps) => {
   const navigate = useNavigate();
@@ -26,8 +28,19 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
     commentCount,
     nickname,
     likeCount,
+    isLikedByThisUser,
     spoiler_info_id,
   } = props;
+
+  const setLikeToggle = useSetRecoilState(toggleState(`blogLike${id}`));
+  const [likeNumber, setLikeNumber] = useRecoilState(
+    numberState(`blogLike${id}`)
+  );
+
+  useEffect(() => {
+    setLikeNumber(likeCount);
+    setLikeToggle(isLikedByThisUser);
+  }, []);
 
   const toBlogDetail = () => {
     navigate(`/blogDetail/${id}`);
@@ -60,7 +73,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
               postId={`${id}`}
               btnSize="text-xl"
             />
-            <span className="text-base ml-2">{likeCount}</span>
+            <span className="text-base ml-2">{likeNumber || 0}</span>
           </div>
         </div>
       </div>
