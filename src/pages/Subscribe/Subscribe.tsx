@@ -1,26 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import {
-  subscriptionFeeState,
-  subscriptionTypeState,
-} from '../../recoil/PaymentState';
-
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { subscriptionIdState } from '../../recoil/PaymentState';
 import MembershipCard from '../Membership/components/MembershipCard';
-import { MEMBERSHIP_CARD_DATA } from '../Membership/Membership';
 import Option from './components/Option';
 import PaymentInfo from './components/PaymentInfo';
 import Terms from './components/Terms';
 import SubscribeBtn from './components/SubscribeBtn';
+import { membershipState } from '../../recoil/MembershipState';
+import { MembershipData } from '../Membership/Membership';
+import useAxios from '../../hooks/useAxios';
 
 export default function Subscribe() {
   const navigate = useNavigate();
   const params = useParams();
   const selectedType = params.id;
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const [loading, error, data, fetchData] = useAxios();
+
+  const [membershipInfo, setMembershipInfo] = useRecoilState(membershipState);
 
   const [currentType, setCurrentType] = useState(Number(selectedType));
-  const setSubscriptionType = useSetRecoilState(subscriptionTypeState);
-  const setSubscriptionFee = useSetRecoilState(subscriptionFeeState);
+
+  const setSubscriptionId = useSetRecoilState(subscriptionIdState);
 
   const changeType = (id: number) => {
     setCurrentType(id);
@@ -28,18 +30,26 @@ export default function Subscribe() {
   };
 
   useEffect(() => {
-    setSubscriptionFee(
-      parseInt(MEMBERSHIP_CARD_DATA[currentType - 1].price.replace(',', ''))
-    );
-    setSubscriptionType(
-      MEMBERSHIP_CARD_DATA[currentType && currentType - 1].type
-    );
-  }, [currentType]);
+    if (membershipInfo[0].id === 0) {
+      fetchData({
+        url: `${BASE_URL}/membership`,
+        headers: {
+          'Content-Type': `application/json`,
+        },
+      }).then((result: MembershipData) => {
+        if (result) {
+          setMembershipInfo(result.data);
+        }
+      });
+    } else {
+      setSubscriptionId(membershipInfo[currentType && currentType - 1].id);
+    }
+  }, [membershipInfo, currentType]);
 
   return (
     <div className="container xl pt-24">
       <div className="bg-white pt-24 pb-10 lg:flex justify-center xl:gap-36">
-        <div className="subscriptionLeft max-lg:mb-10 max-lg:pl-10">
+        <div className="subscriptionLeft max-lg:mb-10 max-md:pl-10 md:max-lg:pl-20 lg:pl-8">
           <p className="text-3xl font-semibold">Subscribe meerkats!</p>
           <div className="py-10 text-mkDarkGray flex flex-col gap-10">
             <Option currentType={currentType} changeType={changeType} />
@@ -50,7 +60,7 @@ export default function Subscribe() {
           <div className="flex justify-center">
             <MembershipCard
               key={currentType && currentType - 1}
-              membership={MEMBERSHIP_CARD_DATA[currentType && currentType - 1]}
+              membership={membershipInfo[currentType && currentType - 1]}
             />
           </div>
           <Terms />

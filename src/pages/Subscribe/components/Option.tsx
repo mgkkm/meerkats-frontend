@@ -1,5 +1,7 @@
 import React from 'react';
-import { MEMBERSHIP_CARD_DATA } from '../../Membership/Membership';
+import { useRecoilValue } from 'recoil';
+import { currencyFormat } from '../../../components/CurrencyFormat/CurrencyFormat';
+import { membershipState } from '../../../recoil/MembershipState';
 
 type subscribeProps = {
   currentType: number;
@@ -7,10 +9,12 @@ type subscribeProps = {
 };
 
 export default function Option({ currentType, changeType }: subscribeProps) {
+  const membershipInfo = useRecoilValue(membershipState);
+
   return (
     <div>
       <p className="text-xl font-semibold py-5">Subscription Options</p>
-      {MEMBERSHIP_CARD_DATA.map(({ id, type, price, ticket }) => {
+      {membershipInfo.map(({ id, name, price, ticketProvision }) => {
         return (
           <div className="form-control" key={id}>
             <label
@@ -27,14 +31,14 @@ export default function Option({ currentType, changeType }: subscribeProps) {
                   defaultChecked={currentType === id ? true : false}
                 />
                 <div>
-                  <p className="font-semibold">{type}</p>
-                  <p className="text-sm">{`Get ${ticket} FREE tickets ${
+                  <p className="font-semibold">{name}</p>
+                  <p className="text-sm">{`Get ${ticketProvision} FREE tickets ${
                     id === 3 && 'and MORE!'
                   }`}</p>
                 </div>
               </div>
               <span className="ml-[3.25rem] font-semibold max-sm:mt-3">
-                ₩ {price} / month
+                {currencyFormat(price)} / month
               </span>
             </label>
           </div>
