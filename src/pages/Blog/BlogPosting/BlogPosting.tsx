@@ -47,7 +47,7 @@ export default function BlogPosting() {
 
   return (
     <div className="container pt-24 h-full ">
-      <div className="m-auto py-5 bg-white xs:px-6 sm:px-10 md:px-16 xl:px-20 xl:w-3/4">
+      <div className="m-auto bg-white xs:px-6 sm:px-10 md:px-16 xl:px-20 xl:w-3/4">
         <Title />
         <Category />
         <CustomEditor />

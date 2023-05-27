@@ -32,7 +32,7 @@ export default function TabItems({ item }: tabProps) {
           <div className="absolute bg-white h-96 opacity-50 xs:w-20 sm:w-32 md:w-40 xl:w-[215px]" />
           <button
             onClick={moveHandler}
-            className="absolute py-4 text-lg bottom-0 border-2 border-solid border-black bg-white xs:w-20 max-md:text-[10px] max-md:py-2 sm:w-32 md:w-40 xl:w-[215px]"
+            className="absolute py-4 text-lg bottom-0 border-2 border-solid border-black bg-white xs:w-20 max-sm:text-[10px] max-sm:py-2 sm:w-32 md:w-40 xl:w-[215px]"
           >
             MORE
           </button>
