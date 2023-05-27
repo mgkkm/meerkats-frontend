@@ -58,7 +58,7 @@ export default function Category() {
       >
         <label
           tabIndex={0}
-          className="btn border-mkBlack border-2 border-solid text-mkBlack cursor-pointer max-sm:text-xs xs:w-32 mb-1 bg-white xl:w-44 hover:bg-white"
+          className="btn border-mkBlack border-2 border-solid text-mkBlack cursor-pointer max-sm:text-xs xs:w-28 mb-1 bg-white xl:w-44 hover:bg-white"
         >
           {selectGenre}
           <img
@@ -78,7 +78,7 @@ export default function Category() {
               return (
                 <li
                   key={item.id}
-                  className="h-15 cursor-pointer p-3"
+                  className="h-15 cursor-pointer p-3 max-sm:text-xs"
                   onClick={() => cateSelectHandler(item.id, item.name)}
                 >
                   {item.name}
@@ -104,7 +104,7 @@ export default function Category() {
         </label>
         <ul
           tabIndex={0}
-          className={`dropdown-content menu w-52 p-2 shadow bg-base-100 rounded-box ${
+          className={`dropdown-content menu w-52 p-2 shadow bg-base-100 rounded-box max-sm:w-48 ${
             show ? 'block' : 'hidden'
           } `}
         >
@@ -112,7 +112,7 @@ export default function Category() {
             return (
               <li
                 key={item.id}
-                className="h-15 cursor-pointer p-3"
+                className="h-15 cursor-pointer p-3 max-sm:text-xs"
                 onClick={() => spoSelectHandler(item.id, item.name)}
               >
                 {item.name}
