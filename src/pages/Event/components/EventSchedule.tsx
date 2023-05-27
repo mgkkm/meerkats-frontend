@@ -37,7 +37,7 @@ export default function EventSchedule({ findEvent }: eventProps) {
             return (
               <ul
                 key={info.id}
-                className="flex justify-around text-center text-lg font-medium mb-3 xs:text-sm"
+                className="flex justify-around text-center text-lg font-medium mb-3 max-md:text-xs"
               >
                 <li className="w-1/5 h-20 flex p-5 xs:px-2 xs:border-none xl:border-r xl:border-solid xl:border-mkGray ">
                   <i className="fa-regular fa-calendar text-mkOrange text-2xl mr-5 py-1" />
