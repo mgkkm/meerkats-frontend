@@ -82,6 +82,8 @@ export default function BlogDetail() {
     }).then((result: ResultData) => {
       if (result) {
         setBlogDetailData(result.data.postDetails);
+        resetIsLiked();
+        resetLikeN();
         setIsLiked(result.data.postDetails.isLikedByThisUser);
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
