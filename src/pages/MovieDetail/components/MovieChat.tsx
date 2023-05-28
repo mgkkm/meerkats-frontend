@@ -92,9 +92,8 @@ export default function MovieChat() {
     }
   };
 
-  const loginCheck = (e: React.MouseEvent<HTMLInputElement>) => {
-    const input = e.currentTarget;
-    if (input.readOnly && e.button === 0) {
+  const isLoggedIn = (e: React.MouseEvent<HTMLInputElement>) => {
+    if (!token) {
       failedNavigateAlert(
         'Login Required',
         'Please login and try again.',
@@ -156,7 +155,7 @@ export default function MovieChat() {
             onChange={e => setCurrentMessage(e.target.value)}
             onKeyPress={enterEvent}
             readOnly={!token}
-            onClick={loginCheck}
+            onClick={isLoggedIn}
           />
           <button
             className="btn absolute right-0 hover:bg-mkOrange hover:border-transparent"

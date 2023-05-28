@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
+import { useRecoilState } from 'recoil';
+import { validInputState } from '../../../recoil/PaymentState';
 
 export default function Terms() {
+  const [allValid, setAllValid] = useRecoilState(validInputState);
+
   const today = new Date();
   const day = today.getDate();
 
@@ -20,10 +24,14 @@ export default function Terms() {
 
   const renewalDay = day + nthNumber(day);
 
+  const handleCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
+    setAllValid({ ...allValid, autoRenewAgreement: e.target.checked });
+  };
+
   return (
     <div className="mt-14 px-2 flex flex-col items-center">
       <div className="flex">
-        <input type="checkbox" className="checkbox" />
+        <input type="checkbox" className="checkbox" onChange={handleCheckBox} />
         <p className="font-semibold ml-3">Auto-renew my membership MONTHLY</p>
       </div>
       <p className="text-sm text-mkGray mt-4 px-5">
