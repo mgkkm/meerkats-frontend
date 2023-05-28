@@ -1,9 +1,14 @@
 import { atom } from 'recoil';
 import { PaymentInputData } from '../pages/Subscribe/components/PaymentInput';
 
-export const subscriptionIdState = atom({
+export const subscriptionIdState = atom<number>({
   key: 'subscriptionIdState',
   default: 0,
+});
+
+export const subscribedMembershipIdState = atom<number | null>({
+  key: 'subscribedMembershipIdState',
+  default: null,
 });
 
 export const paymentMethodState = atom<undefined | number>({
