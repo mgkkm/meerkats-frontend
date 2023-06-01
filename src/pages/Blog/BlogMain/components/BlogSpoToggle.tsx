@@ -8,10 +8,12 @@ export const BlogSpoToggle = memo(() => {
   const myBlogBtn = useRecoilValue(myBlogBtnState);
 
   return (
-    <div className={`spo-toggle ${myBlogBtn ? 'hidden' : 'inline-block'} mx-6`}>
+    <div
+      className={`spo-toggle ${myBlogBtn ? 'hidden' : 'inline-block'} sm:mx-6`}
+    >
       <label className="label">
         <span
-          className={`label-text text-xl font-semibold mr-3 ${
+          className={`label-text text-base sm:text-xl font-semibold mr-3 ${
             toggle ? 'text-mkOrange' : 'text-mkLightGray'
           }`}
         >

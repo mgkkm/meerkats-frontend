@@ -1,10 +1,9 @@
 import React, { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { toggleSelector } from '../../../recoil/ToggleState';
 import { navSearchDataState } from '../../../recoil/SearchDataState';
 import useAxios from '../../../hooks/useAxios';
-import { navSearchState } from '../../../recoil/SearchState';
+import { closeSearchState, navSearchState } from '../../../recoil/SearchState';
 
 type dataType = {
   data: [];
@@ -16,7 +15,7 @@ export const SearchModal = memo(() => {
   const navigate = useNavigate();
   const setSearchInput = useSetRecoilState(navSearchState);
   const [searchData, setSearchData] = useRecoilState(navSearchDataState);
-  const setCloseBtn = useSetRecoilState(toggleSelector('close'));
+  const setCloseBtn = useSetRecoilState(closeSearchState);
   const resetSearchData = useResetRecoilState(navSearchDataState);
   const [searchValue, setSearchValue] = useState<string>('');
 

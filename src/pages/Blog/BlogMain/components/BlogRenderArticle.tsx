@@ -79,7 +79,7 @@ export default function BlogRenderArticle() {
     : articleData?.data?.nonSpoPostData;
 
   return (
-    <section className="mt-14 xl:mt-10 z-10">
+    <section className="flex flex-col lg:flex-row lg:flex-wrap justify-center m-auto xl:mt-10 z-10">
       {myBlogBtn
         ? myBlogData?.data?.thisUserWrittenPosts.map((el: myBlogElType) => {
             const nickname = el.user.nickname;
