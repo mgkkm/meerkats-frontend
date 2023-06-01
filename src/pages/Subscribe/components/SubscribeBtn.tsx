@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { successAlert, warningAlert } from '../../../components/Alert/Modal';
@@ -15,7 +16,7 @@ export default function SubscribeBtn() {
   const [loading, error, data, fetchData] = useAxios();
 
   const subscriptionId = useRecoilValue(subscriptionIdState);
-  const paymentMethod = useRecoilValue(paymentMethodState);
+  const paymentMethodId = useRecoilValue(paymentMethodState);
   const paymentInput = useRecoilValue(paymentInputState);
 
   const { cardNumber, nameOnCard, expiryDate, dateOfBirth, email } =
@@ -36,19 +37,19 @@ export default function SubscribeBtn() {
       },
       data: {
         membershipId: subscriptionId,
-        paymentMethod: paymentMethod,
+        paymentMethodId: paymentMethodId,
         cardNumber: cardNumber,
-        nameOnCard: nameOnCard,
+        paymentOwner: nameOnCard,
         cardExpirationYear: cardExpirationYear,
         cardExpirationMonth: cardExpirationMonth,
         customerIdentityNumber: dateOfBirth,
         customerEmail: email,
       },
     }).then((result: any) => {
-      if (result.message === 'SUCCESS') {
-        successAlert('Success!', '결제가 완료되었습니다.');
-      } else {
+      if (result.message.includes('failed')) {
         warningAlert('Wait!', result.response.data.message);
+      } else {
+        successAlert('Success!', result.message);
       }
     });
   };

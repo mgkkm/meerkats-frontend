@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { subscriptionIdState } from '../../recoil/PaymentState';
+import {
+  subscribedMembershipIdState,
+  subscriptionIdState,
+} from '../../recoil/PaymentState';
 import MembershipCard from '../Membership/components/MembershipCard';
 import Option from './components/Option';
 import PaymentInfo from './components/PaymentInfo';
@@ -11,6 +14,10 @@ import { membershipState } from '../../recoil/MembershipState';
 import { MembershipData } from '../Membership/Membership';
 import useAxios from '../../hooks/useAxios';
 
+interface thisUserMembershipData {
+  thisUserMembership: { membership_id: number } | null;
+}
+
 export default function Subscribe() {
   const navigate = useNavigate();
   const params = useParams();
@@ -18,11 +25,16 @@ export default function Subscribe() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
 
-  const [membershipInfo, setMembershipInfo] = useRecoilState(membershipState);
+  const token = sessionStorage.getItem('token');
+
+  const [membershipData, setMembershipData] = useRecoilState(membershipState);
 
   const [currentType, setCurrentType] = useState(Number(selectedType));
 
   const setSubscriptionId = useSetRecoilState(subscriptionIdState);
+  const setSubscribedMembershipId = useSetRecoilState(
+    subscribedMembershipIdState
+  );
 
   const changeType = (id: number) => {
     setCurrentType(id);
@@ -30,7 +42,7 @@ export default function Subscribe() {
   };
 
   useEffect(() => {
-    if (membershipInfo[0].id === 0) {
+    if (membershipData[0].id === 0) {
       fetchData({
         url: `${BASE_URL}/membership`,
         headers: {
@@ -38,13 +50,31 @@ export default function Subscribe() {
         },
       }).then((result: MembershipData) => {
         if (result) {
-          setMembershipInfo(result.data);
+          setMembershipData(result.data);
         }
       });
     } else {
-      setSubscriptionId(membershipInfo[currentType && currentType - 1].id);
+      setSubscriptionId(membershipData[currentType && currentType - 1].id);
     }
-  }, [membershipInfo, currentType]);
+  }, [membershipData, currentType]);
+
+  useEffect(() => {
+    token &&
+      fetchData({
+        url: `${BASE_URL}/membership`,
+        method: 'POST',
+        headers: {
+          Authorization: token,
+          'Content-Type': `application/json`,
+        },
+      }).then((result: thisUserMembershipData) => {
+        if (result) {
+          setSubscribedMembershipId(
+            result.thisUserMembership?.membership_id ?? null
+          );
+        }
+      });
+  }, []);
 
   return (
     <div className="container xl pt-24">
@@ -60,7 +90,7 @@ export default function Subscribe() {
           <div className="flex justify-center">
             <MembershipCard
               key={currentType && currentType - 1}
-              membership={membershipInfo[currentType && currentType - 1]}
+              membership={membershipData[currentType && currentType - 1]}
             />
           </div>
           <Terms />
