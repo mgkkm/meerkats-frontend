@@ -104,7 +104,7 @@ export default function BlogDetail() {
 
   return (
     <div className="container xl flex justify-center pt-48">
-      <div className="flex-row max-lg:w-full lg:w-3/4 bg-white px-20 py-10">
+      <div className="flex-row max-lg:w-full lg:w-3/4 bg-white px-10 md:px-20 py-10">
         <BlogHeader />
         <BlogContent />
         <BlogFooter />
