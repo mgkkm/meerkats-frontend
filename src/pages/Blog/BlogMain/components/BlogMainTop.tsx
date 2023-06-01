@@ -57,13 +57,14 @@ export default function BlogMainTop() {
   };
 
   return (
-    <div className="blog_top flex justify-between">
-      <div className="blog_top_left flex items-center text-xl">
+    <div className="blog_top lg:flex lg:justify-between lg:mb-10">
+      {/* deskTop */}
+      <div className="blog_top_left hidden sm:flex items-center text-xl">
         {TAB_DATA.map(({ id, title }) => {
           return (
             <div
               key={id}
-              className={`tab w-48 h-14 mr-8 text-xl font-semibold rounded-lg hover:border-4 hover:border-solid hover:border-mkGray ${
+              className={`tab w-48 lg:w-40 xl:w-52 h-14 mr-8 lg:mr-5 text-xl font-semibold rounded-lg hover:border-4 hover:border-solid hover:border-mkGray ${
                 activeTab === id
                   ? 'bg-white border-4 border-solid border-mkOrange hover:border-mkOrange rounded-lg text-black h-14'
                   : ''
@@ -77,10 +78,30 @@ export default function BlogMainTop() {
           );
         })}
       </div>
-      <div className="blog_top_right flex items-center">
+      {/* mobile */}
+      <div className="blog_top_left mobile_ver flex sm:hidden items-center text-xl">
+        {TAB_DATA.map(({ id, title }) => {
+          return (
+            <div
+              key={id}
+              className={`tab w-[50%] h-[3rem] mx-1 text-[1.1rem] font-semibold rounded-lg hover:border-[3px] hover:border-solid hover:border-mkGray ${
+                activeTab === id
+                  ? 'h-14 bg-white border-[3px] border-solid border-mkOrange hover:border-mkOrange rounded-lg text-black'
+                  : ''
+              }`}
+              onClick={() => {
+                tabClickHandler(id, title);
+              }}
+            >
+              {title}
+            </div>
+          );
+        })}
+      </div>
+      <div className="blog_top_right flex justify-end mt-5 sm:items-center lg:mt-0">
         <Search />
         <button
-          className="btn w-28 text-xl rounded-lg text-white bg-mkOrange hover:bg-mkDarkOrange border-none"
+          className="btn w-20 sm:w-28 text-base sm:text-xl rounded-lg text-white bg-mkOrange hover:bg-mkDarkOrange border-none"
           onClick={isUser}
         >
           글쓰기
