@@ -21,7 +21,7 @@ export const BlogDropDown = memo(() => {
     <div className="dropdown cursor-pointer" onClick={() => setShow(!show)}>
       <label
         tabIndex={0}
-        className="btn w-36 mb-1 bg-white hover:bg-white border-mkBlack border-2 border-solid text-base text-mkBlack cursor-pointer"
+        className="btn w-30 sm:w-36 mb-1 bg-white hover:bg-white border-mkBlack border-2 border-solid text-md sm:text-base text-mkBlack cursor-pointer"
       >
         {selectGenre}
         <img
@@ -32,12 +32,12 @@ export const BlogDropDown = memo(() => {
       </label>
       <ul
         tabIndex={0}
-        className={`dropdown-content menu w-52 p-2 shadow bg-base-100 rounded-box ${
+        className={`dropdown-content menu w-44 sm:w-52 p-2 shadow bg-base-100 rounded-box text-sm sm:text-base ${
           show ? 'block' : 'hidden'
         }`}
       >
         <li
-          className="h-15 cursor-pointer"
+          className="h-11 sm:h-15 cursor-pointer"
           onClick={() => dropDownAllGenre('모든 장르')}
         >
           <a className="active:bg-mkOrange rounded-md">모든 장르</a>
@@ -47,7 +47,7 @@ export const BlogDropDown = memo(() => {
             return (
               <li
                 key={item.id}
-                className="h-15 cursor-pointer"
+                className="h-11 sm:h-15 cursor-pointer"
                 onClick={() => dropDownHandler(item.name)}
               >
                 <a className="active:bg-mkOrange rounded-md">{item.name}</a>

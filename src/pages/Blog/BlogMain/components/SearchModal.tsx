@@ -1,9 +1,8 @@
 import React, { memo, useState } from 'react';
-import { useSetRecoilState } from 'recoil';
-import { toggleSelector } from '../../../../recoil/ToggleState';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
+import { closeSearchState, searchState } from '../../../../recoil/SearchState';
 import useAxios from '../../../../hooks/useAxios';
-import { searchState } from '../../../../recoil/SearchState';
 
 // type itemType = {
 //   title: string;
@@ -14,7 +13,8 @@ export const SearchModal = memo(() => {
   const [loading, error, data, fetchData] = useAxios();
   const setSearchInput = useSetRecoilState(searchState);
   const setSearchArticleData = useSetRecoilState(SearchDataState);
-  const setCloseBtn = useSetRecoilState(toggleSelector('close'));
+  const resetSearchArticleData = useResetRecoilState(SearchDataState);
+  const setCloseBtn = useSetRecoilState(closeSearchState);
   const [searchValue, setSearchValue] = useState<string>('');
   // const [searchData, setSearchData] = useState([] as any);
   // const [searchList, setSearchList] = useState(false);
@@ -26,6 +26,7 @@ export const SearchModal = memo(() => {
   const closeSearchInput = () => {
     setSearchInput(false);
     setCloseBtn(true);
+    resetSearchArticleData();
   };
 
   // 검색어를 입력하여, 검색 버튼을 클릭했을 때 통신이 되고
@@ -49,7 +50,8 @@ export const SearchModal = memo(() => {
 
   return (
     <div className="relative z-50">
-      <div className="flex flex-row items-center h-1/2 mr-7">
+      {/* Desktop */}
+      <div className="hidden sm:flex flex-row items-center h-1/2 mr-5">
         <input
           className="input input-bordered relative inline-block w-72 mr-3 border-2 shadow-sm"
           placeholder="검색어를 입력해주세요"
@@ -57,7 +59,7 @@ export const SearchModal = memo(() => {
           // onKeyUp={searchAxios}
         />
         <button
-          className="btn btn-ghost btn-circle absolute top-0 right-[4rem] mr-7 opacity-70"
+          className="btn btn-ghost btn-circle absolute right-[4rem] mr-7 opacity-70"
           onClick={searchAxios}
         >
           <svg
@@ -70,13 +72,13 @@ export const SearchModal = memo(() => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="3"
               d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
             />
           </svg>
         </button>
         <button
-          className="btn btn-circle btn-outline inline-block border-none hover:bg-mkLightGray hover:text-mkGray"
+          className="btn btn-circle btn-outline inline-block border-none text-mkGray hover:bg-mkLightGray hover:text-mkGray"
           onClick={closeSearchInput}
         >
           <svg
@@ -89,7 +91,54 @@ export const SearchModal = memo(() => {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeWidth="2"
+              strokeWidth="3"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      {/* mobile */}
+      <div className="flex sm:hidden flex-row items-center h-1/2 mr-3">
+        <input
+          className="input input-bordered relative inline-block w-50 mr-2 border-2 shadow-sm placeholder:text-[0.9rem]"
+          placeholder="검색어를 입력해주세요"
+          onChange={searchInputHandler}
+          // onKeyUp={searchAxios}
+        />
+        <button
+          className="btn btn-ghost btn-circle absolute right-[4rem] mr-[0.7rem] opacity-60"
+          onClick={searchAxios}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </button>
+        <button
+          className="btn btn-circle btn-outline inline-block border-none text-mkGray hover:bg-mkLightGray hover:text-mkGray"
+          onClick={closeSearchInput}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 ml-[0.85rem]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>

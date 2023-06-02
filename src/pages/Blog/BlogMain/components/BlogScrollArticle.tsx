@@ -101,7 +101,7 @@ export default function BlogScrollArticle() {
 
   return (
     <>
-      <section>
+      <section className="flex flex-col lg:flex-row lg:flex-wrap justify-center m-auto">
         {myBlogBtn ||
           articles?.map((el: elType) => {
             const nonSpoData = el?.data?.nonSpoPostData;

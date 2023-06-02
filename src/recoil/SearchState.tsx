@@ -5,6 +5,11 @@ export const searchState = atom({
   default: false,
 });
 
+export const closeSearchState = atom({
+  key: 'closeSearchState',
+  default: false,
+});
+
 export const navSearchState = atom({
   key: 'navSearchState',
   default: false,

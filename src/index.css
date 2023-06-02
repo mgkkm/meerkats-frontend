@@ -93,24 +93,22 @@ input[type='number']::-webkit-outer-spin-button {
 .blogPost {
   /* @apply @apply 주면 tailwind 클래스명으로 디자인 줄 수 있음! */
   position: relative;
-  display: inline-block;
-  width: 29.2%;
   height: 75%;
   padding-bottom: 0.5rem;
-  margin: 2.7rem 1.8rem;
+  margin: 2rem 2rem 4rem;
   background: white;
   border-radius: 0.25rem;
   overflow: hidden;
 }
 
 .blogThumbnail {
-  height: 20rem;
+  height: 18rem;
   background-size: cover;
   overflow: hidden;
 }
 
 .blogTextTitle {
-  margin: 4rem 1.75rem 0 1.75rem;
+  margin: 3rem 1.75rem 0 1.75rem;
   font-size: 1.25rem;
   font-weight: 600;
 }
@@ -155,4 +153,33 @@ input[type='number']::-webkit-outer-spin-button {
   padding-top: 0.75rem;
   font-weight: 600;
   color: #fff;
+}
+
+@media (min-width: 640px) {
+  .blogPost {
+    width: 75%;
+    margin: 2rem auto 3rem;
+  }
+
+  .blogThumbnail {
+    height: 20rem;
+  }
+
+  .blogTextTitle {
+    margin: 4rem 1.75rem 0 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .blogPost {
+    width: 43%;
+    margin: 2rem 1.5rem 4rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .blogPost {
+    width: 28.7%;
+    margin: 2rem 1.2rem 3rem;
+  }
 }

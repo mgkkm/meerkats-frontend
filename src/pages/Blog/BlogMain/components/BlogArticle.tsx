@@ -47,10 +47,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
   };
 
   return (
-    <article
-      key={id}
-      className="blogPost shadow-sm xl:mx-[1.6rem] xl:my-[2rem] xl:pb-2 2xl:pb-2"
-    >
+    <article key={id} className="blogPost shadow-sm">
       <div className="blogThumbnail cursor-pointer" onClick={toBlogDetail}>
         <img src={thumbnail} alt="썸네일" className="w-full" />
       </div>
