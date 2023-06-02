@@ -12,13 +12,15 @@ import { numberState } from '../../../recoil/NumberState';
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 interface CommentListData {
-  data: CommentData[];
+  data: {
+    comments: CommentData[];
+  };
 }
 
 export default function CommentList() {
   const param = useParams();
   const location = useLocation();
-
+  const token = sessionStorage.getItem('token');
   const [loading, error, data, fetchData] = useAxios();
 
   const rendering = useRecoilValue(renderingState);
@@ -27,16 +29,21 @@ export default function CommentList() {
 
   const currentUserId = useRecoilValue(currentUserIdState);
 
-  const getAxiosUrl = location.pathname.includes('blogDetail')
+  const postAxiosUrl = location.pathname.includes('blogDetail')
     ? `${BASE_URL}/blog/${param.id}`
     : `${BASE_URL}/movie/${param.id}/comments`;
 
   useEffect(() => {
     fetchData({
-      url: getAxiosUrl,
+      url: postAxiosUrl,
+      method: 'POST',
+      headers: {
+        Authorization: token,
+        'Content-Type': `application/json`,
+      },
     }).then((data: CommentListData) => {
-      setCommentData(data.data);
-      setCommentN(data.data.length);
+      setCommentData(data.data.comments);
+      setCommentN(data.data.comments.length);
     });
   }, [rendering]);
 
