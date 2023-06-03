@@ -33,7 +33,7 @@ export default function SideBar() {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
+          className="w-6 h-6 mt-1 sm:h-8 sm:w-8 lg:w-9 lg:h-9"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -48,7 +48,7 @@ export default function SideBar() {
       </label>
       <ul
         tabIndex={0}
-        className={`menu dropdown-content w-96 p-3.5 mt-3 shadow bg-base-100 max-md:w-60 max-md:text-sm   ${
+        className={`menu dropdown-content w-96 p-3.5 mt-3 shadow bg-base-100 max-md:w-60 max-md:text-sm ${
           show ? 'block' : 'hidden'
         }`}
       >

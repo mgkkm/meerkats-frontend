@@ -8,25 +8,12 @@ export default function Search() {
   return (
     <div>
       <button
-        className={`btn btn-ghost btn-circle search-btn opacity-90 ${
+        className={`search-btn relative w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 ${
           searchInput ? 'hidden' : 'block'
         }`}
         onClick={() => setSearchInput(!searchInput)}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8 max-sm:w-6 max-sm:h-6 ml-[0.5rem]"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-          />
-        </svg>
+        <img src="/images/search.png" alt="검색" className="opacity-70" />
       </button>
       {searchInput && <SearchModal />}
     </div>

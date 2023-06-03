@@ -21,41 +21,37 @@ export default function Nav({ show }: HidePropsType) {
 
   return (
     <div
-      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-6 xl:px-7 shadow visible transition duration-500 ease-in-out z-10 ${
+      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-[0.4rem] xs:py-3 md:py-4 xl:px-7 shadow visible transition duration-500 ease-in-out z-10 ${
         show ? '' : 'opacity-0'
       }`}
     >
-      <div className="navbar-start ml-5">
+      <div className="navbar-start xs:ml-2 sm:ml-5 md:ml-6">
         <div className="dropdown">
           <SideBar />
         </div>
       </div>
-      <div className="navbar-center">
+      <div className="navbar-center w-[6.5rem] xs:w-28 sm:w-40 lg:w-44">
         <Link to="/">
-          <img
-            alt="logo"
-            src="/images/logo_b.png"
-            className="w-52 max-md:w-32"
-          />
+          <img alt="logo" src="/images/logo_b.png" className="w-full" />
         </Link>
       </div>
-      <div className="navbar-end flex items-center gap-8 mr-3">
+      <div className="navbar-end flex items-center gap-[0.3rem] xs:gap-3 sm:gap-4 md:gap-6 lg:gap-9 mr-3 xs:mr-5 md:mr-6 lg:mr-8 mt-1">
         <Search />
         <div
-          className="navBlogBtn w-12 h-12 hover:bg-[#e6e7e9] rounded-full text-[2rem] text-center cursor-pointer"
+          className="navBlogBtn relative w-9 h-9 sm:w-14 sm:h-14 lg:hover:bg-[#e6e7e9] lg:rounded-full text-[2rem] text-center cursor-pointer"
           onClick={() => navigate('/blogMain')}
         >
-          <i className="fa-regular fa-b inline-block pt-[0.47rem] pl-[0.2rem] opacity-90 max-sm:text-[25px]" />
+          <i className="fa-regular fa-b absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 inline-block opacity-90 text-[20px] sm:text-[25px] md:text-[29px] lg:text-[32px]" />
         </div>
         <div
-          className="navIsUser w-12 h-12 mb-1 hover:bg-[#e6e7e9] rounded-full text-center leading-[1.1rem] font-semibold cursor-pointer max-sm:text-sm"
+          className="navIsUser w-5 h-5 sm:w-[1.5rem] sm:h-[1.5rem] md:w-[1.75rem] md:h-[1.75rem] lg:w-[2rem] lg:h-[2rem] lg:hover:bg-[#e6e7e9] lg:rounded-full text-sm text-center leading-[0.8rem] sm:leading-[1.1rem] font-semibold cursor-pointer"
           onClick={logInNOut}
         >
-          <span className="inline-block pt-[0.5rem] opacity-90">
-            LOG
-            <br />
-            {token !== null ? `OUT` : `IN`}
-          </span>
+          <img
+            src="/images/loginout.png"
+            alt="로그인아웃"
+            className="opacity-80"
+          />
         </div>
       </div>
     </div>
