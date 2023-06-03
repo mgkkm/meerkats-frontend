@@ -1,10 +1,15 @@
 import React from 'react';
 
-export function MoviePlayerSkeleton() {
+export interface MoviePlayerHeight {
+  height: string;
+}
+
+export function MoviePlayerSkeleton({ height }: MoviePlayerHeight) {
   return (
     <div
       role="status"
-      className="flex items-center justify-center w-full h-[630px] bg-gray-300 animate-pulse dark:bg-gray-700"
+      className="flex items-center justify-center h-[630px] bg-gray-300 animate-pulse dark:bg-gray-700"
+      style={{ height: `${height}px` }}
     >
       <svg
         className="w-12 h-12 text-gray-200 dark:text-gray-600"
