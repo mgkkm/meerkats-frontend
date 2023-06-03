@@ -68,9 +68,11 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
               postType="blog"
               btnType="Like"
               postId={`${id}`}
-              btnSize="text-xl"
+              btnSize="text-xl xs:text-lg"
             />
-            <span className="text-base ml-2">{likeNumber || 0}</span>
+            <span className="text-base xs:text-sm ml-2 xs:ml-[0.4rem]">
+              {likeNumber || 0}
+            </span>
           </div>
         </div>
       </div>
