@@ -39,20 +39,20 @@ export const SearchModal = memo(() => {
   };
 
   return (
-    <div className="relative z-50">
-      <div className="flex flex-row items-center h-1/2">
+    <div className="absolute top-[4.3rem] right-[2.3rem] xs:top-20 xs:right-14 sm:top-[5.7rem] sm:right-[4rem] md:top-[6.2rem] md:right-[5.3rem] lg:right-[8.7rem] z-50">
+      <div className="flex flex-row items-center h-1/2 opacity-90">
         <input
-          className="input input-bordered inline-block w-72 border-2 mr-3 shadow-sm"
+          className="input input-bordered inline-block w-48 xs:w-56 sm:w-72 sm:h-[3.5rem] lg:w-80 border-2 mr-2 sm:mr-3 shadow-sm placeholder:text-xs xs:placeholder:text-sm sm:placeholder:text-base"
           placeholder="검색어를 입력해주세요"
           onChange={searchInputHandler}
         />
         <button
-          className="btn btn-ghost btn-circle search-btn2 absolute right-[4rem] opacity-70"
+          className="search-btn2 opacity-70 -translate-x-[2.7rem] sm:-translate-x-[3.3rem]"
           onClick={searchAxios}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="w-5 h-5 sm:h-6 sm:w-6"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -66,12 +66,12 @@ export const SearchModal = memo(() => {
           </svg>
         </button>
         <button
-          className="btn btn-circle btn-outline close-btn inline-block border-none hover:bg-mkLightGray hover:text-mkGray"
+          className="close-btn inline-block -translate-y-[3.6rem] -translate-x-[3rem] xs:-translate-y-[4.1rem] xs:-translate-x-[3.2rem] sm:-translate-y-[4.6rem] sm:-translate-x-[4.7rem] md:-translate-y-[4.9rem] md:-translate-x-[5rem] opacity-90"
           onClick={closeSearchInput}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7 ml-[0.6rem]"
+            className="w-5 h-5 sm:h-7 sm:w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
