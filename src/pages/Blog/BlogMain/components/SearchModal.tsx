@@ -38,6 +38,7 @@ export const SearchModal = memo(() => {
     }).then((res: any) => {
       setSearchArticleData(res);
       setCloseBtn(false);
+      setSearchInput(false);
     });
 
     // setSearchList(true);
@@ -100,13 +101,12 @@ export const SearchModal = memo(() => {
       {/* mobile */}
       <div className="flex sm:hidden flex-row items-center h-1/2 mr-3">
         <input
-          className="input input-bordered relative inline-block w-50 mr-2 border-2 shadow-sm placeholder:text-[0.9rem]"
-          placeholder="검색어를 입력해주세요"
+          className="input input-bordered relative inline-block w-44 sm:w-50 sm:mr-3 border-2 shadow-sm placeholder:text-[0.9rem]"
+          placeholder="검색어 입력 ..."
           onChange={searchInputHandler}
-          // onKeyUp={searchAxios}
         />
         <button
-          className="btn btn-ghost btn-circle absolute right-[4rem] mr-[0.7rem] opacity-60"
+          className="btn btn-ghost btn-circle absolute right-[0.1rem] mr-[0.7rem] opacity-60"
           onClick={searchAxios}
         >
           <svg
@@ -124,13 +124,13 @@ export const SearchModal = memo(() => {
             />
           </svg>
         </button>
-        <button
+        {/* <button
           className="btn btn-circle btn-outline inline-block border-none text-mkGray hover:bg-mkLightGray hover:text-mkGray"
           onClick={closeSearchInput}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 ml-[0.85rem]"
+            className="h-5 w-5 ml-[1rem]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -142,7 +142,7 @@ export const SearchModal = memo(() => {
               d="M6 18L18 6M6 6l12 12"
             />
           </svg>
-        </button>
+        </button> */}
       </div>
     </div>
   );

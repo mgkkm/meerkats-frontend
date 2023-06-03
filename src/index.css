@@ -155,6 +155,32 @@ input[type='number']::-webkit-outer-spin-button {
   color: #fff;
 }
 
+@media (min-width: 360px) {
+  .blogPost {
+    margin: 2rem 2rem 2rem;
+  }
+
+  .blogThumbnail {
+    height: 16rem;
+  }
+
+  .blogTextTitle {
+    margin: 2.5rem 1.5rem 0 1.5rem;
+    font-size: 1.15rem;
+  }
+
+  .blogTextInfo {
+    margin: 0.5rem 1.5rem 1.2rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  .blogTextBottom {
+    padding: 0.7rem 0 0.4rem;
+    margin: 0 1.5rem;
+    font-size: 15px;
+  }
+}
+
 @media (min-width: 640px) {
   .blogPost {
     width: 75%;

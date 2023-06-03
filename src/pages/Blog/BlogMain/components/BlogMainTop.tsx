@@ -6,6 +6,7 @@ import useAxios from '../../../../hooks/useAxios';
 import Search from './Search';
 import { warningAlert } from '../../../../components/Alert/Modal';
 import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
+import { SearchDataState } from '../../../../recoil/SearchDataState';
 
 type dataType = {
   data: {
@@ -19,6 +20,7 @@ export default function BlogMainTop() {
   const setMyBlogBtn = useSetRecoilState(myBlogBtnState);
   const setMyblogData = useSetRecoilState(myblogArticleDataState);
   const resetMyblogData = useResetRecoilState(myblogArticleDataState);
+  const resetSearchData = useResetRecoilState(SearchDataState);
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState(1);
   const token = sessionStorage.getItem('token');
@@ -40,6 +42,10 @@ export default function BlogMainTop() {
     } else {
       setMyBlogBtn(false);
       resetMyblogData();
+    }
+
+    if (title === 'Trending') {
+      resetSearchData();
     }
   };
 

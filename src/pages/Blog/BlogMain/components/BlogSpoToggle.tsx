@@ -13,7 +13,7 @@ export const BlogSpoToggle = memo(() => {
     >
       <label className="label">
         <span
-          className={`label-text text-base sm:text-xl font-semibold mr-3 ${
+          className={`label-text text-base sm:text-xl font-semibold mr-2 sm:mr-3 ${
             toggle ? 'text-mkOrange' : 'text-mkLightGray'
           }`}
         >

@@ -16,7 +16,7 @@ export default function BlogMain() {
   // 조건부 렌더링 (토글=완료 / my blog=완료 / 카테고리 필터링)
 
   return (
-    <div className="px-8 sm:px-10 pt-48 pb-28 bg-mkBg">
+    <div className="px-4 sm:px-10 pt-40 sm:pt-48 pb-28 bg-mkBg">
       <section className="px-8 lg:mb-14 xl:px-14">
         <BlogMainTop />
         <div className="flex justify-between sm:justify-normal items-center my-5 mx-2">
