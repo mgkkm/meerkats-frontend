@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import SideBar from './components/SideBar';
 import Search from './components/Search';
+import { infoAlert } from '../Alert/Modal';
 
 interface HidePropsType {
   show: boolean;
@@ -13,6 +14,7 @@ export default function Nav({ show }: HidePropsType) {
   const logInNOut = () => {
     if (token) {
       sessionStorage.removeItem('token');
+      infoAlert('로그아웃', '로그아웃 되었습니다. :)');
       navigate('/');
     } else if (token === null) {
       navigate('/login');
@@ -38,20 +40,28 @@ export default function Nav({ show }: HidePropsType) {
       <div className="navbar-end flex items-center gap-[0.3rem] xs:gap-3 sm:gap-4 md:gap-6 lg:gap-9 mr-3 xs:mr-5 md:mr-6 lg:mr-8 mt-1">
         <Search />
         <div
-          className="navBlogBtn relative w-9 h-9 sm:w-14 sm:h-14 lg:hover:bg-[#e6e7e9] lg:rounded-full text-[2rem] text-center cursor-pointer"
+          className="navBlogBtn relative w-9 h-9 sm:w-14 sm:h-14 text-[2rem] text-center cursor-pointer"
           onClick={() => navigate('/blogMain')}
         >
-          <i className="fa-regular fa-b absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 inline-block opacity-90 text-[20px] sm:text-[25px] md:text-[29px] lg:text-[32px]" />
+          <i className="fa-regular fa-b absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2 inline-block opacity-80 hover:opacity-100 text-[20px] sm:text-[25px] md:text-[29px] lg:text-[32px]" />
         </div>
         <div
-          className="navIsUser w-5 h-5 sm:w-[1.5rem] sm:h-[1.5rem] md:w-[1.75rem] md:h-[1.75rem] lg:w-[2rem] lg:h-[2rem] lg:hover:bg-[#e6e7e9] lg:rounded-full text-sm text-center leading-[0.8rem] sm:leading-[1.1rem] font-semibold cursor-pointer"
+          className="navIsUser w-5 h-5 sm:w-[1.5rem] sm:h-[1.5rem] md:w-[1.75rem] md:h-[1.75rem] lg:w-[2.07rem] lg:h-[2.07rem] text-sm text-center leading-[0.8rem] sm:leading-[1.1rem] font-semibold cursor-pointer"
           onClick={logInNOut}
         >
-          <img
-            src="/images/loginout.png"
-            alt="로그인아웃"
-            className="opacity-80"
-          />
+          {token ? (
+            <img
+              src="/images/logout.png"
+              alt="로그인"
+              className="opacity-[0.63] hover:opacity-100"
+            />
+          ) : (
+            <img
+              src="/images/login.png"
+              alt="로그아웃"
+              className="opacity-[0.63] hover:opacity-100"
+            />
+          )}
         </div>
       </div>
     </div>

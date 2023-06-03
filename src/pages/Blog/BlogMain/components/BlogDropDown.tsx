@@ -1,8 +1,8 @@
-import { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { ArticleDataState } from '../../../../recoil/ArticleDataState';
 
-export const BlogDropDown = memo(() => {
+export const BlogDropDown = React.memo(() => {
   const [selectGenre, setSelectGenre] = useState('모든 장르');
   const [show, setShow] = useState(false);
   const articleData = useRecoilValue(ArticleDataState);

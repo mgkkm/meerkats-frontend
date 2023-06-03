@@ -57,6 +57,13 @@ export default function UserForm() {
     });
   };
 
+  const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      loginAxios();
+    } else {
+    }
+  };
+
   return (
     <form>
       <div className="block text-center">
@@ -77,6 +84,7 @@ export default function UserForm() {
           value={pw}
           handleInput={handleInput}
           margin={true}
+          handleSubmit={handleSubmit}
         />
       </div>
       <div className="block text-center">
@@ -84,7 +92,7 @@ export default function UserForm() {
           type="button"
           className={`${
             !active && 'bg-mkOrange hover:bg-mkDarkOrange'
-          } btn w-1/3 h-14 mt-5 border-none text-white text-base`}
+          } btn w-[75%] xs:w-[90%] sm:w-[60%] md:w-[70%] lg:w-[60%] h-12 xs:h-14 mt-3 sm:mt-5 border-none text-white text-base`}
           onClick={loginAxios}
           disabled={active}
         >

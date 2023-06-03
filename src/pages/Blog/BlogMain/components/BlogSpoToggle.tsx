@@ -1,9 +1,9 @@
-import { memo } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
-export const BlogSpoToggle = memo(() => {
+export const BlogSpoToggle = React.memo(() => {
   const [toggle, setToggle] = useRecoilState(toggleSelector('spo'));
   const myBlogBtn = useRecoilValue(myBlogBtnState);
 
@@ -13,7 +13,7 @@ export const BlogSpoToggle = memo(() => {
     >
       <label className="label">
         <span
-          className={`label-text text-base sm:text-xl font-semibold mr-3 ${
+          className={`label-text text-base sm:text-xl font-semibold mr-2 sm:mr-3 ${
             toggle ? 'text-mkOrange' : 'text-mkLightGray'
           }`}
         >

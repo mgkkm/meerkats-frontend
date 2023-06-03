@@ -13,7 +13,11 @@ export default function Search() {
         }`}
         onClick={() => setSearchInput(!searchInput)}
       >
-        <img src="/images/search.png" alt="검색" className="opacity-70" />
+        <img
+          src="/images/search.png"
+          alt="검색"
+          className="opacity-70 hover:opacity-100"
+        />
       </button>
       {searchInput && <SearchModal />}
     </div>
