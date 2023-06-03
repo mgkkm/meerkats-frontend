@@ -1,9 +1,9 @@
 import React from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
+import { MoviePlayerHeight } from '../../../components/Skeleton/MovieDetailSkeleton';
 
-interface MoviePlayerProps {
+export interface MoviePlayerProps extends MoviePlayerHeight {
   videoId?: string;
-  height: string;
   autoplay: number;
 }
 

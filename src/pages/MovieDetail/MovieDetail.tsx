@@ -160,7 +160,7 @@ export default function MovieDetail() {
   return (
     <div className="container xl pt-24">
       {loading || !mainVideoId ? (
-        <MoviePlayerSkeleton />
+        <MoviePlayerSkeleton height={playerHeight} />
       ) : (
         <div className="w-full">
           <MoviePlayer
