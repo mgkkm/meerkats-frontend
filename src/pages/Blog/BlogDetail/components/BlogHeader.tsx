@@ -10,7 +10,6 @@ import {
   failedAxiosAlert,
   successAlert,
 } from '../../../../components/Alert/Modal';
-import Swal from 'sweetalert2';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
