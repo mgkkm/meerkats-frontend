@@ -12,7 +12,6 @@ import {
 import { currentUserIdState } from '../../../recoil/JwtDecode';
 import { failedAxiosAlert, successAlert } from '../../Alert/Modal';
 import { useLocation } from 'react-router-dom';
-const Swal = require('sweetalert2');
 
 type commentProps = {
   commentId: number;

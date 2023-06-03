@@ -10,7 +10,6 @@ import {
   failedAxiosAlert,
   successAlert,
 } from '../../../../components/Alert/Modal';
-import Swal from 'sweetalert2';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -89,12 +88,14 @@ export default function BlogHeader() {
         </div>
       </div>
       <div className="flex justify-between">
-        <div>
+        <div className="sm:flex items-center">
           <span className="text-sm">by {user.nickname}</span>
-          <span className="px-3">·</span>
-          <span className="text-sm text-mkGray">
-            {created_at && displayCreatedAt(created_at)}
-          </span>
+          <div className="max-sm:mt-1">
+            <span className="px-3 max-sm:hidden">·</span>
+            <span className="text-sm text-mkGray">
+              {created_at && displayCreatedAt(created_at)}
+            </span>
+          </div>
         </div>
         <div className="flex gap-3">
           <LikeScrapBtn
