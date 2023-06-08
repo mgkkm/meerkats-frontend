@@ -26,26 +26,13 @@ export default function SideBar() {
 
   return (
     <>
-      <label
+      <div
         tabIndex={0}
         onClick={showSideBar}
-        className="btn btn-ghost btn-circle"
+        className="w-5 h-5 mt-2 opacity-70 hover:opacity-100 cursor-pointer sm:h-7 sm:w-7 lg:w-8 lg:h-8"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-6 h-6 mt-1 sm:h-8 sm:w-8 lg:w-9 lg:h-9"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M4 6h16M4 12h16M4 18h7"
-          />
-        </svg>
-      </label>
+        <img src="/images/sidebar.png" alt="햄버거메뉴" className="w-full" />
+      </div>
       <ul
         tabIndex={0}
         className={`menu dropdown-content w-96 p-3.5 mt-3 shadow bg-base-100 max-md:w-60 max-md:text-sm ${
