@@ -38,6 +38,13 @@ export const SearchModal = memo(() => {
     });
   };
 
+  const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter') {
+      searchAxios();
+    } else {
+    }
+  };
+
   return (
     <div className="absolute top-[4.3rem] right-[2.3rem] xs:top-20 xs:right-14 sm:top-[5.7rem] sm:right-[4rem] md:top-[6.2rem] md:right-[5.3rem] lg:right-[8.7rem] z-50">
       <div className="flex flex-row items-center h-1/2 opacity-90">
@@ -45,6 +52,7 @@ export const SearchModal = memo(() => {
           className="input input-bordered inline-block w-48 xs:w-56 sm:w-72 sm:h-[3.5rem] lg:w-80 border-2 mr-2 sm:mr-3 shadow-sm placeholder:text-xs xs:placeholder:text-sm sm:placeholder:text-base"
           placeholder="검색어를 입력해주세요"
           onChange={searchInputHandler}
+          onKeyDown={handleSubmit}
         />
         <button
           className="search-btn2 opacity-70 -translate-x-[2.7rem] sm:-translate-x-[3.3rem]"
@@ -98,7 +106,10 @@ export const SearchModal = memo(() => {
             <li
               key={id}
               className="dropdown block p-3 cursor-pointer hover:bg-mkLightGray hover:rounded"
-              onClick={() => navigate(`/movieDetail/${id}`)}
+              onClick={() => {
+                setSearchInput(false);
+                navigate(`/movieDetail/${id}`);
+              }}
             >
               {name}
             </li>
