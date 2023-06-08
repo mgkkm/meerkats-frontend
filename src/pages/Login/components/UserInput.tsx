@@ -30,7 +30,9 @@ export const UserInput = memo((props: UserInputProps) => {
     <div className="block">
       <input
         id={id}
-        className={`input input-bordered w-1/3 h-14 ${margin ? 'mt-3' : ''}`}
+        className={`input input-bordered w-[75%] sm:w-1/3 h-12 sm:h-14 placeholder:text-sm sm:placeholder:text-base ${
+          margin ? 'mt-2 sm:mt-3' : ''
+        }`}
         type={type}
         placeholder={placeholder}
         name={name}

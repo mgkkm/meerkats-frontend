@@ -155,6 +155,22 @@ input[type='number']::-webkit-outer-spin-button {
   color: #fff;
 }
 
+.socialLoginBtn {
+  position: relative;
+  display: inline-block;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  text-align: center;
+}
+
+.socialLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+}
+
 @media (min-width: 360px) {
   .blogPost {
     margin: 2rem 2rem 2rem;
@@ -193,6 +209,11 @@ input[type='number']::-webkit-outer-spin-button {
 
   .blogTextTitle {
     margin: 4rem 1.75rem 0 1.75rem;
+  }
+
+  .socialLoginBtn {
+    width: 4rem;
+    height: 4rem;
   }
 }
 

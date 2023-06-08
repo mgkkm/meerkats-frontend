@@ -84,7 +84,7 @@ export default function UserForm() {
           type="button"
           className={`${
             !active && 'bg-mkOrange hover:bg-mkDarkOrange'
-          } btn w-1/3 h-14 mt-5 border-none text-white text-base`}
+          } btn w-[75%] sm:w-1/3 h-12 sm:h-14 mt-3 sm:mt-5 border-none text-white text-base`}
           onClick={loginAxios}
           disabled={active}
         >
