@@ -31,7 +31,7 @@ export default function ContentContainer({
 
   return (
     <div
-      className="h-auto relative pb-28"
+      className="h-auto relative pb-16 sm:pb-28"
       onWheel={scrollHandler}
       onClick={() => setSearchInput(false)}
     >
