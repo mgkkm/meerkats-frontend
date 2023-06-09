@@ -9,16 +9,16 @@ export default function Login() {
   const googleOauthClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
   return (
-    <div className="container xl pt-36 xs:pt-40 xs:pb-7 sm:pt-48 sm:pb-9 bg-mkBg text-mkBlack text-sm sm:text-base">
+    <div className="pt-36 xs:pb-3 xs:px-6 sm:pt-[11rem] xl:pt-48 sm:pb-6 xl:pb-5 sm:px-18 md:px-32 lg:px-56 xl:px-[20rem] bg-mkBg text-mkBlack text-sm xs:text-[0.93rem] sm:text-base">
       <div className="w-44 m-auto pt-4 pb-12 sm:pb-16 text-center">
         <img src="/images/logo_b.png" alt="logo" className="w-full" />
       </div>
       <UserForm />
       <div className="mt-8 sm:mt-12 text-center opacity-90">
-        <span className="mr-3 xs:mr-4 sm:mr-8">아이디 찾기</span>|
-        <span className="mx-3 xs:mx-4 sm:mx-8">비밀번호 찾기</span>|
+        <span className="mr-3 xs:mr-5 sm:mr-8 lg:mr-10">아이디 찾기</span>|
+        <span className="mx-3 xs:mx-5 sm:mx-8 lg:mx-10">비밀번호 찾기</span>|
         <Link to="/signin">
-          <span className="ml-3 xs:ml-4 sm:ml-8">회원가입</span>
+          <span className="ml-3 xs:ml-5 sm:ml-8 lg:ml-10">회원가입</span>
         </Link>
       </div>
       <div className="flex justify-center items-center mt-9 sm:mt-20 text-center text-mkBlack opacity-50">
@@ -26,7 +26,7 @@ export default function Login() {
         <span className="hidden sm:flex">다른 서비스 계정으로 로그인</span>
         <hr className="hidden sm:inline-block border-mkGray w-[20%] sm:w-1/4 ml-5 sm:ml-10" />
       </div>
-      <div className="socialLoginBtn-box flex justify-center gap-5 sm:gap-10 sm:mt-12 text-center m-auto">
+      <div className="socialLoginBtn-box flex justify-center gap-5 xs:gap-7 sm:gap-10 sm:mt-12 text-center m-auto">
         {/* google */}
         <GoogleOAuthProvider clientId={googleOauthClientId}>
           <div className="socialLoginBtn">

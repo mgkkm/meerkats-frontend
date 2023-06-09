@@ -72,11 +72,6 @@ input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
-/* .toggle {
-  background-color: #f96400;
-  border-color: #f96400;
-} */
-
 #dash {
   @apply w-1/3 border-none h-px mx-auto xl:my-32 md:my-24 sm:my-20 xs:my-12;
 }

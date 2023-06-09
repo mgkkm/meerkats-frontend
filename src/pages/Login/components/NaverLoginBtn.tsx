@@ -1,6 +1,11 @@
+import { warningAlert } from '../../../components/Alert/Modal';
+
 export default function NaverLoginBtn() {
   const naverLogin = () => {
-    alert('아직 구현이 안됐습니다. 메롱. 애자일임.');
+    warningAlert(
+      '서비스 안내',
+      '죄송합니다 :( 서비스 준비중입니다. 다른 로그인 서비스를 이용해주세요.'
+    );
   };
   return (
     <button onClick={naverLogin}>

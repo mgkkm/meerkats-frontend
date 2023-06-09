@@ -1,8 +1,6 @@
-import React from 'react';
-
-const Footer = React.memo(() => {
+const Footer = () => {
   return (
-    <div className="p-8 sm:p-16 bg-white text-center text-primary-content">
+    <div className="p-8 xs:p-11 sm:p-14 bg-white text-center text-primary-content">
       <div>
         <img
           alt="logo"
@@ -19,6 +17,6 @@ const Footer = React.memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default Footer;
