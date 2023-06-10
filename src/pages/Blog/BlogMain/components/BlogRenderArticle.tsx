@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   ArticleDataState,
@@ -51,7 +51,7 @@ type myBlogElType = {
   };
 };
 
-export default function BlogRenderArticle() {
+const BlogRenderArticle = React.memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
@@ -141,4 +141,6 @@ export default function BlogRenderArticle() {
           })}
     </section>
   );
-}
+});
+
+export default BlogRenderArticle;

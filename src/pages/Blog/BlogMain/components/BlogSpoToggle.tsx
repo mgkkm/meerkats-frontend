@@ -1,9 +1,9 @@
-import { memo } from 'react';
+import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { toggleSelector } from '../../../../recoil/ToggleState';
 import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
-export const BlogSpoToggle = memo(() => {
+export const BlogSpoToggle = React.memo(() => {
   const [toggle, setToggle] = useRecoilState(toggleSelector('spo'));
   const myBlogBtn = useRecoilValue(myBlogBtnState);
 

@@ -1,8 +1,9 @@
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import { searchState } from '../../../../recoil/SearchState';
 import { SearchModal } from './SearchModal';
 
-export default function Search() {
+const Search = React.memo(() => {
   const [searchInput, setSearchInput] = useRecoilState(searchState);
 
   return (
@@ -31,4 +32,6 @@ export default function Search() {
       {searchInput && <SearchModal />}
     </div>
   );
-}
+});
+
+export default Search;

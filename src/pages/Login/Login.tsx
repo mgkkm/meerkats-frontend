@@ -9,7 +9,7 @@ export default function Login() {
   const googleOauthClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
   return (
-    <div className="pt-36 xs:pb-3 xs:px-6 sm:pt-[11rem] xl:pt-48 sm:pb-6 xl:pb-5 sm:px-18 md:px-32 lg:px-56 xl:px-[20rem] bg-mkBg text-mkBlack text-sm xs:text-[0.93rem] sm:text-base">
+    <div className="container pt-36 xs:pb-3 sm:pt-[11rem] xl:pt-48 sm:pb-6 xl:pb-5 sm:px-18 md:px-32 lg:px-56 xl:px-[20rem] bg-mkBg text-mkBlack text-sm xs:text-[0.93rem] sm:text-base">
       <div className="w-44 m-auto pt-4 pb-12 sm:pb-16 text-center">
         <img src="/images/logo_b.png" alt="logo" className="w-full" />
       </div>

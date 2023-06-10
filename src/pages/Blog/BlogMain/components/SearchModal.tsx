@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
 import { closeSearchState, searchState } from '../../../../recoil/SearchState';
@@ -8,7 +8,7 @@ import useAxios from '../../../../hooks/useAxios';
 //   title: string;
 // };
 
-export const SearchModal = memo(() => {
+export const SearchModal = React.memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setSearchInput = useSetRecoilState(searchState);
