@@ -19,7 +19,7 @@ export default function MainTab() {
   const tabClickHandler = (idx: number) => setActiveTab(idx);
 
   return (
-    <div className="container xl">
+    <div className="max-w-[1280px] m-auto">
       <h1 className="text-center font-[ChosunGs] xs:text-lg xs:mb-5 sm:mb-10 sm:text-2xl xl:text-4xl xl:mb-20">
         Meet Your Next Movie
       </h1>

@@ -29,7 +29,7 @@ export default function Category() {
         setSelectSpo(item.name);
       }
     });
-  }, [blogPost]);
+  }, []);
 
   const cateSelectHandler = (id: number, name: string) => {
     setShow(show => !show);
