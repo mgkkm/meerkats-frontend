@@ -155,7 +155,7 @@ export default function MovieDetail() {
     return () => {
       window.removeEventListener('resize', handleHeight);
     };
-  }, [playerHeight]);
+  }, []);
 
   return (
     <div className="container xl pt-24">
