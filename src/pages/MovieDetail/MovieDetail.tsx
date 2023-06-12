@@ -105,7 +105,6 @@ export default function MovieDetail() {
   const resetIsMovieLiked = useResetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
-  const resetMoreArrowToggle = useResetRecoilState(toggleSelector('moreArrow'));
 
   useEffect(() => {
     fetchData({
@@ -133,7 +132,6 @@ export default function MovieDetail() {
       setMainVideoId('');
       resetPlaylistYoutubeState();
       resetIsMovieLiked();
-      resetMoreArrowToggle();
     };
   }, [postId]);
 
