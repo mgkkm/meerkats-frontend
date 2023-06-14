@@ -43,10 +43,10 @@ export default function Signin() {
   };
 
   return (
-    <div className="h-full py-10 xs:pt-20 sm:pt-32 bg-mkBg text-mkBlack">
-      <div className="w-[80%] xs:w-[75%] sm:w-[65%] lg:w-1/3 h-1.5 m-auto mt-16 bg-mkOrange " />
-      <div className="w-[80%] xs:w-[75%] sm:w-[65%] lg:w-1/3 h-2/4 m-auto py-12 px-8 xs:px-12 xs:py-14 sm:py-16 lg:py-20 lg:px-16 bg-white">
-        <header className="mb-6 sm:mb-8 lg:mb-10 text-center text-lg xs:text-xl lg:text-2xl text-mkDarkGray">
+    <div className="h-full py-10 xs:pt-16 sm:pt-32 bg-mkBg text-mkBlack">
+      <div className="w-[80%] sm:w-[70%] md:w-[55%] lg:w-[45%] xl:w-1/3 h-1.5 m-auto mt-16 bg-mkOrange " />
+      <div className="w-[80%] sm:w-[70%] md:w-[55%] lg:w-[45%] xl:w-1/3 h-2/4 m-auto py-12 px-8 xs:px-10 xs:py-14 sm:py-16 sm:px-14 lg:py-20 lg:px-16 bg-white">
+        <header className="mb-6 sm:mb-8 lg:mb-10 text-center text-lg sm:text-xl lg:text-2xl text-mkDarkGray">
           <span className="font-semibold">이메일과 비밀번호</span>만으로
           <br />
           <span className="font-semibold">meerkats</span>을 즐길 수 있어요!
@@ -69,7 +69,7 @@ export default function Signin() {
               onChange={userInputHandler}
             />
             <p
-              className={`text-left text-xs xs:text-sm mt-2 ${
+              className={`text-left text-xs sm:text-sm mt-2 ${
                 (pwchk.test(pwvalue) && pwvalue.length >= 8) ||
                 pwvalue.length === 0
                   ? ''
@@ -85,7 +85,7 @@ export default function Signin() {
               name="nickname"
               value={nickname}
               placeholder="Nickname"
-              className="input input-bordered w-full h-14 mt-3 sm:mt-5 text-sm lg:text-base"
+              className="input input-bordered w-full h-14 mt-3 xs:mt-4 sm:mt-5 text-sm lg:text-base"
               onChange={userInputHandler}
             />
           </div>

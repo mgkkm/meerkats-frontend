@@ -121,7 +121,7 @@ export const EmailInput = memo((props: propsType) => {
   return (
     <div>
       {/* 데스크탑 */}
-      <div className="desktop hidden xs:block relative">
+      <div className="desktop hidden sm:block relative">
         <button
           className={`btn ${
             duplicationEmailBtn ? '' : 'hidden'
@@ -184,7 +184,7 @@ export const EmailInput = memo((props: propsType) => {
         {/* 인증번호 입력창 : 6글자(인증번호.length) 및 유효한숫자 조건이 참이면, 자동 disabled 처리되게끔 */}
       </div>
       {/* 모바일 */}
-      <div className="mobile block xs:hidden relative">
+      <div className="mobile block sm:hidden relative">
         <button
           className={`btn ${
             duplicationEmailBtn || 'hidden'
