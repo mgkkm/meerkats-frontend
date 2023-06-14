@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { userInputState } from '../../recoil/UserInputState';
 import { infoAlert } from '../../components/Alert/Modal';
 import { EmailInput } from './components/EmailInput';
@@ -10,6 +10,7 @@ export default function Signin() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [userInput, setUserInput] = useRecoilState(userInputState);
+  const resetUserInput = useResetRecoilState(userInputState);
   const { email, nickname, password } = userInput;
 
   const userInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,28 +38,29 @@ export default function Signin() {
         '로그인 해 주세요 :)'
       );
       navigate('/login');
+      resetUserInput();
     });
   };
 
   return (
-    <div className="h-full pt-28 pb-16 bg-mkBg text-mkBlack">
-      <div className="w-1/3 h-1.5 m-auto mt-16 bg-mkOrange " />
-      <div className="w-1/3 h-2/4 m-auto py-20 px-16 bg-white">
-        <header className="mb-10 text-center text-2xl text-mkDarkGray">
+    <div className="h-full py-10 xs:pt-20 sm:pt-32 bg-mkBg text-mkBlack">
+      <div className="w-[80%] xs:w-[75%] sm:w-[65%] lg:w-1/3 h-1.5 m-auto mt-16 bg-mkOrange " />
+      <div className="w-[80%] xs:w-[75%] sm:w-[65%] lg:w-1/3 h-2/4 m-auto py-12 px-8 xs:px-12 xs:py-14 sm:py-16 lg:py-20 lg:px-16 bg-white">
+        <header className="mb-6 sm:mb-8 lg:mb-10 text-center text-lg xs:text-xl lg:text-2xl text-mkDarkGray">
           <span className="font-semibold">이메일과 비밀번호</span>만으로
           <br />
           <span className="font-semibold">meerkats</span>을 즐길 수 있어요!
         </header>
         <section className="block text-center">
           <EmailInput userInputHandler={userInputHandler} />
-          <div className="block mt-3">
+          <div className="block mt-2 sm:mt-3">
             <input
               required
               type="password"
               name="password"
               value={password}
-              placeholder="password"
-              className={`input input-bordered w-full h-14 mt-2 ${
+              placeholder="Password"
+              className={`input input-bordered w-full h-14 mt-2 text-sm lg:text-base ${
                 (pwchk.test(pwvalue) && pwvalue.length >= 8) ||
                 pwvalue.length === 0
                   ? ''
@@ -67,7 +69,7 @@ export default function Signin() {
               onChange={userInputHandler}
             />
             <p
-              className={`text-left text-sm mt-2 ${
+              className={`text-left text-xs xs:text-sm mt-2 ${
                 (pwchk.test(pwvalue) && pwvalue.length >= 8) ||
                 pwvalue.length === 0
                   ? ''
@@ -82,15 +84,15 @@ export default function Signin() {
               type="text"
               name="nickname"
               value={nickname}
-              placeholder="nickname"
-              className="input input-bordered w-full h-14 mt-5"
+              placeholder="Nickname"
+              className="input input-bordered w-full h-14 mt-3 sm:mt-5 text-sm lg:text-base"
               onChange={userInputHandler}
             />
           </div>
         </section>
         <div className="block text-center">
           <button
-            className="btn w-full h-14 mt-6 border-none bg-mkOrange hover:bg-mkDarkOrange text-mkWhite text-base"
+            className="btn w-full h-14 sm:h-16 mt-4 sm:mt-6 border-none bg-mkOrange hover:bg-mkDarkOrange text-mkWhite text-sm sm:text-base"
             onClick={signInBtn}
             disabled={
               pwchk.test(pwvalue) && pwvalue.length >= 8 && nickname.length
