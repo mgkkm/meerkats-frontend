@@ -47,9 +47,9 @@ export default function SubscribeBtn() {
       },
     }).then((result: any) => {
       if (result.message.includes('failed')) {
-        warningAlert('Wait!', result.response.data.message);
+        warningAlert('결제 실패', result.response.data.message);
       } else {
-        successAlert('Success!', result.message);
+        successAlert('결제 완료', result.message);
       }
     });
   };

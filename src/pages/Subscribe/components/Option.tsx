@@ -21,15 +21,15 @@ export default function Option({ currentType, changeType }: subscribeProps) {
       changeType(id);
       if (subscribedMembershipId !== id) {
         warningAlert(
-          'Would you like to change your membership?',
-          `You are currently subscribed to ${
+          '멤버십 변경',
+          `현재 ${
             membershipData[subscribedMembershipId - 1].name
-          } membership. Please fill in the required fields and click the "Subscribe" button to change your membership.`
+          } 멤버십 구독 중입니다. 멤버십 변경을 원하시면 아래 결제 정보를 확인하신 후, 구독 버튼을 클릭하세요.`
         );
       } else {
         warningAlert(
-          'Would you like to update your payment method?',
-          'Please fill in the required fields and click the "Subscribe" button to update your payment method.'
+          '결제 수단 변경',
+          '결제 수단 변경을 원하시면 결제 정보를 수정하신 후, 구독 버튼을 클릭하세요.'
         );
       }
     }
