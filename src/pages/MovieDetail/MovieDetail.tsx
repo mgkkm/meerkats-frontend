@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import MoviePlayer from './components/MoviePlayer';
 import MovieDetailHeader from './components/MovieDetailHeader';
 import MovieDetailTab from './components/MovieDetailTab';
@@ -18,6 +18,7 @@ import {
 } from '../../recoil/JwtDecode';
 import { DecodeToken } from '../../components/DecodeToken/DecodeToken';
 import { MoviePlayerSkeleton } from '../../components/Skeleton/MovieDetailSkeleton';
+import YouTube from 'react-youtube';
 
 export interface MovieHeaderData {
   category: {
@@ -85,6 +86,8 @@ export default function MovieDetail() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const [loading, error, data, fetchData] = useAxios();
+  const [playerHeight, setPlayerHeight] = useState('');
+  const playerRef = useRef<YouTube>(null);
 
   const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
@@ -97,15 +100,12 @@ export default function MovieDetail() {
     toggleSelector(`movieLike${postId}`)
   );
 
-  const [playerHeight, setPlayerHeight] = useState('');
-
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
   const resetPlaylistYoutubeState = useResetRecoilState(playlistYoutubeState);
   const resetIsMovieLiked = useResetRecoilState(
     toggleSelector(`movieLike${postId}`)
   );
-  const resetMoreArrowToggle = useResetRecoilState(toggleSelector('moreArrow'));
 
   useEffect(() => {
     fetchData({
@@ -133,7 +133,6 @@ export default function MovieDetail() {
       setMainVideoId('');
       resetPlaylistYoutubeState();
       resetIsMovieLiked();
-      resetMoreArrowToggle();
     };
   }, [postId]);
 
@@ -155,7 +154,7 @@ export default function MovieDetail() {
     return () => {
       window.removeEventListener('resize', handleHeight);
     };
-  }, [playerHeight]);
+  }, []);
 
   return (
     <div className="container xl pt-24">
@@ -167,6 +166,7 @@ export default function MovieDetail() {
             videoId={mainVideoId}
             height={playerHeight}
             autoplay={1}
+            playerRef={playerRef}
           />
         </div>
       )}
@@ -175,7 +175,7 @@ export default function MovieDetail() {
           <MovieDetailHeader />
           <MovieDetailTab />
         </div>
-        <TrailerPlaylist loading={loading} />
+        <TrailerPlaylist loading={loading} playerRef={playerRef} />
       </div>
     </div>
   );

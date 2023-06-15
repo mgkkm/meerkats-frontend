@@ -5,9 +5,14 @@ import { MoviePlayerHeight } from '../../../components/Skeleton/MovieDetailSkele
 export interface MoviePlayerProps extends MoviePlayerHeight {
   videoId?: string;
   autoplay: number;
+  playerRef?: React.RefObject<YouTube>;
 }
 
-export default function MoviePlayer({ videoId, height }: MoviePlayerProps) {
+export default function MoviePlayer({
+  videoId,
+  height,
+  playerRef,
+}: MoviePlayerProps) {
   const opts: YouTubeProps['opts'] = {
     width: '100%',
     height: height,
@@ -17,5 +22,5 @@ export default function MoviePlayer({ videoId, height }: MoviePlayerProps) {
     },
   };
 
-  return <YouTube videoId={videoId} opts={opts} />;
+  return <YouTube videoId={videoId} opts={opts} ref={playerRef} />;
 }

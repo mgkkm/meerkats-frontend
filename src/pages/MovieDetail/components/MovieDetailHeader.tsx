@@ -1,7 +1,6 @@
-import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import React, { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
-import { toggleSelector } from '../../../recoil/ToggleState';
 import { useParams } from 'react-router-dom';
 import LikeScrapBtn from '../../../components/LikeScrapBtn/LikeScrapBtn';
 import CopyBtn from '../../../components/CopyBtn/CopyBtn';
@@ -12,9 +11,7 @@ export default function MovieDetailHeader() {
   const params = useParams();
   const postId = params.id;
 
-  const [moreArrowToggle, setMoreArrowToggle] = useRecoilState(
-    toggleSelector('moreArrow')
-  );
+  const [moreArrowToggle, setMoreArrowToggle] = useState(false);
 
   const movieHeaderData = useRecoilValue(movieHeaderState);
 
