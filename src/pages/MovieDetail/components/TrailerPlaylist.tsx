@@ -1,10 +1,19 @@
 import React from 'react';
+import YouTube from 'react-youtube';
 import { useRecoilValue } from 'recoil';
 import { PlaylistSkeleton } from '../../../components/Skeleton/MovieDetailSkeleton';
 import { playlistYoutubeState } from '../../../recoil/MovieDetailState';
 import RelatedVideo from './RelatedVideo';
 
-export default function TrailerPlaylist({ loading }: { loading: boolean }) {
+interface trailerPlaylistProps {
+  loading: boolean;
+  playerRef: React.RefObject<YouTube>;
+}
+
+export default function TrailerPlaylist({
+  loading,
+  playerRef,
+}: trailerPlaylistProps) {
   const playlistYoutubeData = useRecoilValue(playlistYoutubeState);
 
   const playlistSkeletons = Array.from({ length: 10 }, (_, index) => (
@@ -19,6 +28,7 @@ export default function TrailerPlaylist({ loading }: { loading: boolean }) {
             <RelatedVideo
               key={relatedVideoData.videoId}
               relatedVideoData={relatedVideoData}
+              playerRef={playerRef}
             />
           ))}
     </div>
