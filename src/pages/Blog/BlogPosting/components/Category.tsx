@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAxios from '../../../../hooks/useAxios';
-import { blogPostState } from '../../../../recoil/BlogPostState';
-import { useRecoilState } from 'recoil';
+import { blogPostState, isEditState } from '../../../../recoil/BlogPostState';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -11,6 +11,7 @@ export default function Category() {
   const [selectSpo, setSelectSpo] = useState('스포 여부');
   const [genreCategory, setGenreCategory] = useState([]);
   const [blogPost, setBlogPost] = useRecoilState(blogPostState);
+  const isEdit = useRecoilValue(isEditState);
   const [loading, error, data, fetchData] = useAxios();
 
   useEffect(() => {
@@ -19,17 +20,17 @@ export default function Category() {
     }).then((list: any) => setGenreCategory(list.data));
 
     genreCategory.map((item: { id: number; name: string }): void => {
-      if (item.id === blogPost.categoryId) {
+      if (isEdit && item.id === blogPost.categoryId) {
         setSelectGenre(item.name);
       }
     });
 
     SPOILER_DATA.map((item: { id: number; name: string }) => {
-      if (item.id === blogPost.spoilerInfoId) {
+      if (isEdit && item.id === blogPost.spoilerInfoId) {
         setSelectSpo(item.name);
       }
     });
-  }, []);
+  }, [blogPost]);
 
   const cateSelectHandler = (id: number, name: string) => {
     setShow(show => !show);

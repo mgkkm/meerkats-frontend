@@ -8,19 +8,25 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { blogPostState, isEditState } from '../../../recoil/BlogPostState';
 import { useLocation, useParams } from 'react-router-dom';
 import { tokenState } from '../../../recoil/TokenState';
+import { currentUserIdState } from '../../../recoil/JwtDecode';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export default function BlogPosting() {
   const token = useRecoilValue(tokenState);
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const currentUserId = useRecoilValue(currentUserIdState);
   const setBlogPost = useSetRecoilState(blogPostState);
   const [loading, error, data, fetchData] = useAxios();
 
   const location = useLocation();
   const param = useParams();
 
-  if (location.pathname.includes('/edit')) setIsEdit(true);
+  if (location.pathname.includes('/edit')) {
+    setIsEdit(true);
+  } else {
+    setIsEdit(false);
+  }
 
   useEffect(() => {
     isEdit &&
@@ -34,9 +40,9 @@ export default function BlogPosting() {
         data: { userId: 3 },
       }).then((res: any) => {
         setBlogPost({
-          userId: 3,
+          userId: currentUserId,
           title: res.data.postDetails.title,
-          content: res.data.postDetails.content,
+          content: res.data.postDetails?.content,
           categoryId: res.data.postDetails.category.id,
           spoilerInfoId: res.data.postDetails.spoiler_info_id,
           thumbnail:
