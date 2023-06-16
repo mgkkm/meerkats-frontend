@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 export const blogPostState = atom({
   key: 'postDataState',
   default: {
-    userId: 2,
+    userId: 0,
     title: '',
     content: '',
     categoryId: 0,
