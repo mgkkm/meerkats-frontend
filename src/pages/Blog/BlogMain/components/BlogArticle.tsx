@@ -40,7 +40,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
   useEffect(() => {
     setLikeNumber(likeCount);
     setLikeToggle(isLikedByThisUser);
-  }, []);
+  }, [likeCount, isLikedByThisUser]);
 
   const toBlogDetail = () => {
     navigate(`/blogDetail/${id}`);
