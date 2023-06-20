@@ -14,7 +14,7 @@ type dataType = {
   message: string;
 };
 
-export const EmailInput = memo((props: propsType) => {
+export const EmailInput = React.memo((props: propsType) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const { userInputHandler } = props;
