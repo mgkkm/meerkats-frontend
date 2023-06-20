@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { myblogArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
 import Search from './Search';
@@ -14,7 +14,7 @@ type dataType = {
   };
 };
 
-export default function BlogMainTop() {
+function BlogMainTop() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setMyBlogBtn = useSetRecoilState(myBlogBtnState);
@@ -116,6 +116,8 @@ export default function BlogMainTop() {
     </div>
   );
 }
+
+export default React.memo(BlogMainTop);
 
 const TAB_DATA = [
   {
