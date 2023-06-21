@@ -23,13 +23,13 @@ export default function PostBtn() {
 
   const clickHandler = () => {
     if (blogPost.title === '') {
-      warningAlert('Title is empty', 'Please enter a title');
+      warningAlert('', '제목을 입력해 주세요.');
       return;
     } else if (blogPost.categoryId === 0 && blogPost.spoilerInfoId === 0) {
-      warningAlert('Category Select Required', 'Please select a category');
+      warningAlert('', '카테고리를 선택해 주세요.');
       return;
     } else if (blogPost.content === '') {
-      warningAlert('Content is empty', 'Please enter a content');
+      warningAlert('', '내용을 입력해 주세요.');
       return;
     }
 
@@ -43,12 +43,12 @@ export default function PostBtn() {
       data: blogPost,
     }).then((res: any) => {
       if (res.message.includes('SUCCESS')) {
-        infoAlert('Success Update ! ', 'Enjoy meerkats Blog');
+        infoAlert('', '포스트가 등록되었습니다.');
         navigate(`${isEdit ? `/blogDetail/${param.id}` : '/blogMain'}`);
       } else {
         failedNavigateAlert(
-          'Login Required',
-          'Please login and try again.',
+          '로그인이 필요합니다.',
+          '로그인 후 다시 시도해 주세요.',
           './login',
           navigate
         );

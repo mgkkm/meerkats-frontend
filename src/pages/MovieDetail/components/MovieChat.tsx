@@ -95,8 +95,8 @@ export default function MovieChat() {
   const isLoggedIn = (e: React.MouseEvent<HTMLInputElement>) => {
     if (!token) {
       failedNavigateAlert(
-        'Login Required',
-        'Please login and try again.',
+        '로그인이 필요합니다.',
+        '로그인 후 다시 시도해 주세요.',
         '/login',
         navigate
       );

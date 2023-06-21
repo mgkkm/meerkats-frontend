@@ -45,8 +45,8 @@ export default function DropDownBtn({
 
   const deleteHandler = () => {
     failedAxiosAlert(
-      'Are you sure?',
-      "You won't be able to revert this!",
+      '삭제하시겠습니까?',
+      '삭제 후에는 데이터를 복구할 수 없습니다.',
       () => {
         fetchData({
           url: deleteAxiosUrl,
@@ -57,7 +57,7 @@ export default function DropDownBtn({
         }).then((result: any) => {
           setRendering(!rendering);
           if (result.message.includes('SUCCESS')) {
-            successAlert('Deleted!', 'Your post has been deleted.');
+            successAlert('삭제 완료', '포스트가 삭제되었습니다.');
           }
         });
       }

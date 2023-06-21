@@ -53,8 +53,8 @@ function BlogMainTop() {
     const token = sessionStorage.getItem('token');
     if (token === null) {
       warningAlert(
-        '로그인 해주세요!',
-        '미어캐츠 회원만 블로그 글쓰기를 이용하실 수 있습니다.'
+        '로그인이 필요합니다.',
+        'meerkats 회원만 글쓰기를 이용하실 수 있습니다.'
       );
       navigate('/login');
     }
