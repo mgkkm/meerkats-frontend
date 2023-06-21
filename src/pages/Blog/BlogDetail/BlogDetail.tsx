@@ -81,7 +81,9 @@ export default function BlogDetail() {
       if (result) {
         setBlogDetailData(result.data.postDetails);
         resetIsLiked();
+        resetIsScraped();
         resetLikeN();
+        resetScrapN();
         setIsLiked(result.data.postDetails.isLikedByThisUser);
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
@@ -92,10 +94,6 @@ export default function BlogDetail() {
 
     return () => {
       resetBlogDetailState();
-      resetIsLiked();
-      resetIsScraped();
-      resetLikeN();
-      resetScrapN();
       resetCommentN();
     };
   }, []);
