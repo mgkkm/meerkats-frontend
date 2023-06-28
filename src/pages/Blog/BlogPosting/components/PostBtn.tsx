@@ -28,6 +28,9 @@ export default function PostBtn() {
     } else if (blogPost.categoryId === 0 && blogPost.spoilerInfoId === 0) {
       warningAlert('', '카테고리를 선택해 주세요.');
       return;
+    } else if (blogPost.spoilerInfoId === 0) {
+      warningAlert('', '스포 여부를 선택해 주세요.');
+      return;
     } else if (blogPost.content === '') {
       warningAlert('', '내용을 입력해 주세요.');
       return;
