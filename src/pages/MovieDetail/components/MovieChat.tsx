@@ -43,15 +43,8 @@ export default function MovieChat() {
 
     socket.on('count', handleCount);
 
-    const handlePopstate = () => {
-      socket.emit('leave', roomId);
-    };
-
-    window.addEventListener('popstate', handlePopstate);
-
     return () => {
       socket.emit('leave', roomId);
-      window.removeEventListener('popstate', handlePopstate);
       socket.off('count', handleCount);
     };
   }, []);
