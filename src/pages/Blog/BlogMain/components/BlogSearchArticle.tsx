@@ -1,10 +1,22 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
 import { BlogArticle } from './BlogArticle';
 import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { useEffect } from 'react';
+import { searchState } from '../../../../recoil/SearchState';
 
 export default function BlogSearchArticle() {
   const searchArticleData = useRecoilValue(SearchDataState);
+  const resetSearchArticleData = useResetRecoilState(SearchDataState);
+  const setSearchInput = useSetRecoilState(searchState);
+
+  useEffect(() => {
+    // unmount 시, 검색된 데이터 reset
+    return () => {
+      setSearchInput(false);
+      resetSearchArticleData();
+    };
+  }, []);
 
   return (
     <section className="flex flex-col lg:flex-row lg:flex-wrap justify-center m-auto xl:mt-10">

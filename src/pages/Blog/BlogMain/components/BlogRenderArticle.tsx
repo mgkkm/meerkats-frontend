@@ -56,7 +56,7 @@ const BlogRenderArticle = React.memo(() => {
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
-  const myBlogBtn = useRecoilValue(myBlogBtnState);
+  const [myBlogBtn, setMyBlogBtn] = useRecoilState(myBlogBtnState);
   const myBlogData = useRecoilValue(myblogArticleDataState);
 
   // token 관리 및 저장
@@ -73,6 +73,10 @@ const BlogRenderArticle = React.memo(() => {
       setArticleData(res);
     });
   }, [toggle]);
+
+  useEffect(() => {
+    setMyBlogBtn(false);
+  }, [articleData]);
 
   const spoToggle = toggle
     ? articleData?.data?.spoPostData
