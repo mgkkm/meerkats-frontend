@@ -37,7 +37,7 @@ export default function Option({ currentType, changeType }: subscribeProps) {
 
   return (
     <div>
-      <p className="text-xl font-semibold py-5">Subscription Options</p>
+      <p className="text-xl font-semibold py-5">| 멤버십 선택</p>
       {membershipData.map(({ id, name, price, ticketProvision }) => {
         return (
           <div className="form-control" key={id}>
@@ -54,13 +54,13 @@ export default function Option({ currentType, changeType }: subscribeProps) {
                 />
                 <div>
                   <p className="font-semibold">{name}</p>
-                  <p className="text-sm">{`Get ${ticketProvision} FREE tickets ${
-                    id === 3 && 'and MORE!'
+                  <p className="text-sm">{`월 ${ticketProvision}회 무료 영화 예매 혜택${
+                    id === 3 ? ' and MORE!' : ''
                   }`}</p>
                 </div>
               </div>
               <span className="ml-[3.25rem] font-semibold max-sm:mt-3">
-                {currencyFormat(price)} / month
+                {currencyFormat(price)} / 월
               </span>
             </label>
           </div>

@@ -94,7 +94,7 @@ export default function Category() {
       >
         <label
           tabIndex={0}
-          className="btn mb-1 bg-white border-2 border-solid text-mkBlack cursor-pointer xs:w-36 max-sm:text-xs xl:w-44 hover:bg-white border-mkBlack"
+          className="btn mb-1 bg-white border-2 border-solid text-mkBlack cursor-pointer xs:w-40 max-sm:text-xs xl:w-44 hover:bg-white border-mkBlack"
         >
           {selectSpo}
           <img
