@@ -80,7 +80,9 @@ export default function Subscribe() {
     <div className="container xl pt-24">
       <div className="bg-white pt-24 pb-10 lg:flex justify-center xl:gap-36">
         <div className="subscriptionLeft max-lg:mb-10 max-md:pl-10 md:max-lg:pl-20 lg:pl-8">
-          <p className="text-3xl font-semibold">Subscribe meerkats!</p>
+          <p className="text-3xl font-semibold">
+            지금 meerkats 멤버십을 구독해 보세요!
+          </p>
           <div className="py-10 text-mkDarkGray flex flex-col gap-10">
             <Option currentType={currentType} changeType={changeType} />
             <PaymentInfo />
