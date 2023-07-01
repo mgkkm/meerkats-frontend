@@ -32,13 +32,13 @@ export default function MembershipMain() {
   return (
     <div className="container xl">
       <div
-        className="mb-14 hover:cursor-pointer"
+        className="hover:cursor-pointer"
         onClick={() => navigate('/membership')}
       >
-        <p className="text-center font-[ChosunGs] xl:text-4xl xl:mb-20 sm:mb-10 sm:text-2xl xs:text-lg xs:mb-5">
+        <p className="text-center font-[ChosunGs] xl:text-4xl sm:mb-10 sm:text-2xl xs:text-lg xs:mb-5">
           Enjoy the benefits of the meerkats membership!
         </p>
-        <p className="text-lg flex justify-center text-mkGray mt-3">
+        <p className="text-base md:text-lg flex justify-center text-mkGray sm:mb-10">
           Choose the plan that suits you best
         </p>
       </div>

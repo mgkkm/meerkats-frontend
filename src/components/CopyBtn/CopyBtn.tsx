@@ -8,9 +8,9 @@ export default function CopyBtn() {
   const copyClipBoard = async (text: string) => {
     try {
       await navigator.clipboard.writeText(text);
-      autoCloseAlert('success', 'Copied!');
+      autoCloseAlert('success', '링크가 클립보드에 복사되었습니다.');
     } catch (e) {
-      autoCloseAlert('error', 'Sorry! Try again.');
+      autoCloseAlert('error', '다시 시도해 주세요.');
     }
   };
 

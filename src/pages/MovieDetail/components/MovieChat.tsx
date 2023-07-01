@@ -43,15 +43,8 @@ export default function MovieChat() {
 
     socket.on('count', handleCount);
 
-    const handlePopstate = () => {
-      socket.emit('leave', roomId);
-    };
-
-    window.addEventListener('popstate', handlePopstate);
-
     return () => {
       socket.emit('leave', roomId);
-      window.removeEventListener('popstate', handlePopstate);
       socket.off('count', handleCount);
     };
   }, []);
@@ -95,8 +88,8 @@ export default function MovieChat() {
   const isLoggedIn = (e: React.MouseEvent<HTMLInputElement>) => {
     if (!token) {
       failedNavigateAlert(
-        'Login Required',
-        'Please login and try again.',
+        '로그인이 필요합니다.',
+        '로그인 후 다시 시도해 주세요.',
         '/login',
         navigate
       );

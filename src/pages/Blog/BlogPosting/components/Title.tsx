@@ -1,9 +1,11 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { blogPostState } from '../../../../recoil/BlogPostState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { blogPostState, isEditState } from '../../../../recoil/BlogPostState';
 
 export default function Title() {
   const [blogPost, setBlogPost] = useRecoilState(blogPostState);
+  const isEdit = useRecoilValue(isEditState);
+  let title;
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -13,6 +15,10 @@ export default function Title() {
     }));
   };
 
+  if (isEdit) {
+    title = blogPost.title;
+  }
+
   return (
     <div>
       <input
@@ -20,7 +26,7 @@ export default function Title() {
         placeholder="Title"
         className="w-full h-20 text-4xl py-4 outline-0 max-sm:text-3xl"
         onChange={changeHandler}
-        value={blogPost.title}
+        value={title}
       />
       <div className="bg-mkOrange w-16	h-1.5" />
     </div>

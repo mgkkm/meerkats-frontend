@@ -69,8 +69,8 @@ export default function LikeScrapBtn({
   const LikeScrapHandler = () => {
     if (!token) {
       failedNavigateAlert(
-        'Login Required',
-        'Please login and try again.',
+        '로그인이 필요합니다.',
+        '로그인 후 다시 시도해 주세요.',
         '/login',
         navigate
       );
@@ -99,10 +99,14 @@ export default function LikeScrapBtn({
         if (result.message.includes('SUCCESS')) {
           setCounterN(1);
           setIsClicked(true);
-          autoCloseAlert('success', 'Success!');
+          if (result.message.includes('create')) {
+            autoCloseAlert('success', '저장되었습니다.');
+          } else if (result.message.includes('delete')) {
+            autoCloseAlert('success', '삭제되었습니다.');
+          }
         }
       } else {
-        warningAlert('Something went wrong!', 'Please try again.');
+        warningAlert('오류가 발생했습니다.', '잠시 후 다시 시도해 주세요.');
       }
     });
   };

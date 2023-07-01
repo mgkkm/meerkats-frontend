@@ -1,6 +1,6 @@
 const Swal = require('sweetalert2');
 
-//(navigate)버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
+// (navigate) 버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
 export const failedNavigateAlert = (
   title: string,
   text: string,
@@ -23,7 +23,7 @@ export const failedNavigateAlert = (
   });
 };
 
-//(axios)버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
+// (axios) 버튼 2개 가진 경고창 함수나 이벤트를 인자로 받음
 export const failedAxiosAlert = (
   title: string,
   text: string,
@@ -45,7 +45,7 @@ export const failedAxiosAlert = (
   });
 };
 
-//일반 경고창 버튼 ok 한개
+// 일반 경고창 OK 버튼 한 개
 export const warningAlert = (title: string, text: string) => {
   Swal.fire({
     title: title,
@@ -54,21 +54,6 @@ export const warningAlert = (title: string, text: string) => {
     confirmButtonText: 'OK',
     confirmButtonColor: '#e35c02',
     showCancelButton: false,
-  });
-};
-
-//확인 알림창
-export const infoAlert = (title: string, text: string) => {
-  Swal.fire(title, text, 'info');
-};
-
-export const autoCloseAlert = (icon: string, title: string) => {
-  Swal.fire({
-    position: 'center',
-    icon: icon,
-    title: title,
-    showConfirmButton: false,
-    timer: 1500,
   });
 };
 
@@ -81,5 +66,21 @@ export const successAlert = (title: string, text: string) => {
     showConfirmButton: true,
     confirmButtonText: 'OK',
     confirmButtonColor: '#e35c02',
+  });
+};
+
+// 확인 알림창
+export const infoAlert = (title: string, text: string) => {
+  Swal.fire(title, text, 'info');
+};
+
+export const autoCloseAlert = (icon: string, text: string) => {
+  Swal.fire({
+    position: 'center',
+    icon: icon,
+    text: text,
+    padding: '3rem',
+    showConfirmButton: false,
+    timer: 1500,
   });
 };

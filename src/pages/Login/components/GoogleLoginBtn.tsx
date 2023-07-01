@@ -44,11 +44,11 @@ export default function GoogleLoginBtn() {
 
   return (
     <button onClick={() => loginBtnOnClick()}>
-      <div className="relative inline-block w-16 h-16 text-center bg-white rounded-full">
+      <div className="socialLoginBtn bg-white">
         <img
           src="/images/login/logo_google.png"
           alt="google_logo"
-          className="absolute left-2/4 top-2/4 w-2/5 m-auto -translate-x-2/4 -translate-y-2/4"
+          className="socialLogo w-2/5 m-auto -translate-x-2/4 -translate-y-2/4"
         />
       </div>
     </button>

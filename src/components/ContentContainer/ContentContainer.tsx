@@ -5,6 +5,7 @@ import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { blogInputState } from '../../recoil/BlogPostState';
 import { navSearchDataState } from '../../recoil/SearchDataState';
 import { toggleSelector } from '../../recoil/ToggleState';
+import { navSearchState } from '../../recoil/SearchState';
 
 type ScrollPorps = {
   scrollHandler: (e: React.WheelEvent<HTMLDivElement>) => void;
@@ -18,7 +19,7 @@ export default function ContentContainer({
 } & ScrollPorps) {
   const location = useLocation();
   const setInputContent = useSetRecoilState(blogInputState);
-  const setSearchInput = useSetRecoilState(toggleSelector('navSearch'));
+  const setSearchInput = useSetRecoilState(navSearchState);
   const resetSearchData = useResetRecoilState(navSearchDataState);
 
   useEffect(() => {
@@ -29,7 +30,11 @@ export default function ContentContainer({
   }, [location]);
 
   return (
-    <div className="h-auto relative pb-28" onWheel={scrollHandler}>
+    <div
+      className="h-auto relative pb-16 sm:pb-28"
+      onWheel={scrollHandler}
+      onClick={() => setSearchInput(false)}
+    >
       {children}
       <TopBtn />
     </div>

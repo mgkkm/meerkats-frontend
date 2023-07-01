@@ -8,22 +8,6 @@ export default function Terms() {
   const today = new Date();
   const day = today.getDate();
 
-  const nthNumber = (number: number) => {
-    if (number > 3 && number < 21) return 'th';
-    switch (number % 10) {
-      case 1:
-        return 'st';
-      case 2:
-        return 'nd';
-      case 3:
-        return 'rd';
-      default:
-        return 'th';
-    }
-  };
-
-  const renewalDay = day + nthNumber(day);
-
   const handleCheckBox = (e: ChangeEvent<HTMLInputElement>) => {
     setAllValid({ ...allValid, autoRenewAgreement: e.target.checked });
   };
@@ -32,23 +16,21 @@ export default function Terms() {
     <div className="mt-14 px-2 flex flex-col items-center">
       <div className="flex">
         <input type="checkbox" className="checkbox" onChange={handleCheckBox} />
-        <p className="font-semibold ml-3">Auto-renew my membership MONTHLY</p>
+        <p className="font-semibold ml-3">
+          자동 결제 및 구독 관련 안내 사항에 동의합니다.
+        </p>
       </div>
-      <p className="text-sm text-mkGray mt-4 px-5">
-        By Choosing auto-renew, you authorize meerkats to automatically charge
-        the credit / debit card number listed on a monthly basis, at the
-        then-current price for the membership category you have chosen. <br />
-        No partial refunds. If you change your mind about auto-renewing, you can
-        cancel at any time prior to the auto-renewal date by emailing us at
-        meerkats@mgkkm.com.
+      <p className="text-sm text-mkGray mt-4 px-5 leading-6">
+        자동 결제에 동의하면 귀하의 구독은 매월 자동으로 갱신되며 귀하 또는
+        당사가 해지할 때까지 요금이 부과됩니다. 부분 환불은 불가합니다. 구독
+        해지는 다음 달 결제 날짜가 시작되기 최소 48시간 전에 meerkats@mgkkm.com
+        으로 문의하시기 바랍니다. 멤버십 및 결제 정보 변경은 변경일 이후 다음
+        구독 기간이 시작될 때 적용됩니다.
       </p>
-      <p className="text-sm text-mkGray mt-4 px-5">
-        Date of purchase memberships start on the day that they were purchased
-        on. Your membership will renew on the
-      </p>
-      <p className="text-md text-mkGray font-semibold mt-4">
-        Renewal date: every&nbsp;
-        {renewalDay} of a month.
+      <p className="text-sm text-mkGray mt-4 px-5 leading-6">
+        멤버십을 결제한 날짜에 매월 자동 결제됩니다. 단, 결제일이 존재하지 않는
+        달에는 해당 월의 가장 마지막 날에 결제됩니다. *선택하신 구독 상품이 매월{' '}
+        {day}일 결제됩니다.
       </p>
     </div>
   );

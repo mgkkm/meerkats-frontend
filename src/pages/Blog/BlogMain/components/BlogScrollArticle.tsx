@@ -38,20 +38,6 @@ type elType = {
   };
 };
 
-// type elelType = {
-//   category_id: number;
-//   commentCount: number;
-//   created_at: string;
-//   id: number;
-//   likeCount: number;
-//   spoiler_info_id: number;
-//   thumbnail: string;
-//   title: string;
-//   user: {
-//     nickname: string;
-//   };
-// };
-
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션
 export default function BlogScrollArticle() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;

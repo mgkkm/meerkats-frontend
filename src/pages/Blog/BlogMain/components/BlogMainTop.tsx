@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { myblogArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
 import Search from './Search';
@@ -14,7 +14,7 @@ type dataType = {
   };
 };
 
-export default function BlogMainTop() {
+function BlogMainTop() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const setMyBlogBtn = useSetRecoilState(myBlogBtnState);
@@ -53,8 +53,8 @@ export default function BlogMainTop() {
     const token = sessionStorage.getItem('token');
     if (token === null) {
       warningAlert(
-        '로그인 해주세요!',
-        '미어캐츠 회원만 블로그 글쓰기를 이용하실 수 있습니다.'
+        '로그인이 필요합니다.',
+        'meerkats 회원만 글쓰기를 이용하실 수 있습니다.'
       );
       navigate('/login');
     }
@@ -116,6 +116,8 @@ export default function BlogMainTop() {
     </div>
   );
 }
+
+export default React.memo(BlogMainTop);
 
 const TAB_DATA = [
   {

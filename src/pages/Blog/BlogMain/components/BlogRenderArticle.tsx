@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   ArticleDataState,
@@ -51,12 +51,12 @@ type myBlogElType = {
   };
 };
 
-export default function BlogRenderArticle() {
+const BlogRenderArticle = React.memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const [loading, error, data, fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
-  const myBlogBtn = useRecoilValue(myBlogBtnState);
+  const [myBlogBtn, setMyBlogBtn] = useRecoilState(myBlogBtnState);
   const myBlogData = useRecoilValue(myblogArticleDataState);
 
   // token 관리 및 저장
@@ -73,6 +73,10 @@ export default function BlogRenderArticle() {
       setArticleData(res);
     });
   }, [toggle]);
+
+  useEffect(() => {
+    setMyBlogBtn(false);
+  }, [articleData]);
 
   const spoToggle = toggle
     ? articleData?.data?.spoPostData
@@ -141,4 +145,6 @@ export default function BlogRenderArticle() {
           })}
     </section>
   );
-}
+});
+
+export default BlogRenderArticle;
