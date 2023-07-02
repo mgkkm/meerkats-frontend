@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaRegCommentDots } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';

@@ -17,7 +17,7 @@ export default function BlogPosting() {
   const [isEdit, setIsEdit] = useRecoilState(isEditState);
   const currentUserId = useRecoilValue(currentUserIdState);
   const setBlogPost = useSetRecoilState(blogPostState);
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const location = useLocation();
   const param = useParams();

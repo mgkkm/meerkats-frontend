@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MoviePlayer from './components/MoviePlayer';
 import MovieDetailHeader from './components/MovieDetailHeader';
 import MovieDetailTab from './components/MovieDetailTab';
@@ -85,7 +85,7 @@ export default function MovieDetail() {
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const [loading, error, data, fetchData] = useAxios();
+  const [loading, , , fetchData] = useAxios();
   const [playerHeight, setPlayerHeight] = useState('');
   const playerRef = useRef<YouTube>(null);
 

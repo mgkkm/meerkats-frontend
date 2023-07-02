@@ -18,7 +18,7 @@ interface CommentListData {
 export default function CommentList() {
   const param = useParams();
   const location = useLocation();
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const rendering = useRecoilValue(renderingState);
   const [commentData, setCommentData] = useRecoilState(commentState);

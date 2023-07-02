@@ -10,7 +10,7 @@ type resType = {
 
 export const SearchModal = React.memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const setSearchInput = useSetRecoilState(searchState);
   const setSearchArticleData = useSetRecoilState(SearchDataState);
   const resetSearchArticleData = useResetRecoilState(SearchDataState);

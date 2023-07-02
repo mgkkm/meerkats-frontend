@@ -16,7 +16,7 @@ type dataType = {
 
 function BlogMainTop() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const setMyBlogBtn = useSetRecoilState(myBlogBtnState);
   const setMyblogData = useSetRecoilState(myblogArticleDataState);
   const resetMyblogData = useResetRecoilState(myblogArticleDataState);

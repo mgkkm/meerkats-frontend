@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserInput } from './UserInput';
 import useAxios from '../../../hooks/useAxios';
@@ -19,7 +19,7 @@ type dataType = {
 export default function UserForm() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const [inputValues, setInputValues] = useRecoilState(inputValueState);
   const { id, pw } = inputValues;

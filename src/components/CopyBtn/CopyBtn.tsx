@@ -1,4 +1,3 @@
-import React from 'react';
 import { HiLink } from 'react-icons/hi';
 import { autoCloseAlert } from '../Alert/Modal';
 

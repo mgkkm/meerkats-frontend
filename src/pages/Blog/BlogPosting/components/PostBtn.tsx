@@ -13,7 +13,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export default function PostBtn() {
   const isEdit = useRecoilValue(isEditState);
   const blogPost = useRecoilValue(blogPostState);
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const token = sessionStorage.getItem('token');
 
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import useAxios from '../../hooks/useAxios';
 import { membershipState } from '../../recoil/MembershipState';
@@ -19,7 +19,7 @@ export interface MembershipCardData {
 
 export default function Membership() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const [membershipData, setMembershipData] = useRecoilState(membershipState);
 

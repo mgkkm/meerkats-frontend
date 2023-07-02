@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import MainCarousel from './components/MainCarousel';
 import MainTab from './components/MainTab';
 import MainTopRankCarousel from './components/MainTopRankCarousel';
@@ -9,7 +9,7 @@ import MembershipMain from '../Membership/MembershipMain';
 
 export default function Main() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const setMainData = useSetRecoilState(mainDataState);
 
   useEffect(() => {

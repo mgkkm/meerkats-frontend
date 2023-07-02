@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import {
   currentUserIdState,
   currentUserNicknameState,
@@ -19,8 +19,8 @@ export default function KakaoLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const KAKAO_CODE = location.search.split('=')[1];
-  const [loading, error, data, fetchData] = useAxios();
-  const [currentId, setCurrentId] = useRecoilState(currentUserIdState);
+  const [, , , fetchData] = useAxios();
+  const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);
 
   useEffect(() => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import YouTube, { YouTubeProps } from 'react-youtube';
 import { MoviePlayerHeight } from '../../../components/Skeleton/MovieDetailSkeleton';
 

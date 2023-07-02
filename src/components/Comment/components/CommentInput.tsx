@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
@@ -27,7 +27,7 @@ export default function CommentInput() {
   const [content, setContent] = useRecoilState(blogInputState);
   const [rendering, setRendering] = useRecoilState(renderingState);
 
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const inputRef = useRef<HTMLTextAreaElement | null>(null);
   const param = useParams();

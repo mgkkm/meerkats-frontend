@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
 import useAxios from '../../../hooks/useAxios';
 import { warningAlert } from '../../../components/Alert/Modal';
 import { userInputState } from '../../../recoil/UserInputState';
@@ -16,7 +16,7 @@ type dataType = {
 
 export const EmailInput = React.memo((props: propsType) => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const { userInputHandler } = props;
   const userInput = useRecoilValue(userInputState);
   const { email, certifiNumber } = userInput;

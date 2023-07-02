@@ -1,4 +1,3 @@
-import React from 'react';
 import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import useAxios from '../../../hooks/useAxios';
@@ -37,7 +36,7 @@ export default function DropDownBtn({
   const setCurrentCommentId = useSetRecoilState(commentIdState);
   const [rendering, setRendering] = useRecoilState(renderingState);
   const setInputContent = useSetRecoilState(blogInputState);
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const deleteAxiosUrl = location.pathname.includes('blogDetail')
     ? `${BASE_URL}/blog/postComment/${commentId}`

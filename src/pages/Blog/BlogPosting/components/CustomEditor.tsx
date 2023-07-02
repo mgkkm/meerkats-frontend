@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { blogPostState, isEditState } from '../../../../recoil/BlogPostState';
 import { CKEditor } from '@ckeditor/ckeditor5-react';

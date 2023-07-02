@@ -16,7 +16,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 export default function BlogHeader() {
   const currentId = useRecoilValue(currentUserIdState);
   const blogDetailData = useRecoilValue(blogDetailState);
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const token = sessionStorage.getItem('token');
   const navigate = useNavigate();
 
@@ -62,8 +62,8 @@ export default function BlogHeader() {
           {category?.name}
         </span>
       </div>
-      <div className="flex justify-between items-center">
-        <p className="text-3xl font-semibold mt-10 mb-3">{title}</p>
+      <div className="flex justify-between items-center mt-10 mb-3">
+        <p className="text-3xl font-semibold">{title}</p>
         <div className="dropdown dropdown-end">
           <label tabIndex={0}>
             {currentId === user.id && (
@@ -88,10 +88,10 @@ export default function BlogHeader() {
         </div>
       </div>
       <div className="flex justify-between">
-        <div className="sm:flex items-center">
+        <div className="flex items-center">
           <span className="text-sm">by {user.nickname}</span>
-          <div className="max-sm:mt-1">
-            <span className="px-3 max-sm:hidden">·</span>
+          <div>
+            <span className="px-3">·</span>
             <span className="text-sm text-mkGray">
               {created_at && displayCreatedAt(created_at)}
             </span>
