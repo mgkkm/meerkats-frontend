@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
-import { useRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { topBtnState } from './recoil/TopBtnState';
 import ContentContainer from './components/ContentContainer/ContentContainer';
 
 export default function App() {
   const [show, setShow] = useState(true);
-  const [, setHide] = useRecoilState(topBtnState);
+  const setHide = useSetRecoilState(topBtnState);
 
   const scrollHandler = (e: React.WheelEvent<HTMLDivElement>) => {
     if (e.deltaY > 0) {
@@ -23,10 +23,11 @@ export default function App() {
       setHide(true);
     }
   };
+
   return (
     <>
       <Nav show={show} />
-      <ContentContainer scrollHandler={scrollHandler}>
+      <ContentContainer scrollHandler={scrollHandler} setShow={setShow}>
         <Outlet />
       </ContentContainer>
       <Footer />
