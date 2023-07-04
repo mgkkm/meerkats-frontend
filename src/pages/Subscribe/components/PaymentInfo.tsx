@@ -43,7 +43,7 @@ export default function PaymentInfo() {
           >
             <p>{selectedPayment}</p>
             <img
-              src="/images/blog/blogMain/dropdown_arrow.png"
+              src="/images/blog/dropdown_arrow.png"
               alt="dropdown_arrow"
               className="w-3 ml-3"
             />

@@ -63,7 +63,7 @@ export default function Category() {
         >
           {selectGenre}
           <img
-            src="/images/blog/blogMain/dropdown_arrow.png"
+            src="/images/blog/dropdown_arrow.png"
             alt="dropdown_arrow"
             className="w-3 ml-3"
           />
@@ -98,7 +98,7 @@ export default function Category() {
         >
           {selectSpo}
           <img
-            src="/images/blog/blogMain/dropdown_arrow.png"
+            src="/images/blog/dropdown_arrow.png"
             alt="dropdown_arrow"
             className="w-3 ml-3"
           />
