@@ -13,10 +13,16 @@ export default function MainTopRankCarousel() {
 
   return (
     <div className="container xl">
-      <h1 className="text-center font-[ChosunGs] xs:text-lg xs:mb-5 sm:mb-10 sm:text-2xl xl:text-4xl xl:mb-20">
-        Best Movie in Meerkats
-      </h1>
-
+      <div className="flex justify-center items-start xs:mb-5 sm:mb-10 xl:mb-20">
+        <img
+          src="/images/logo_b.png"
+          alt="logo"
+          className="xs:h-[22px] sm:h-[26px] xl:h-[34px]"
+        />
+        <h1 className="text-center font-semibold tracking-tight xs:text-lg sm:text-2xl xl:text-4xl">
+          &nbsp;인기 영화
+        </h1>
+      </div>
       <Swiper
         slidesPerView={4.5}
         spaceBetween={30}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { currencyFormat } from '../../components/CurrencyFormat/CurrencyFormat';
@@ -9,7 +9,7 @@ import { MembershipData } from './Membership';
 export default function MembershipMain() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const [currentTab, setCurrentTab] = useState(2);
   const [membershipData, setMembershipData] = useRecoilState(membershipState);
@@ -35,11 +35,18 @@ export default function MembershipMain() {
         className="hover:cursor-pointer"
         onClick={() => navigate('/membership')}
       >
-        <p className="text-center font-[ChosunGs] xl:text-4xl sm:mb-10 sm:text-2xl xs:text-lg xs:mb-5">
-          Enjoy the benefits of the meerkats membership!
-        </p>
-        <p className="text-base md:text-lg flex justify-center text-mkGray sm:mb-10">
-          Choose the plan that suits you best
+        <div className="flex justify-center items-start xs:mb-5">
+          <img
+            src="/images/logo_b.png"
+            alt="logo"
+            className="xs:h-[22px] sm:h-[26px] xl:h-[34px]"
+          />
+          <p className="text-center font-semibold tracking-tight xl:text-4xl sm:text-2xl xs:text-lg">
+            &nbsp;멤버십 혜택 한눈에 보기
+          </p>
+        </div>
+        <p className="text-sm tracking-tight sm:text-base xl:text-lg flex justify-center text-mkGray mb-10 max-[1100px]:mb-3">
+          나에게 가장 알맞은 멤버십을 구독하고 다양한 혜택을 누려보세요!
         </p>
       </div>
       <div className="max-[1100px]:block lg:w-full flex justify-center gap-16 lg:gap-10 xl:gap-16">
@@ -71,7 +78,7 @@ export default function MembershipMain() {
                   <p className="mt-5 text-3xl flex justify-center font-semibold">
                     {currencyFormat(price)}
                   </p>
-                  <p className="text-lg font-semibold">/ month</p>
+                  <p className="text-lg font-semibold">/ 월</p>
                 </div>
               </div>
             </div>

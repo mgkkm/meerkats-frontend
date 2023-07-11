@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { mainDataState } from '../../../recoil/MainDataState';
 import TabItems from './TabItems';
@@ -20,10 +20,17 @@ export default function MainTab() {
 
   return (
     <div className="container xl">
-      <h1 className="text-center font-[ChosunGs] xs:text-lg xs:mb-5 sm:mb-10 sm:text-2xl xl:text-4xl xl:mb-20">
-        Meet Your Next Movie
-      </h1>
-      <div className="tabs justify-center">
+      <div className="flex justify-center items-start xs:mb-5 sm:mb-10 xl:mb-20">
+        <img
+          src="/images/logo_b.png"
+          alt="logo"
+          className="xs:h-[22px] sm:h-[26px] xl:h-[34px]"
+        />
+        <h1 className="text-center font-semibold tracking-tight xs:text-lg sm:text-2xl xl:text-4xl">
+          &nbsp;에서 상영 예정작을 만나보세요!
+        </h1>
+      </div>
+      <div className="tabs justify-center gap-x-5">
         {TAB_DATA.map((list, idx) => {
           return (
             <div

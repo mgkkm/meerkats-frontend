@@ -73,7 +73,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #dash {
-  @apply w-1/3 border-none h-px mx-auto xl:my-32 md:my-24 sm:my-20 xs:my-12;
+  @apply w-1/3 border-none h-px mx-auto xs:my-12 md:my-20 lg:my-24 xl:my-32;
 }
 
 #dash {
@@ -204,6 +204,13 @@ input[type='number']::-webkit-outer-spin-button {
 
   .blogTextTitle {
     margin: 4rem 1.75rem 0 1.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .blogTextInfo {
+    margin: 0.75rem 1.75rem 1.5rem 1.75rem;
+    font-size: 0.875rem;
   }
 
   .socialLoginBtn {
