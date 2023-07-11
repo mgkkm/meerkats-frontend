@@ -39,7 +39,7 @@ export default function MembershipCard({ membership }: MembershipCardProps) {
               {content}
             </p>
             <p className="text-lg font-semibold text-black mt-5">
-              {currencyFormat(price)} / month
+              {currencyFormat(price)} / 월
             </p>
           </div>
         </div>

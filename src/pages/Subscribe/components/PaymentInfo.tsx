@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   paymentMethodState,
@@ -32,7 +32,7 @@ export default function PaymentInfo() {
   return (
     <div className="flex flex-col gap-10">
       <div>
-        <p className="text-xl font-semibold py-5">| 결제 수단</p>
+        <p className="text-xl font-semibold py-5">|&nbsp; 결제 수단</p>
         <div
           className="dropdown cursor-pointer"
           onClick={() => setPaymentBox(!paymentBox)}
@@ -71,7 +71,7 @@ export default function PaymentInfo() {
         </div>
       </div>
       <div>
-        <p className="text-xl font-semibold py-5">| 결제 정보</p>
+        <p className="text-xl font-semibold py-5">|&nbsp; 결제 정보</p>
         <div className="grid grid-cols-2 gap-x-14 sm:gap-x-32 items-center">
           {PAYMENT_DETAILS.map(item => {
             return <PaymentInput key={item.id} item={item} />;
