@@ -12,7 +12,7 @@ export default function Category() {
   const [genreCategory, setGenreCategory] = useState([]);
   const [blogPost, setBlogPost] = useRecoilState(blogPostState);
   const isEdit = useRecoilValue(isEditState);
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   useEffect(() => {
     fetchData({

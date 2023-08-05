@@ -41,7 +41,7 @@ type elType = {
 // Intersection Observer API 를 활용한 무한스크롤 페이지네이션
 export default function BlogScrollArticle() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const pageEnd = useRef<any>();
   const [articles, setArticles] = useRecoilState(scrollArticleDataState);
   const myBlogBtn = useRecoilValue(myBlogBtnState);

@@ -1,4 +1,3 @@
-import React from 'react';
 import YouTube from 'react-youtube';
 import { useRecoilValue } from 'recoil';
 import { PlaylistSkeleton } from '../../../components/Skeleton/MovieDetailSkeleton';

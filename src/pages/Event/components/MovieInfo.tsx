@@ -4,7 +4,7 @@ import MoviePlayer from '../../MovieDetail/components/MoviePlayer';
 import { useParams } from 'react-router-dom';
 
 export default function MovieInfo() {
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , data, fetchData] = useAxios();
 
   const param = useParams();
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function MovieInfo() {
         <MoviePlayer videoId={movieData?.youtubeId} height="380" autoplay={0} />
       </div>
       <ul className="px-10 py-5 text-mkLightGray xs:w-full xs:text-xs sm:text-sm md:text-base xl:text-lg xl:w-3/5">
-        <li className="mb-2 ">개봉 : {movieData?.release}</li>
+        <li className="mb-2 ">개봉 : {movieData?.releaseDate}</li>
         <li className="mb-2">감독 : {movieData?.director}</li>
         <li className="mb-2">주연 : {movieData?.mainActor}</li>
         <li className="mb-2">러닝타임 : {movieData?.runningTime}</li>

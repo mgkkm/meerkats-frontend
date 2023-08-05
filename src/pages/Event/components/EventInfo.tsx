@@ -21,7 +21,7 @@ type EventScheduleProps = {
 };
 
 export default function EventInfo() {
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , data, fetchData] = useAxios();
   const params = useParams();
   let event = parseInt(params.id!);
 

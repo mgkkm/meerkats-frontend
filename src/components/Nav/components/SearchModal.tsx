@@ -11,7 +11,7 @@ type dataType = {
 
 export const SearchModal = memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const navigate = useNavigate();
   const setSearchInput = useSetRecoilState(navSearchState);
   const [searchData, setSearchData] = useRecoilState(navSearchDataState);

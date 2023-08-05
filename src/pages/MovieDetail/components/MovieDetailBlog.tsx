@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { movieBlogState } from '../../../recoil/MovieDetailState';
 import MovieDetailBlogCard from './MovieDetailBlogCard';

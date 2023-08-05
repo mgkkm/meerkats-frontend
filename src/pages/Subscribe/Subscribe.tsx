@@ -23,7 +23,7 @@ export default function Subscribe() {
   const params = useParams();
   const selectedType = params.id;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const token = sessionStorage.getItem('token');
 

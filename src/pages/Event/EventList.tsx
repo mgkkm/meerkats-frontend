@@ -20,7 +20,7 @@ type EventType = {
 };
 
 export default function EventList() {
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , data, fetchData] = useAxios();
   const navigate = useNavigate();
 
   useEffect(() => {

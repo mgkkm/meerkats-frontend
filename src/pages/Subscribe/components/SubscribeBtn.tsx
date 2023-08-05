@@ -1,5 +1,3 @@
-import { AxiosError } from 'axios';
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { successAlert, warningAlert } from '../../../components/Alert/Modal';
 import useAxios from '../../../hooks/useAxios';
@@ -13,7 +11,7 @@ import {
 export default function SubscribeBtn() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
   const token = sessionStorage.getItem('token');
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const subscriptionId = useRecoilValue(subscriptionIdState);
   const paymentMethodId = useRecoilValue(paymentMethodState);

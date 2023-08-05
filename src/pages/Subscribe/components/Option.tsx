@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { warningAlert } from '../../../components/Alert/Modal';
 import { currencyFormat } from '../../../components/CurrencyFormat/CurrencyFormat';

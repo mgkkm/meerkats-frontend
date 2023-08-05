@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { toggleSelector } from '../../recoil/ToggleState';
@@ -40,7 +39,7 @@ export default function LikeScrapBtn({
   const navigate = useNavigate();
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const token = sessionStorage.getItem('token');
 

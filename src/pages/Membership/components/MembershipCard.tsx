@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { currencyFormat } from '../../../components/CurrencyFormat/CurrencyFormat';
 import { MembershipCardData } from '../Membership';

@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Pagenation() {
   return (
     <div className="text-center mt-5 ">

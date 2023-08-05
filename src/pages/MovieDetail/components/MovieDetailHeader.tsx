@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { useParams } from 'react-router-dom';

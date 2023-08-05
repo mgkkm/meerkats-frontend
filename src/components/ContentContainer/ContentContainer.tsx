@@ -1,19 +1,20 @@
-import React, { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import TopBtn from '../TopButton/TopBtn';
 import { useLocation } from 'react-router-dom';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
 import { blogInputState } from '../../recoil/BlogPostState';
 import { navSearchDataState } from '../../recoil/SearchDataState';
-import { toggleSelector } from '../../recoil/ToggleState';
 import { navSearchState } from '../../recoil/SearchState';
 
 type ScrollPorps = {
   scrollHandler: (e: React.WheelEvent<HTMLDivElement>) => void;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function ContentContainer({
   children,
   scrollHandler,
+  setShow,
 }: {
   children: ReactNode;
 } & ScrollPorps) {
@@ -24,6 +25,7 @@ export default function ContentContainer({
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setShow(true);
     setInputContent('');
     setSearchInput(false);
     resetSearchData();

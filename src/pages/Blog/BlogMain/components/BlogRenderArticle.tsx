@@ -53,7 +53,7 @@ type myBlogElType = {
 
 const BlogRenderArticle = React.memo(() => {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const [articleData, setArticleData] = useRecoilState(ArticleDataState);
   const toggle = useRecoilValue(toggleSelector('spo'));
   const [myBlogBtn, setMyBlogBtn] = useRecoilState(myBlogBtnState);

@@ -45,7 +45,7 @@ export default function BlogDetail() {
   const token = sessionStorage.getItem('token');
 
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
 
   const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { blogDetailState } from '../../../../recoil/BlogDetailState';
 import parse from 'html-react-parser';

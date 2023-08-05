@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import MoviePlayer from './MoviePlayer';
 import { GrClose } from 'react-icons/gr';
 

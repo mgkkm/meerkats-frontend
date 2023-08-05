@@ -16,7 +16,7 @@ type dataType = {
 
 export default function GoogleLoginBtn() {
   const BASE_URL = process.env.REACT_APP_BASE_URL;
-  const [loading, error, data, fetchData] = useAxios();
+  const [, , , fetchData] = useAxios();
   const navigate = useNavigate();
   const setCurrentId = useSetRecoilState(currentUserIdState);
   const setCurrentNickname = useSetRecoilState(currentUserNicknameState);

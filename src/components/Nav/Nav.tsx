@@ -23,7 +23,7 @@ export default function Nav({ show }: HidePropsType) {
 
   return (
     <div
-      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between py-[0.4rem] xs:py-3 md:py-4 xl:px-7 shadow visible transition duration-500 ease-in-out z-10 ${
+      className={`navbar bg-base-100 fixed top-0 flex items-center justify-between h-24 py-[0.4rem] xs:py-3 md:py-4 xl:px-7 shadow visible transition duration-500 ease-in-out z-10 ${
         show ? '' : 'opacity-0'
       }`}
     >
