@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 
 type tabProps = {
   item: {
@@ -25,20 +26,22 @@ export default function TabItems({ item }: tabProps) {
       key={item.id}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
-      className="relative px-2 mb-2 xs:w-24 sm:w-36 md:w-44 xl:w-[230px] h-fit "
+      onClick={moveHandler}
+      className="relative px-2 mb-2 xs:w-24 sm:w-36 md:w-44 xl:w-[230px] h-fit hover:cursor-pointer"
     >
       {isHover && (
         <div className="z-100">
-          <div className="absolute bg-white h-96 opacity-50 xs:w-20 sm:w-32 md:w-40 xl:w-[215px]" />
+          <div className="absolute bg-black xs:h-[117px] sm:h-[187px] md:h-[234px] xl:h-[312.6px] opacity-50 xs:w-20 sm:w-32 md:w-40 xl:w-[215px]" />
           <button
             onClick={moveHandler}
-            className="absolute py-4 text-lg bottom-0 border-2 border-solid border-black bg-white xs:w-20 max-sm:text-[10px] max-sm:py-2 sm:w-32 md:w-40 xl:w-[215px]"
+            className="absolute flex justify-center items-center text-white font-bold translate-y-1/2 bottom-1/2 text-[10px] right-5 max-sm:translate-x-1/2 max-sm:right-[45%] sm:text-sm xl:text-base"
           >
             MORE
+            <MdKeyboardDoubleArrowRight className="text-xl" />
           </button>
         </div>
       )}
-      <img src={item.poster_img} alt="poster" className="w-fit h-full" />
+      <img src={item.poster_img} alt="poster" className="w-full h-full" />
     </div>
   );
 }
