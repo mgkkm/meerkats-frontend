@@ -30,11 +30,11 @@ export default function MainTopRankCarousel() {
         autoplay={{ delay: 1500 }}
         navigation={true}
         modules={[Navigation, Autoplay]}
-        className="p-4 xl:h-[500px] max-md:h-fit"
+        className="p-4 xl:h-[404px] max-md:h-fit"
       >
         {bestMovie.map((item, idx) => {
           return (
-            <SwiperSlide key={idx} className="w-fit h-fit">
+            <SwiperSlide key={idx} className="w-fit h-full">
               <TopRankItems item={item} />
             </SwiperSlide>
           );
