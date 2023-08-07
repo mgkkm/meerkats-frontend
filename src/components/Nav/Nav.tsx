@@ -51,13 +51,13 @@ export default function Nav({ show }: HidePropsType) {
         >
           {token ? (
             <img
-              src="/images/logout.png"
+              src="/images/nav/logout.png"
               alt="로그인"
               className="opacity-[0.63] hover:opacity-100"
             />
           ) : (
             <img
-              src="/images/login.png"
+              src="/images/nav/login.png"
               alt="로그아웃"
               className="opacity-[0.63] hover:opacity-100"
             />

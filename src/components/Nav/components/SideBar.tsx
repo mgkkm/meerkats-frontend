@@ -28,7 +28,7 @@ export default function SideBar() {
         onClick={() => setShow(true)}
         className="w-5 h-5 mt-2 opacity-70 hover:opacity-100 cursor-pointer sm:h-7 sm:w-7 lg:w-8 lg:h-8"
       >
-        <img src="/images/sidebar.png" alt="햄버거메뉴" className="w-full" />
+        <img src="/images/nav/sidebar.png" alt="메뉴" className="w-full" />
       </div>
       <ul
         tabIndex={0}
