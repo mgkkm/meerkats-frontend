@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Pagenation from './components/Pagenation';
 import useAxios from '../../hooks/useAxios';
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +6,9 @@ import { useNavigate } from 'react-router-dom';
 type EventType = {
   id: number;
   title: string;
+  releaseDate: string;
   sub: string;
-  due: string;
+  period: string;
   product: string;
   place: string;
   img: string;
@@ -44,9 +45,9 @@ export default function EventList() {
   return (
     <div className="container xl pt-24 pb-14 px-20 bg-white xs:px-0">
       <h1 className="text-4xl text-center font-semibold my-14 max-sm:text-2xl">
-        Ongoing Event
+        진행 중인 이벤트
       </h1>
-      <div className="container p-2.5 flex flex-wrap">
+      <div className="container px-16 sm:px-20 py-2.5 flex flex-wrap max-xl:justify-center">
         {data &&
           data.map((row: EventType) => {
             return (
@@ -54,49 +55,36 @@ export default function EventList() {
                 data-value={row.id}
                 onClick={clickHandler}
                 key={row.id}
-                className="xs:w-full md:w-full xl:w-1/2 flex relative p-5 mb-5"
+                className="w-full mb-80 lg:w-3/4 xl:w-1/2 sm:flex relative md:px-10 sm:mb-20 h-[260px] items-end cursor-pointer"
               >
-                <div className="w-40 h-56 mr-7 shadow-xl cursor-pointer max-sm:h-48">
-                  <img
-                    src={row.img}
-                    alt="movie_img"
-                    className="w-full h-full"
-                  />
+                <div className="w-full h-fit sm:w-[175px] sm:mr-6 shadow-xl overflow-hidden">
+                  <img src={row.img} alt="movie_img" className="w-full" />
                 </div>
-                <ul className="w-3/4 h-56 border-b py-3 border-mkLightGray max-sm:py-1 xs:h-fit">
-                  <li className="text-xl font-semibold mb-2 max-xs:text-lg">
-                    [{row.title}]
+                <ul className="h-56 max-sm:p-1 xs:h-fit pb-1">
+                  <li className="text-xl max-sm:mt-2 sm:text-2xl leading-6 font-semibold">
+                    {row.title}
                   </li>
-                  <li className="text-lg font-semibold mb-10 max-sm:text-base">
+                  <li className="text-sm mb-2 sm:mb-5 text-mkGray">
+                    {row.releaseDate}
+                  </li>
+                  <li className="sm:text-xl font-semibold mb-5 sm:mb-[90px]">
                     {row.sub}
                   </li>
-                  <li className="font-medium text-mkGray max-sm:text-sm">
+                  <li className="font-medium text-mkGray text-sm">
                     장소
-                    <span className="ml-2.5 font-semibold text-black max-sm:text-sm">
+                    <span className="ml-2.5 text-black text-sm">
                       {row.place}
                     </span>
                   </li>
-                  <li className="mt-1.5 font-medium text-mkGray max-sm:text-sm">
+                  <li className="font-medium text-mkGray text-sm">
                     기간
-                    <span className="ml-2.5 font-semibold text-black max-sm:text-sm">
-                      {row.due}
-                    </span>
-                  </li>
-                  <li className="font-medium text-mkGray leading-9 max-sm:text-sm">
-                    경품
-                    <span className="ml-2.5 font-semibold text-black max-sm:text-sm">
-                      {row.product}
+                    <span className="ml-2.5 text-black text-sm">
+                      {row.period}
                     </span>
                   </li>
                 </ul>
-                <button
-                  value={row.id}
-                  onClick={clickHandler}
-                  className="xs:hidden md:block xl:block btn btn-outline rounded-none font-medium border-none text-mkOrange  hover:border-mkOrange hover:bg-transparent hover:text-black absolute right-10"
-                >
-                  More
-                  <i className="fa-solid fa-caret-right ml-2" />
-                </button>
+                <div className="max-sm:hidden w-[1px] h-[230px] bg-gradient-to-b from-transparent via-[#707070] to-transparent absolute right-0 md:right-10" />
+                <div className="sm:hidden w-[175px] h-[1px] bg-gradient-to-r from-transparent via-[#707070] to-transparent absolute translate-x-1/2 right-1/2 mt-10" />
               </div>
             );
           })}
