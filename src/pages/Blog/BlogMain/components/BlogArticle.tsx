@@ -9,7 +9,7 @@ interface BlogArticleProps {
   id: number;
   title: string;
   thumbnail: string;
-  blogDate: number;
+  blogDate: string;
   commentCount: number;
   nickname: string;
   likeCount: number;
@@ -56,7 +56,7 @@ export const BlogArticle = memo((props: BlogArticleProps) => {
           {title}
         </h1>
         <p className="blogTextInfo text-mkGray">
-          {blogDate}일 전 • {commentCount}개의 댓글
+          {blogDate} • {commentCount}개의 댓글
         </p>
         <hr />
         <div className="blogTextBottom">

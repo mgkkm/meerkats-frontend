@@ -4,7 +4,7 @@ import { toggleSelector } from '../../../../recoil/ToggleState';
 import { scrollArticleDataState } from '../../../../recoil/ArticleDataState';
 import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
-import { blogCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
 import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 
 type elType = {
@@ -95,7 +95,7 @@ export default function BlogScrollArticle() {
             const spoToggleData = toggle ? spoData : nonSpoData;
             return spoToggleData?.map((el: any) => {
               const nickname = el.user.nickname;
-              const blogDate = blogCreatedAt(el.created_at);
+              const blogDate = displayCreatedAt(el.created_at);
 
               const {
                 id,
