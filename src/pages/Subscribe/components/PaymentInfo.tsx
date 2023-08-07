@@ -60,9 +60,9 @@ export default function PaymentInfo() {
                     className="text-sm cursor-pointer"
                     onClick={() => paymentHandler(item.id, item.method)}
                   >
-                    <a className="active:bg-mkLightGray rounded-md">
+                    <p className="active:bg-mkLightGray rounded-md">
                       {item.method}
-                    </a>
+                    </p>
                   </li>
                 );
               })}
