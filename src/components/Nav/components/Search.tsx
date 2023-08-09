@@ -14,7 +14,7 @@ export default function Search() {
         onClick={() => setSearchInput(!searchInput)}
       >
         <img
-          src="/images/search.png"
+          src="/images/nav/search.png"
           alt="검색"
           className="opacity-70 hover:opacity-100"
         />

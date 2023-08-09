@@ -31,7 +31,7 @@ export default function MainCarousel() {
           <img
             className="min-h-[200px] min-w-[375px]"
             alt="main_poster"
-            src="/images/Main/main_poster_1.png"
+            src="/images/main/main_poster_1.png"
           />
         </a>
       </SwiperSlide>
@@ -40,7 +40,7 @@ export default function MainCarousel() {
           <img
             className="min-h-[200px] min-w-[375px]"
             alt="main_poster"
-            src="/images/Main/main_poster_2.png"
+            src="/images/main/main_poster_2.png"
           />
         </a>
       </SwiperSlide>
@@ -49,7 +49,7 @@ export default function MainCarousel() {
           <img
             className="min-h-[200px] min-w-[375px]"
             alt="main_poster3"
-            src="/images/Main/main_poster_3.png"
+            src="/images/main/main_poster_3.png"
           />
         </a>
       </SwiperSlide>
@@ -58,7 +58,7 @@ export default function MainCarousel() {
           <img
             className="min-h-[200px] min-w-[375px]"
             alt="main_poster4"
-            src="/images/Main/main_poster_4.png"
+            src="/images/main/main_poster_4.png"
           />
         </a>
       </SwiperSlide>

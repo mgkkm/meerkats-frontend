@@ -205,7 +205,7 @@ export const EmailInput = React.memo((props: propsType) => {
         >
           <span className="w-4">
             <img
-              src="/images/signin/check.png"
+              src="/images/signIn/check.png"
               alt="중복체크이미지"
               className="w-full"
             />

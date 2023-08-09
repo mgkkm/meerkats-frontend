@@ -8,7 +8,7 @@ export default function BlogContent() {
   return (
     <div className="mt-16">
       <div>
-        <p>{parse(blogDetailData.content)}</p>
+        <div>{parse(blogDetailData.content)}</div>
       </div>
     </div>
   );

@@ -6,8 +6,9 @@ import { useParams } from 'react-router-dom';
 type EventData = {
   id: number;
   title: string;
-  due: string;
-  product: string;
+  releaseDate: string;
+  period: string;
+  detail: string;
   place: string;
   img: string;
   schedule: EventScheduleProps[];
@@ -35,32 +36,22 @@ export default function EventInfo() {
     data !== null && data.find((item: EventData) => item.id === event);
 
   return (
-    <div className="flex justify-center font-semibold xl:p-10">
-      <div className="shadow-2xl hidden xl:w-1/2 xl:h-[650px] xl:block xl:mr-10 xl:mt-6 ">
-        <img src={findEvent.img} alt="movie_img" className="w-full h-[100%]" />
+    <div className="flex justify-center gap-5 px-4 lg:px-12 xl:px-[120px]">
+      <div className="shadow-2xl hidden lg:w-1/3 xl:w-1/2 lg:block xl:mr-10 xl:mt-6 h-fit">
+        <img src={findEvent.img} alt="movie_img" className="w-full" />
       </div>
       <div className="w-[55%] px-5 xs:w-full sm:w-full md:w-10/12">
-        <h1 className="border-b border-solid border-mkGray text-3xl py-5 mt-3 xs:text-2xl">
-          {findEvent.title}
-        </h1>
-        <ul className="border-b border-solid border-mkGray text-lg py-12 xs:text-base">
-          <li className="text-mkGray font-semibold mb-1">
-            기간
-            <span className="ml-3 text-black">{findEvent.due}</span>
+        <h1 className="text-3xl mt-14 pb-2 font-semibold">{findEvent.title}</h1>
+        <div className="w-full h-[1px] bg-gradient-to-r from-black to-transparent" />
+        <ul className="text-lg pt-8 pb-11 xs:text-base">
+          <li className="sm:text-xl font-semibold">{findEvent.sub}</li>
+          <li className="text-sm text-mkGray mb-8">{findEvent.period}</li>
+          <li className="max-sm:text-sm xl:text-base mb-3 font-semibold">
+            {findEvent.title} 개봉 기념 특별 이벤트! <br />
           </li>
-          <li className="text-mkGray font-semibold mb-7">
-            상품
-            <span className="ml-3 text-black">{findEvent.product}</span>
-          </li>
-          <li className="max-sm:text-sm xl:text-base ">
-            [이벤트 안내] {findEvent.title} 개봉 기념 특별 이벤트! <br />
-            {findEvent.place}에서만 진행되는 이벤트로 여러분을 초대합니다.
-            <br /> 오직 이곳에서만 즐길 수 있는 영화 경험과 {findEvent.product}
-            를 비롯한 다양한 선물을 드립니다. 이벤트 기간은 {findEvent.due}
-            까지로 제한되니, 놓치지 마세요. <br /> {findEvent.title}의 열정과
-            스릴이 가득한 이 영화와 함께 더욱 특별한 순간을 만들어보세요.
-          </li>
+          <li className="max-sm:text-sm xl:text-base">{findEvent.detail}</li>
         </ul>
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent to-black" />
         <EventSchedule findEvent={findEvent} />
       </div>
     </div>
