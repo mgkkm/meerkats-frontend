@@ -47,7 +47,7 @@ export default function EventList() {
       <h1 className="text-4xl text-center font-semibold my-14 max-sm:text-2xl">
         진행 중인 이벤트
       </h1>
-      <div className="container px-16 sm:px-20 py-2.5 flex flex-wrap max-xl:justify-center">
+      <div className="container px-7 sm:px-20 py-2.5 flex flex-wrap max-xl:justify-center">
         {data &&
           data.map((row: EventType) => {
             return (
@@ -55,7 +55,7 @@ export default function EventList() {
                 data-value={row.id}
                 onClick={clickHandler}
                 key={row.id}
-                className="w-full mb-80 lg:w-3/4 xl:w-1/2 sm:flex relative md:px-10 sm:mb-20 h-[260px] items-end cursor-pointer"
+                className="w-full mb-[450px] lg:w-3/4 xl:w-1/2 sm:flex relative md:px-10 sm:mb-20 h-[260px] items-end cursor-pointer"
               >
                 <div className="w-full h-fit sm:w-[175px] sm:mr-6 shadow-xl overflow-hidden">
                   <img src={row.img} alt="movie_img" className="w-full" />
