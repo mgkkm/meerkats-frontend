@@ -60,7 +60,7 @@ export default function EventList() {
                 <div className="w-full h-fit sm:w-[175px] sm:mr-6 shadow-xl overflow-hidden">
                   <img src={row.img} alt="movie_img" className="w-full" />
                 </div>
-                <ul className="h-56 max-sm:p-1 xs:h-fit pb-1">
+                <ul className="h-56 max-sm:p-1 max-sm:mt-4 xs:h-fit pb-1">
                   <li className="text-xl max-sm:mt-2 sm:text-2xl leading-6 font-semibold">
                     {row.title}
                   </li>

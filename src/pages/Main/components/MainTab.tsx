@@ -35,7 +35,7 @@ export default function MainTab() {
           return (
             <div
               key={idx}
-              className={`tab font-semibold text-xl tracking-wide w-24 h-8 mb-8 max-sm:text-[10px] sm:text-xs sm:w-40 md:text-sm ${
+              className={`tab font-semibold text-sm tracking-wide w-24 h-6 sm:h-8 mb-8 max-sm:text-[10px] sm:w-40 lg:text-base ${
                 activeTab === idx
                   ? ' bg-white border-2 sm:border-[3px] border-mkOrange text-black rounded'
                   : 'hover:border-2 hover:sm:border-[3px] border-mkGray rounded'

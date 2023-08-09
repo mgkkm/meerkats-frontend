@@ -39,7 +39,7 @@ export default function Membership() {
 
   return (
     <div className="container xl pt-48 flex justify-center">
-      <div className="max-lg:block lg:w-full flex justify-center gap-16 lg:gap-10 xl:gap-16">
+      <div className="max-lg:flex-col gap-10 lg:w-full flex justify-center lg:gap-10 xl:gap-16">
         {membershipData?.map((membership, id) => {
           return <MembershipCard key={id} membership={membership} />;
         })}
