@@ -3,7 +3,7 @@ import { HiOutlineDotsHorizontal } from 'react-icons/hi';
 import { currentUserIdState } from '../../../../recoil/JwtDecode';
 import { useRecoilValue } from 'recoil';
 import { blogDetailState } from '../../../../recoil/BlogDetailState';
-import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { createdAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useNavigate } from 'react-router-dom';
 import useAxios from '../../../../hooks/useAxios';
 import {
@@ -93,7 +93,7 @@ export default function BlogHeader() {
           <div>
             <span className="px-3">·</span>
             <span className="text-sm text-mkGray">
-              {created_at && displayCreatedAt(created_at)}
+              {created_at && createdAt(created_at)}
             </span>
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { CommentData, commentState } from '../../../recoil/CommentState';
 import DropDownBtn from './DropDownBtn';
 import { currentUserIdState } from '../../../recoil/JwtDecode';
-import { displayCreatedAt } from '../../CreatedAt/CreatedAt';
+import { createdAt } from '../../CreatedAt/CreatedAt';
 import useAxios from '../../../hooks/useAxios';
 import { renderingState } from '../../../recoil/BlogPostState';
 import { numberState } from '../../../recoil/NumberState';
@@ -55,7 +55,7 @@ export default function CommentList() {
                 <p className="text-sm font-semibold py-1">{user.nickname}</p>
                 <span className="px-2">·</span>
                 <p className="text-mkGray text-xs py-1">
-                  {created_at && displayCreatedAt(created_at)}
+                  {created_at && createdAt(created_at)}
                 </p>
               </div>
               {user.id === currentUserId && (

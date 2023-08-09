@@ -8,7 +8,7 @@ import BlogMain from './pages/Blog/BlogMain/BlogMain';
 import EventList from './pages/Event/EventList';
 import EventDetail from './pages/Event/EventDetail';
 import Membership from './pages/Membership/Membership';
-import SignIn from './pages/SignIn/SignIn';
+import Signin from './pages/Signin/Signin';
 import BlogDetail from './pages/Blog/BlogDetail/BlogDetail';
 import MovieDetail from './pages/MovieDetail/MovieDetail';
 import BlogPosting from './pages/Blog/BlogPosting/BlogPosting';
@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Main /> },
       { path: '/login', element: <Login /> },
-      { path: '/signIn', element: <SignIn /> },
+      { path: '/signin', element: <Signin /> },
       { path: '/kakaoRedirect', element: <KakaoLogin /> },
       { path: '/blogMain', element: <BlogMain /> },
       { path: '/event', element: <EventList /> },

@@ -9,7 +9,7 @@ import { tokenState } from '../../../../recoil/TokenState';
 import { myBlogBtnState } from '../../../../recoil/MyBlogBtnState';
 import useAxios from '../../../../hooks/useAxios';
 import { BlogArticle } from './BlogArticle';
-import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { createdAt } from '../../../../components/CreatedAt/CreatedAt';
 
 type dataType = {
   data: {
@@ -87,7 +87,7 @@ const BlogRenderArticle = React.memo(() => {
       {myBlogBtn
         ? myBlogData?.data?.thisUserWrittenPosts.map((el: myBlogElType) => {
             const nickname = el.user.nickname;
-            const blogDate = displayCreatedAt(el.created_at);
+            const blogDate = createdAt(el.created_at);
 
             const {
               id,
@@ -116,7 +116,7 @@ const BlogRenderArticle = React.memo(() => {
           })
         : spoToggle?.map((el: elType) => {
             const nickname = el.user.nickname;
-            const blogDate = displayCreatedAt(el.created_at);
+            const blogDate = createdAt(el.created_at);
 
             const {
               id,

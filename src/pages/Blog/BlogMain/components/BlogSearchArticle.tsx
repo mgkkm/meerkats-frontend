@@ -1,7 +1,7 @@
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { SearchDataState } from '../../../../recoil/SearchDataState';
 import { BlogArticle } from './BlogArticle';
-import { displayCreatedAt } from '../../../../components/CreatedAt/CreatedAt';
+import { createdAt } from '../../../../components/CreatedAt/CreatedAt';
 import { useEffect } from 'react';
 import { searchState } from '../../../../recoil/SearchState';
 
@@ -22,7 +22,7 @@ export default function BlogSearchArticle() {
     <section className="flex flex-col lg:flex-row lg:flex-wrap justify-center m-auto xl:mt-10">
       {searchArticleData?.data?.map((el: any) => {
         const nickname = el.user.nickname;
-        const blogDate = displayCreatedAt(el.created_at);
+        const blogDate = createdAt(el.created_at);
 
         const {
           id,

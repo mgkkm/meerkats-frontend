@@ -1,6 +1,5 @@
-export function displayCreatedAt(created_at: string) {
+export function createdAt(created_at: string) {
   const now = new Date();
-
   const utcToKst = new Date(created_at);
 
   const milliSeconds: number = now.getTime() - utcToKst.getTime();
@@ -14,7 +13,7 @@ export function displayCreatedAt(created_at: string) {
   if (hours < 24) {
     return `${Math.floor(hours)}시간 전`;
   } else if (dayDiffer <= 7) {
-    return `${dayDiffer}일 전`;
+    return `${Math.floor(dayDiffer)}일 전`;
   } else {
     return `${created_at.split('T')[0]}  ${
       created_at.split('T')[1].split(':')[0]

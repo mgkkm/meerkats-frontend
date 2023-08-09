@@ -17,7 +17,7 @@ export default function Login() {
       <div className="mt-8 sm:mt-12 text-center opacity-90">
         <span className="mr-3 xs:mr-5 sm:mr-8 lg:mr-10">아이디 찾기</span>|
         <span className="mx-3 xs:mx-5 sm:mx-8 lg:mx-10">비밀번호 찾기</span>|
-        <Link to="/signIn">
+        <Link to="/signin">
           <span className="ml-3 xs:ml-5 sm:ml-8 lg:ml-10">회원가입</span>
         </Link>
       </div>
