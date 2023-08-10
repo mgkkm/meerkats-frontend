@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import MoviePlayer from './MoviePlayer';
 import { GrClose } from 'react-icons/gr';
 
@@ -14,6 +14,7 @@ export default function ModalPlayer({
   modalTop,
 }: ModalPlayerProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [playerHeight, setPlayerHeight] = useState('');
 
   const modalOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (modalRef.current === e.target) {
@@ -31,6 +32,25 @@ export default function ModalPlayer({
     return () => document.removeEventListener('keydown', escEvent);
   }, [setIsModalOpen]);
 
+  useEffect(() => {
+    const handleHeight = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 640) {
+        setPlayerHeight(((screenWidth / 16) * 9).toLocaleString());
+      } else {
+        setPlayerHeight((((screenWidth * 0.75) / 16) * 9).toLocaleString());
+      }
+    };
+
+    handleHeight();
+
+    window.addEventListener('resize', handleHeight);
+
+    return () => {
+      window.removeEventListener('resize', handleHeight);
+    };
+  }, []);
+
   return (
     <div
       className="w-full h-screen z-50 left-0 absolute flex justify-center items-center"
@@ -46,7 +66,7 @@ export default function ModalPlayer({
         onClick={modalOutsideClick}
       />
       <div className="w-full sm:w-3/4 absolute" tabIndex={0}>
-        <MoviePlayer videoId={videoId} height="630" autoplay={1} />
+        <MoviePlayer videoId={videoId} height={playerHeight} autoplay={1} />
       </div>
     </div>
   );
