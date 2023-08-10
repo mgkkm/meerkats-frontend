@@ -75,7 +75,6 @@ export default function BlogDetail() {
       method: 'POST',
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
       },
     }).then((result: ResultData) => {
       if (result) {

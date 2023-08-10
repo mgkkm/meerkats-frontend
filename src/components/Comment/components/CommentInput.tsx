@@ -57,7 +57,6 @@ export default function CommentInput() {
       method: isEdit ? 'PATCH' : 'POST',
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
       },
       data: { content: content },
     }).then((el: any) => {

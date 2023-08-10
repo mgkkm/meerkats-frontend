@@ -35,7 +35,6 @@ export default function BlogPosting() {
         method: 'POST',
         headers: {
           Authorization: token,
-          'Content-Type': `application/json`,
         },
         data: { userId: 3 },
       }).then((res: any) => {

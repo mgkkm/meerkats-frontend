@@ -30,29 +30,6 @@ export default function MovieChat() {
 
   const token = sessionStorage.getItem('token');
 
-  const joinRoom = () => {
-    socket.emit('join_room', roomId);
-  };
-
-  const handleCount = useCallback((data: number) => {
-    setOnlineCount(data);
-  }, []);
-
-  useEffect(() => {
-    joinRoom();
-
-    socket.on('count', handleCount);
-
-    return () => {
-      socket.emit('leave', roomId);
-      socket.off('count', handleCount);
-    };
-  }, []);
-
-  useEffect(() => {
-    socket.on('count', handleCount);
-  }, [handleCount]);
-
   const sendMessage = async () => {
     if (currentMessage !== '') {
       const messageData = {
@@ -72,6 +49,26 @@ export default function MovieChat() {
       setCurrentMessage('');
     }
   };
+
+  const handleCount = useCallback((data: number) => {
+    setOnlineCount(data);
+  }, []);
+
+  useEffect(() => {
+    socket.emit('join_room', roomId);
+
+    return () => {
+      socket.emit('leave', roomId);
+    };
+  }, []);
+
+  useEffect(() => {
+    socket.on('count', handleCount);
+
+    return () => {
+      socket.off('count', handleCount);
+    };
+  }, [handleCount]);
 
   useEffect(() => {
     socket.on('receive_message', data => {

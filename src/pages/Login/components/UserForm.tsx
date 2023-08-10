@@ -39,7 +39,6 @@ export default function UserForm() {
     fetchData({
       url: `${BASE_URL}/users/signin`,
       method: 'POST',
-      headers: { 'Content-Type': `application/json` },
       data: { email: id, password: pw },
     }).then((res: dataType) => {
       if (res.accessToken) {
