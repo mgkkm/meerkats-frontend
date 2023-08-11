@@ -81,7 +81,6 @@ export const EmailInput = React.memo((props: propsType) => {
     fetchData({
       url: `${BASE_URL}/users/email-send`,
       method: 'POST',
-      headers: { 'Content-Type': `application/json` },
       data: { email: email },
     }).then((data: dataType) => {
       // 인증버튼 비활성화

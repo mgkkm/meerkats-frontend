@@ -27,9 +27,6 @@ export default function Membership() {
     if (membershipData[0].id === 0)
       fetchData({
         url: `${BASE_URL}/membership`,
-        headers: {
-          'Content-Type': `application/json`,
-        },
       }).then((result: MembershipData) => {
         if (result) {
           setMembershipData(result.data);

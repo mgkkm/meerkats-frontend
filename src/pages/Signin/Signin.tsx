@@ -25,7 +25,6 @@ export default function Signin() {
     await axios({
       method: 'post',
       url: `${BASE_URL}/users/signup`,
-      headers: { 'Content-Type': `application/json` },
       data: {
         email: email,
         password: password,

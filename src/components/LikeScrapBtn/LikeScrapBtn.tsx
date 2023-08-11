@@ -91,7 +91,6 @@ export default function LikeScrapBtn({
       method: 'POST',
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
       },
     }).then((result: LikeScrapResultType) => {
       if (result) {

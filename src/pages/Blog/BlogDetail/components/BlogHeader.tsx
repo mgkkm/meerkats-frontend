@@ -39,7 +39,6 @@ export default function BlogHeader() {
           method: 'DELETE',
           headers: {
             Authorization: token,
-            'Content-Type': `application/json`,
           },
         }).then((result: any) => {
           if (result.message.includes('SUCCESS')) {

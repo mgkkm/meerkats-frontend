@@ -41,7 +41,6 @@ export default function PostBtn() {
       method: isEdit ? 'PATCH' : 'POST',
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
       },
       data: blogPost,
     }).then((res: any) => {

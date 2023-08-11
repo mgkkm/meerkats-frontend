@@ -112,7 +112,6 @@ export default function MovieDetail() {
       url: `${BASE_URL}/movie/${postId}?skip=0&take=10`,
       headers: {
         Authorization: token,
-        'Content-Type': `application/json`,
       },
     }).then((result: MovieDetailData) => {
       if (result) {
