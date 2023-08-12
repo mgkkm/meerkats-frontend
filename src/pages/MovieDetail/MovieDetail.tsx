@@ -6,7 +6,7 @@ import TrailerPlaylist from './components/TrailerPlaylist';
 import { useParams } from 'react-router-dom';
 import useAxios from '../../hooks/useAxios';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
-import { toggleSelector } from '../../recoil/ToggleState';
+import { toggleState } from '../../recoil/ToggleState';
 import {
   movieHeaderState,
   movieBlogState,
@@ -96,15 +96,13 @@ export default function MovieDetail() {
   const setMovieBlogData = useSetRecoilState(movieBlogState);
   const [mainVideoId, setMainVideoId] = useState('');
   const setPlaylistYoutubeData = useSetRecoilState(playlistYoutubeState);
-  const setIsMovieLiked = useSetRecoilState(
-    toggleSelector(`movieLike${postId}`)
-  );
+  const setIsMovieLiked = useSetRecoilState(toggleState(`movieLike${postId}`));
 
   const resetMovieHeaderState = useResetRecoilState(movieHeaderState);
   const resetMovieBlogState = useResetRecoilState(movieBlogState);
   const resetPlaylistYoutubeState = useResetRecoilState(playlistYoutubeState);
   const resetIsMovieLiked = useResetRecoilState(
-    toggleSelector(`movieLike${postId}`)
+    toggleState(`movieLike${postId}`)
   );
 
   useEffect(() => {
