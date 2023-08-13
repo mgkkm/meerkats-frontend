@@ -2,15 +2,15 @@ import { FaRegCommentDots } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import LikeScrapBtn from '../../../../components/LikeScrapBtn/LikeScrapBtn';
-import { numberSelector } from '../../../../recoil/NumberState';
+import { numberState } from '../../../../recoil/NumberState';
 
 export default function BlogFooter() {
   const params = useParams();
   const postId = params.id;
 
-  const likeN = useRecoilValue(numberSelector(`blogLike${postId}`));
-  const scrapN = useRecoilValue(numberSelector(`blogScrap${postId}`));
-  const commentN = useRecoilValue(numberSelector(`blogComment${postId}`));
+  const likeN = useRecoilValue(numberState(`blogLike${postId}`));
+  const scrapN = useRecoilValue(numberState(`blogScrap${postId}`));
+  const commentN = useRecoilValue(numberState(`blogComment${postId}`));
 
   return (
     <div className="mt-16 mb-5 text-sm flex justify-end items-center">

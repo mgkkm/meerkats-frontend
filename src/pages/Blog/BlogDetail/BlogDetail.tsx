@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useResetRecoilState, useSetRecoilState } from 'recoil';
-import { toggleSelector } from '../../../recoil/ToggleState';
-import { numberSelector, numberState } from '../../../recoil/NumberState';
+import { toggleState } from '../../../recoil/ToggleState';
+import { numberState } from '../../../recoil/NumberState';
 import useAxios from '../../../hooks/useAxios';
 import { useParams } from 'react-router-dom';
 import BlogHeader from './components/BlogHeader';
@@ -52,19 +52,17 @@ export default function BlogDetail() {
 
   const setBlogDetailData = useSetRecoilState(blogDetailState);
 
-  const setIsLiked = useSetRecoilState(toggleSelector(`blogLike${postId}`));
-  const setIsScraped = useSetRecoilState(toggleSelector(`blogScrap${postId}`));
+  const setIsLiked = useSetRecoilState(toggleState(`blogLike${postId}`));
+  const setIsScraped = useSetRecoilState(toggleState(`blogScrap${postId}`));
+  const setLikeN = useSetRecoilState(numberState(`blogLike${postId}`));
+  const setScrapN = useSetRecoilState(numberState(`blogScrap${postId}`));
 
-  const setLikeN = useSetRecoilState(numberSelector(`blogLike${postId}`));
-  const setScrapN = useSetRecoilState(numberSelector(`blogScrap${postId}`));
+  const resetIsLiked = useResetRecoilState(toggleState(`blogLike${postId}`));
+  const resetIsScraped = useResetRecoilState(toggleState(`blogScrap${postId}`));
+  const resetLikeN = useResetRecoilState(numberState(`blogLike${postId}`));
+  const resetScrapN = useResetRecoilState(numberState(`blogScrap${postId}`));
 
   const resetBlogDetailState = useResetRecoilState(blogDetailState);
-  const resetIsLiked = useResetRecoilState(toggleSelector(`blogLike${postId}`));
-  const resetIsScraped = useResetRecoilState(
-    toggleSelector(`blogScrap${postId}`)
-  );
-  const resetLikeN = useResetRecoilState(numberSelector(`blogLike${postId}`));
-  const resetScrapN = useResetRecoilState(numberSelector(`blogScrap${postId}`));
   const resetCommentN = useResetRecoilState(
     numberState(`blogComment${postId}`)
   );
@@ -79,10 +77,6 @@ export default function BlogDetail() {
     }).then((result: ResultData) => {
       if (result) {
         setBlogDetailData(result.data.postDetails);
-        resetIsLiked();
-        resetIsScraped();
-        resetLikeN();
-        resetScrapN();
         setIsLiked(result.data.postDetails.isLikedByThisUser);
         setIsScraped(result.data.postDetails.isScrapedByThisUser);
         setLikeN(result.data.postDetails.likeCount);
@@ -92,6 +86,10 @@ export default function BlogDetail() {
     });
 
     return () => {
+      resetIsLiked();
+      resetIsScraped();
+      resetLikeN();
+      resetScrapN();
       resetBlogDetailState();
       resetCommentN();
     };
