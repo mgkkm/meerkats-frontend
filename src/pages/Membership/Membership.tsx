@@ -29,6 +29,7 @@ export default function Membership() {
         url: `${BASE_URL}/membership`,
       }).then((result: MembershipData) => {
         if (result) {
+          result.data.sort((a, b) => a.id - b.id);
           setMembershipData(result.data);
         }
       });
